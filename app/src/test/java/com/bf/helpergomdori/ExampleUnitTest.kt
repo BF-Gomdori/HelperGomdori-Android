@@ -1,4 +1,4 @@
-package com.kimchuu.helpergomdori
+package com.bf.helpergomdori
 
 import org.junit.Test
 

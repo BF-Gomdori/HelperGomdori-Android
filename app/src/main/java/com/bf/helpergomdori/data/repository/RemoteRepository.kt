@@ -1,7 +1,7 @@
-package com.kimchuu.helpergomdori.data.repository
+package com.bf.helpergomdori.data.repository
 
 
-import com.kimchuu.helpergomdori.data.remote.RemoteDataSourceImpl
+import com.bf.helpergomdori.data.remote.RemoteDataSourceImpl
 import kotlinx.coroutines.CoroutineScope
 
 class RemoteRepository(

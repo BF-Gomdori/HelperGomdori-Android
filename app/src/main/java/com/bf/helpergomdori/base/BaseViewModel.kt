@@ -1,4 +1,4 @@
-package com.kimchuu.helpergomdori.base
+package com.bf.helpergomdori.base
 
 import androidx.lifecycle.ViewModel
 

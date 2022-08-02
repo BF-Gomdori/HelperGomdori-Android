@@ -1,4 +1,4 @@
-package com.kimchuu.helpergomdori
+package com.bf.helpergomdori
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
