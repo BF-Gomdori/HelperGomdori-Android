@@ -9,6 +9,8 @@ class MainActivity : BaseActivity() {
     private val binding by bindingRes<ActivityMainBinding>(R.layout.activity_main)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.apply {  }
+        binding.apply {
+            //todo view 작업
+        }
     }
 }
