@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="skyblue">#63CCF9</color>
     <color name="dark_skyblue">#2297C9</color>
+    <color name="naver">#06be34</color>
+    <color name="naver_pressed">#05982A</color>
 </resources>

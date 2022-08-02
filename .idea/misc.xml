@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_login_background.xml" value="0.224" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_main.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_signin.xml" value="0.2171875" />
       </map>
     </option>
   </component>
