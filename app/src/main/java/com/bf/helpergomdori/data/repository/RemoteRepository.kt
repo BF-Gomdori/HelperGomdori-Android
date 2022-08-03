@@ -10,5 +10,6 @@ class RemoteRepository(
     private val remoteDataSource: RemoteDataSource,
     private val externalScope: CoroutineScope
 ) {
-    suspend fun getData() = remoteDataSource.getData()
+    suspend fun getData(): Data = remoteDataSource.getData()
 }
+
