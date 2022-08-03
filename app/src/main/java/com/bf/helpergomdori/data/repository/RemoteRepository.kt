@@ -7,8 +7,8 @@ import com.bf.helpergomdori.model.Data
 import kotlinx.coroutines.CoroutineScope
 
 class RemoteRepository(
-    private val remoteDataSource: RemoteDataSource,
-    private val externalScope: CoroutineScope
+    private val remoteDataSource: RemoteDataSource
+    //, private val externalScope: CoroutineScope
 ) {
     suspend fun getData(): Data = remoteDataSource.getData()
 }

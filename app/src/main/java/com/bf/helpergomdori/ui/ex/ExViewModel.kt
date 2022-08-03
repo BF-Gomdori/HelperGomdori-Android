@@ -1,4 +1,4 @@
-package com.bf.helpergomdori.ui.main
+package com.bf.helpergomdori.ui.ex
 
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.base.BaseViewModel
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: RemoteRepository): BaseViewModel() {
+class ExViewModel(private val repository: RemoteRepository): BaseViewModel() {
     //todo data 관련 작업
     val dataIntent = Channel<DataIntent>(Channel.UNLIMITED)
     val dataState = MutableStateFlow<DataState>(DataState.Inactive)
@@ -35,7 +35,7 @@ class MainViewModel(private val repository: RemoteRepository): BaseViewModel() {
             dataState.value = try{
                 DataState.ResponseData(repository.getData())
             } catch (e: Exception) {
-                DataState.Error(e.localizedMessage)
+                DataState.Error(e.localizedMessage as String)
             }
         }
     }
