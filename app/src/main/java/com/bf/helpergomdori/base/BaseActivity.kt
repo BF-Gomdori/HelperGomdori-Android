@@ -19,10 +19,8 @@ abstract class BaseActivity<B: ViewDataBinding>(private val resId: Int) : AppCom
         createActivity()
     }
 
-    inline fun <reified T : ViewDataBinding> bindingRes(resId: Int) : Lazy<T> {
-        return lazy {
-            val binding = DataBindingUtil.setContentView<T>(this, resId)
-            binding
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
