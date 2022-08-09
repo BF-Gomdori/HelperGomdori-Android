@@ -5,13 +5,8 @@ import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseActivity
 import com.bf.helpergomdori.databinding.ActivitySigninBinding
 
-class SignInActivity : BaseActivity() {
-    private val binding by bindingRes<ActivitySigninBinding>(R.layout.activity_signin)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding.apply {
-
-        }
+class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_signin) {
+    override fun createActivity() {
+        TODO("Not yet implemented")
     }
 }

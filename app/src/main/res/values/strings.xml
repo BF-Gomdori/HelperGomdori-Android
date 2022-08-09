@@ -2,4 +2,6 @@
     <string name="app_name">helperGomdori</string>
     <string name="app_name_kor">도움곰돌이</string>
     <string name="signin_naver">네이버로 가입하기</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
