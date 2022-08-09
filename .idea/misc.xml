@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_default.xml" value="0.16" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_default_.xml" value="0.16" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_login.xml" value="0.16" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_login_background.xml" value="0.224" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_naver_login.xml" value="0.1755" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_btn_default.xml" value="0.109" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_main.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_signin.xml" value="0.2171875" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_greeting.xml" value="0.1" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_greeting.xml" value="0.2028985507246377" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_helpee.xml" value="0.152" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_helping.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_singin_greeting.xml" value="0.264" />
       </map>

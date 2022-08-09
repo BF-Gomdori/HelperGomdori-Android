@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signInGreetingFragment">
+
+    <fragment
+        android:id="@+id/signInGreetingFragment"
+        android:name="com.bf.helpergomdori.ui.signIn.SignInGreetingFragment"
+        android:label="SignInGreetingFragment"
+        tools:layout="@layout/fragment_signin_greeting">
+        <action
+            android:id="@+id/action_signInGreetingFragment_to_signInHelpingFragment"
+            app:destination="@id/signInHelpingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signInHelpingFragment"
+        android:name="com.bf.helpergomdori.ui.signIn.SignInHelpingFragment"
+        android:label="SignInHelpingFragment"
+        tools:layout="@layout/fragment_signin_helping">
+        <action
+            android:id="@+id/action_signInHelpingFragment_to_signInHelpeeFragment"
+            app:destination="@id/signInHelpeeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signInHelpeeFragment"
+        android:name="com.bf.helpergomdori.ui.signIn.SignInHelpeeFragment"
+        android:label="SignInHelpeeFragment"
+        tools:layout="@layout/fragment_signin_helpee"/>
+
+</navigation>

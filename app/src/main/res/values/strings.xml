@@ -4,4 +4,8 @@
     <string name="signin_naver">네이버로 가입하기</string>
     <string name="hello_helper_gomdori">안녕하세요\n도움곰돌이에요</string>
     <string name="select_helping">도움 주기/받기를\n선택해주세요</string>
+    <string name="giving_help">도움주기</string>
+    <string name="getting_help">도움받기</string>
+    <string name="select_disabled_type">장애 유형 선택</string>
+    <string name="ok">확인</string>
 </resources>
