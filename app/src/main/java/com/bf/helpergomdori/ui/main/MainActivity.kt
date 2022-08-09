@@ -7,6 +7,6 @@ import com.bf.helpergomdori.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun createActivity() {
-        TODO("Not yet implemented")
+        binding.apply {  }
     }
 }
