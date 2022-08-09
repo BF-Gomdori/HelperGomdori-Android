@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="font_title">
+        <item name="android:textSize">30sp</item>
+        <item name="fontFamily">@font/notosans_kr_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+</resources>
