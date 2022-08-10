@@ -11,4 +11,6 @@
     <color name="dark_skyblue">#2297C9</color>
     <color name="naver">#06be34</color>
     <color name="naver_pressed">#05982A</color>
+    <color name="kakao">#FFE920</color>
+    <color name="kakao_pressed">#CCBA1A</color>
 </resources>
