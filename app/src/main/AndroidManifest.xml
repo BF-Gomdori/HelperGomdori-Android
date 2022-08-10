@@ -4,8 +4,11 @@
     package="com.bf.helpergomdori">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
+        android:name=".HelperGomdoriApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -31,7 +34,20 @@
         </activity>
         <activity
             android:name=".ui.ex.ExActivity"
+            android:exported="true" />
+
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                <data android:host="oauth"
+                    android:scheme="kakao17abb9ddb66ddc971dd9ccf2c95a1a8e" />
+            </intent-filter>
         </activity>
 
         <meta-data

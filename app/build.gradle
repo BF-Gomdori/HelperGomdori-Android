@@ -70,6 +70,11 @@ dependencies {
     // Naver maps sdk
     implementation "com.naver.maps:map-sdk:$naver_maps_version"
 
+    // Kakao
+    implementation "com.kakao.sdk:v2-user:2.11.0" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.11.0" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-share:2.11.0" // 메시지(카카오톡 공유)
+
     // Google play service
     implementation "com.google.android.gms:play-services-location:$google_play_version"
 
