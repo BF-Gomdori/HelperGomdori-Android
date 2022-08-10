@@ -20,22 +20,18 @@ import com.bf.helpergomdori.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ExActivity : BaseActivity() {
-    private val binding by bindingRes<ActivityExBinding>(R.layout.activity_ex)
+class ExActivity : BaseActivity<ActivityExBinding>(R.layout.activity_ex) {
     private lateinit var viewModel: ExViewModel
-    private val TAG = "MainActivity"
-
     private var adapter = ExAdapter(arrayListOf())
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun createActivity() {
         setupUI()
         setupViewModel()
         observeViewModel()
         setupClicks()
     }
 
-    private fun setupUI(){
+    private fun setupUI() {
         binding.apply {
             recyclerView.layoutManager = LinearLayoutManager(this@ExActivity)
             recyclerView.run {
@@ -72,10 +68,10 @@ class ExActivity : BaseActivity() {
 
     private fun observeViewModel() {
         lifecycleScope.launch {
-            viewModel.dataState.collect{
-                when(it) {
+            viewModel.dataState.collect {
+                when (it) {
                     is DataState.Inactive -> {
-                        Log.d(TAG, "observeViewModel: Initial state of StateFlow")
+                        Log.d("ExActivity", "observeViewModel: Initial state of StateFlow")
                     }
                     is DataState.Loading -> {
                         binding.buttonShowUsers.visibility = View.GONE

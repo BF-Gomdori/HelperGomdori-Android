@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_helper_gomdori"
+            style="@style/font_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.15"
+            />
+
+        <LinearLayout
+            android:id="@+id/btn_kakao_login"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_naver_login"
+            android:layout_marginBottom="12dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/btn_login"
+            android:backgroundTint="@color/color_kakao"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/signin_kakao"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/notosans_kr_medium"
+                android:includeFontPadding="false"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_naver_login"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="30dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/btn_login"
+            android:backgroundTint="@color/color_naver"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/signin_naver"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/notosans_kr_medium"
+                android:includeFontPadding="false"
+                />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
