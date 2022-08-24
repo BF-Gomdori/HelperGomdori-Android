@@ -9,7 +9,7 @@ import javax.xml.datatype.DatatypeConstants.SECONDS
 
 object RetrofitBuilder {
     //private const val BASE_URL = "https://reqres.in/api/" <- getUser
-    private const val BASE_URL = "http://dbb5-219-255-158-172.ngrok.io"
+    private const val BASE_URL = "http://bc0e-219-255-158-173.ngrok.io"
 
     private val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

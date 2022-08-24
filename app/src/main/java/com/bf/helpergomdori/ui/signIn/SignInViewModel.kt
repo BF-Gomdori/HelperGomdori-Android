@@ -8,14 +8,13 @@ import kotlinx.coroutines.launch
 
 class SignInViewModel : ViewModel(){
 
-    fun postUserInfo(){
+    fun postUserInfo(accessToken: String){
         viewModelScope.launch {
-            val accessToken = "AqetotdZ4XZiR9wOf8JubC8Bb5S4Et9lCbjWP0ZGCj102wAAAYLJu_P_"
             val phone = "01055924249"
             val name = "성공"
             val intro = "자기 소개"
             val age = 20
-            ExRepository.postMember(PostUser(accessToken, phone, name, intro, age))
+            val jwt  = ExRepository.postMember(PostUser(accessToken, phone, name, intro, age)) //todo 저장해서 api 보낼 때마다 헤더에 추가해서 보내줘야함
         }
     }
 }

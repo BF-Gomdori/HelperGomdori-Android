@@ -55,7 +55,7 @@ class SignInGreetingFragment :
                 } else if (token != null) {
                     Log.i(SIGNIN_TAG, "카카오 로그인 성공 ${token.accessToken}")
                     //todo 추후에 accessToken 백엔드에 보낸 후에 jwt 받아옴
-                    viewModel.postUserInfo()
+                    viewModel.postUserInfo(token.accessToken)
                     navController.navigate(R.id.signInHelpingFragment)
                 }
             }
