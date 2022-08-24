@@ -1,6 +1,7 @@
 package com.bf.helpergomdori.ui.signIn
 
 import android.util.Log
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -12,7 +13,7 @@ import com.kakao.sdk.user.UserApiClient
 
 class SignInGreetingFragment :
     BaseFragment<FragmentSigninGreetingBinding>(R.layout.fragment_signin_greeting) {
-
+    private val viewModel: SignInViewModel by viewModels()
     private lateinit var navController: NavController
 
     override fun createView(binding: FragmentSigninGreetingBinding) {
@@ -54,6 +55,7 @@ class SignInGreetingFragment :
                 } else if (token != null) {
                     Log.i(SIGNIN_TAG, "카카오 로그인 성공 ${token.accessToken}")
                     //todo 추후에 accessToken 백엔드에 보낸 후에 jwt 받아옴
+                    viewModel.postUserInfo()
                     navController.navigate(R.id.signInHelpingFragment)
                 }
             }
