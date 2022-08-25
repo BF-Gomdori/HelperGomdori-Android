@@ -1,7 +1,7 @@
 package com.bf.helpergomdori.data.remote
 
 import com.bf.helpergomdori.model.Data
-import com.bf.helpergomdori.model.response.PostUser
+import com.bf.helpergomdori.model.body.PostUser
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
