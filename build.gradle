@@ -9,6 +9,7 @@ buildscript {
         google_play_version = "20.0.0"
         nav_version = "2.5.1"
         hilt_version = "2.43.2"
+        dataStore_version = "1.0.0"
     }
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
