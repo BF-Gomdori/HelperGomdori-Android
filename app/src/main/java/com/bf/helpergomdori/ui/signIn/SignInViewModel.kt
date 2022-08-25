@@ -2,9 +2,8 @@ package com.bf.helpergomdori.ui.signIn
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bf.helpergomdori.data.repository.ExRepository
 import com.bf.helpergomdori.data.repository.RemoteRepository
-import com.bf.helpergomdori.model.response.PostUser
+import com.bf.helpergomdori.model.body.PostUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

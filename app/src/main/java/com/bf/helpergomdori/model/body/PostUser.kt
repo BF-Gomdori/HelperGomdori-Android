@@ -1,4 +1,4 @@
-package com.bf.helpergomdori.model.response
+package com.bf.helpergomdori.model.body
 
 data class PostUser(
     val access_token: String,

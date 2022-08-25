@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignInGreetingFragment :
     BaseFragment<FragmentSigninGreetingBinding>(R.layout.fragment_signin_greeting) {
-    //private val viewModel: SignInViewModel by viewModels()
     private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_graph)
     private lateinit var navController: NavController
 
@@ -30,7 +29,7 @@ class SignInGreetingFragment :
     }
 
     private fun setupClicks() {
-        binding!!.apply {
+        binding.apply {
             btnKakaoLogin.setOnClickListener {
                 kakaoLogin()
             }
