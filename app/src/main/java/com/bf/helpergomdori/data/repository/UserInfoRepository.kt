@@ -1,6 +1,5 @@
 package com.bf.helpergomdori.data.repository
 
-import android.content.Context
 import androidx.datastore.core.DataStore
 import com.bf.helpergomdori.UserInfo
 import kotlinx.coroutines.flow.Flow
@@ -13,9 +12,17 @@ class UserInfoRepository @Inject constructor(
         return dataStore.data
     }
 
-    suspend fun updateUserInfo(name: String, ) {
+    suspend fun updateUserInfo(jwt: String, name: String, photoLink: String, phone: String, intro: String, gender: UserInfo.Gender, type: UserInfo.Type) {
         dataStore.updateData {
-            it.toBuilder().setName(name).build()
+            it.toBuilder().apply{
+                setJwt(jwt)
+                setName(name)
+                setPhotoLink(photoLink)
+                setPhone(phone)
+                setIntro(intro)
+                setGender(gender)
+                setType(type)
+            }.build()
         }
     }
 }

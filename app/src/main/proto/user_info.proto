@@ -11,7 +11,7 @@ message UserInfo {
   string phone = 5;
   int32 age = 6;
   string intro = 7;
-  ROLE role = 8;
+  Type type = 8;
 
   enum Gender {
     NONE = 0;
@@ -19,7 +19,7 @@ message UserInfo {
     FEMALE = 2;
   }
 
-  enum ROLE {
+  enum Type {
     BF = 0;
     GOMDORI = 1;
   }
