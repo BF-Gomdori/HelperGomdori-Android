@@ -4,6 +4,8 @@
     package="com.bf.helpergomdori">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
 
@@ -17,21 +19,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelperGomdori"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:usesCleartextTraffic="true">
+
         <activity
             android:name=".ui.signIn.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
 
         </activity>
+
         <activity
             android:name=".ui.ex.ExActivity"
             android:exported="true" />
@@ -46,13 +51,19 @@
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
                 <data android:host="oauth"
-                    android:scheme="kakao17abb9ddb66ddc971dd9ccf2c95a1a8e" />
+                    android:scheme="@string/kakao_app_key" />
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".service.LocationService"
+            android:foregroundServiceType="location">
+
+    </service>
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="nkmp1fuqrs" />
+            android:value="@string/naver_map_client_id" />
     </application>
 
 </manifest>
