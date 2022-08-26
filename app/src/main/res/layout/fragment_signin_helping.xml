@@ -21,6 +21,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.15" />
 
+        <TextView
+            style="@style/CardView.Light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:text="@string/duplicate_selection"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.285" />
+
+
         <Button
             android:id="@+id/btn_giving_help"
             android:layout_width="267dp"
@@ -31,9 +43,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/giving_help"
             android:textSize="30sp"
+            android:clickable="true"
             style="@style/font_title"
             android:textColor="@color/white"
             />
+
+        <Button
+            android:id="@+id/btn_getting_help"
+            style="@style/font_title"
+            android:layout_width="267dp"
+            android:layout_height="107dp"
+            android:clickable="true"
+            android:text="@string/getting_help"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.782" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

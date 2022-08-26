@@ -5,11 +5,26 @@
     <string name="app_name_kor">도움곰돌이</string>
     <string name="signin_naver">네이버로 가입하기</string>
     <string name="signin_kakao">카카오로 가입하기</string>
-    <string name="hello_helper_gomdori">안녕하세요\n도움곰돌이에요</string>
+    <string name="hello_helper_gomdori">안녕하세요.\n도움곰돌이에요.</string>
     <string name="select_helping">도움 주기/받기를\n선택해주세요</string>
     <string name="giving_help">도움주기</string>
     <string name="getting_help">도움받기</string>
     <string name="select_disabled_type">장애 유형 선택</string>
+    <string name="what_kind_of_help">어떤 도움이 필요한지 알려주세요.</string>
+    <string name="duplicate_selection">중복선택 가능합니다.</string>
+    <string name="what_kind_of_help_specifically">불편한 사항이나 도움받을 때 주의할 점 등\n자세하게 알려주세요.</string>
+    <string name="message_to_bearfriend">* 도움을 줄 베어프렌드에게 전달됩니다.</string>
     <string name="ok">확인</string>
+    <string name="easy_login"><u>간편하게 시작하기</u></string>
+    <string name="signin_announcement">대한민국 SNS 대상에서 귀하의 개인정보에\n접근하는 것에 동의하십니까?\n\n제공된 정보는 이용자 식별, 통계, 계정 연동\n및 CS 등을 위해 서비스 이용기간 동안 보관\n됩니다.</string>
+    <string name="signin_basic_info1">기본정보</string>
+    <string name="signin_basic_info2">이용자 고유 식별자</string>
+    <string name="signin_essential1">필수 제공 항목</string>
+    <string name="agree_further">동의하고 계속하기</string>
+    <string name="essential_input_info">필수 입력 항목</string>
+    <string name="essential_input_phone">전화번호를 입력하세요.</string>
+    <string name="essential_phone_ex">ex) 010-XXXX-XXXX</string>
+    <string name="essential_input_name">이름을 입력하세요.</string>
+    <string name="essential_name_ex">ex) 홍길동</string>
     <string name="go_settings_and_allow_location">설정 > 애플리케이션 > 도움곰돌이에서 위치 권한을 허용해주세요</string>
 </resources>
