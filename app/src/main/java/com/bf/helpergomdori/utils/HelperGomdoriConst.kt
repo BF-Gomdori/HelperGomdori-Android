@@ -18,5 +18,6 @@ const val USER_INFO_NAME = "user_info"
 const val DATA_STORE_FILE_NAME = "user_info.pb"
 
 /**
- * MainActivity
+ * Request Code
  */
+const val LOCATION_PERMISSION_REQUEST_CODE = 1000
