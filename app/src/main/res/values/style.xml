@@ -7,4 +7,10 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="signin_checkbox" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:colorControlNormal">#7a7a7a</item>
+        <item name="android:colorControlActivated">#63ccf9</item>
+        <item name="android:colorControlHighlight">#3db5ea</item>
+    </style>
 </resources>
