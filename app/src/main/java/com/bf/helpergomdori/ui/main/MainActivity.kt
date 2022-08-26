@@ -4,6 +4,7 @@ package com.bf.helpergomdori.ui.main
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.util.DisplayMetrics
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,10 +13,12 @@ import androidx.core.app.ActivityCompat
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseActivity
 import com.bf.helpergomdori.databinding.ActivityMainBinding
+import com.bf.helpergomdori.utils.DensityUtil
 import com.bf.helpergomdori.utils.LOCATION_PERMISSION_REQUEST_CODE
 import com.bf.helpergomdori.utils.MAIN_TAG
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.openlocationcode.OpenLocationCode
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
@@ -70,7 +73,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
             naverMap.apply {
                 mapType = NaverMap.MapType.Basic
                 setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, true)
-                val cameraPosition = CameraPosition(LatLng(currentLocation.latitude, currentLocation.longitude), 15.5)
+                val cameraPosition = CameraPosition(
+                    LatLng(currentLocation.latitude, currentLocation.longitude),
+                    15.5
+                )
                 naverMap.moveCamera(CameraUpdate.toCameraPosition(cameraPosition))
                 locationOverlay.run {
                     isVisible = true
@@ -79,18 +85,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 locationTrackingMode = LocationTrackingMode.Follow
                 isIndoorEnabled = true
             }
-
-
-
-//            val marker = Marker().apply {
-//                icon = OverlayImage.fromResource(R.drawable.img_helper_gomdori)
-//                map = nmap
-//            }
-//
-//            marker.position = LatLng(
-//                currentLocation.latitude, currentLocation.longitude
-//            )
         }
+
+        val marker = Marker().apply {
+            val location = OpenLocationCode("8Q98FXV5+QX").decode() // 숭실대 정보과학관
+            position = LatLng(location.centerLatitude, location.centerLongitude)
+            icon = OverlayImage.fromResource(R.drawable.ic_marker_gomdori)
+            DensityUtil.setResouces(resources)
+            width = DensityUtil.dp2px(80f).toInt()
+            height = DensityUtil.dp2px(80f).toInt()
+            map = naverMap
+        }
+
 
     }
 
