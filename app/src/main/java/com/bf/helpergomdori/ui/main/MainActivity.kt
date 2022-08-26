@@ -17,10 +17,7 @@ import com.bf.helpergomdori.utils.MAIN_TAG
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.LocationTrackingMode
-import com.naver.maps.map.MapFragment
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
@@ -54,10 +51,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
 
 
     private fun initView() {
-        // 지도 객체 생성
-        mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as MapFragment
+        mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as MapFragment?
+            ?: MapFragment.newInstance().also {
+                supportFragmentManager.beginTransaction().add(R.id.map_fragment, it).commit()
+            }
         mapFragment.getMapAsync(this)
-
 
     }
 
@@ -69,20 +67,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         fusedLocationClient.lastLocation.addOnSuccessListener { currentLocation ->
             Log.d(MAIN_TAG, "location : $currentLocation")
 
-            naverMap.locationOverlay.run {
-                isVisible = true
-                position = LatLng(currentLocation.latitude, currentLocation.longitude)
+            naverMap.apply {
+                mapType = NaverMap.MapType.Basic
+                setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, true)
+                val cameraPosition = CameraPosition(LatLng(currentLocation.latitude, currentLocation.longitude), 15.5)
+                naverMap.moveCamera(CameraUpdate.toCameraPosition(cameraPosition))
+                locationOverlay.run {
+                    isVisible = true
+                    position = LatLng(currentLocation.latitude, currentLocation.longitude)
+                }
+                locationTrackingMode = LocationTrackingMode.Follow
+                isIndoorEnabled = true
             }
 
-            naverMap.locationTrackingMode = LocationTrackingMode.Follow
-//                val marker = Marker().apply {
-//                    icon = OverlayImage.fromResource(R.drawable.img_helper_gomdori)
-//                    map = nmap
-//                }
+
+
+//            val marker = Marker().apply {
+//                icon = OverlayImage.fromResource(R.drawable.img_helper_gomdori)
+//                map = nmap
+//            }
 //
-//                marker.position = LatLng(
-//                    currentLocation.latitude, currentLocation.longitude
-//                )
+//            marker.position = LatLng(
+//                currentLocation.latitude, currentLocation.longitude
+//            )
         }
 
     }
