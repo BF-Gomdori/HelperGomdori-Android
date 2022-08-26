@@ -7,6 +7,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -52,7 +54,13 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRemoteRepository(apiService: ApiService): RemoteRepository {
-        return RemoteRepository(RemoteDataSourceImpl(apiService))
+    fun provideRemoteDataSource(apiService: ApiService) : RemoteDataSourceImpl {
+        return RemoteDataSourceImpl(apiService, Dispatchers.IO)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRemoteRepository(remoteDataSourceImpl: RemoteDataSourceImpl): RemoteRepository {
+        return RemoteRepository(remoteDataSourceImpl)
     }
 }

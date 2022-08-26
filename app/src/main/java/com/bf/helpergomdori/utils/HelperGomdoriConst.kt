@@ -16,3 +16,8 @@ const val MAIN_TAG = "MAIN_TAG"
  */
 const val USER_INFO_NAME = "user_info"
 const val DATA_STORE_FILE_NAME = "user_info.pb"
+
+/**
+ * Request Code
+ */
+const val LOCATION_PERMISSION_REQUEST_CODE = 1000
