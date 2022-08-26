@@ -11,8 +11,8 @@
         android:label="SignInGreetingFragment"
         tools:layout="@layout/fragment_signin_greeting">
         <action
-            android:id="@+id/action_signInGreetingFragment_to_signInHelpingFragment"
-            app:destination="@id/signInHelpingFragment" />
+            android:id="@+id/action_signInGreetingFragment_to_signInAdditionalInfoFragment"
+            app:destination="@id/signInAdditionalInfoFragment" />
     </fragment>
 
     <fragment
@@ -30,5 +30,15 @@
         android:name="com.bf.helpergomdori.ui.signIn.SignInHelpeeFragment"
         android:label="SignInHelpeeFragment"
         tools:layout="@layout/fragment_signin_helpee"/>
+
+    <fragment
+        android:id="@+id/signInAdditionalInfoFragment"
+        android:name="com.bf.helpergomdori.ui.signIn.SignInAdditionalInfoFragment"
+        android:label="SignInAdditionalInfoFragment"
+        tools:layout="@layout/fragment_signin_additional_info">
+        <action
+            android:id="@+id/action_signInAdditionalInfoFragment_to_signInHelpingFragment"
+            app:destination="@id/signInHelpingFragment" />
+    </fragment>
 
 </navigation>

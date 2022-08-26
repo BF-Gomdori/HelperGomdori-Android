@@ -3,19 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_default.xml" value="0.16" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_default_.xml" value="0.16" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_login.xml" value="0.16" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_login_background.xml" value="0.224" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_naver_login.xml" value="0.1755" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_btn_default.xml" value="0.109" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_main.xml" value="0.17291666666666666" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_signin.xml" value="0.2171875" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_greeting.xml" value="0.1" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_greeting.xml" value="0.2028985507246377" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_helpee.xml" value="0.152" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_helping.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_singin_greeting.xml" value="0.264" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/all_edge.xml" value="0.1115" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/btn_getting_help.xml" value="0.17" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/btn_gettinghelp.xml" value="0.17" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/btn_giving_help.xml" value="0.1" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/edge.xml" value="0.187" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/ic_checkbox_checked.xml" value="0.188" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/underline_edge.xml" value="0.186" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/activity_ex.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/activity_main.xml" value="0.12" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/activity_signin.xml" value="0.12" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/activity_signin_practice.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/fragment_signin_additional_info.xml" value="0.1890625" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/fragment_signin_announcement.xml" value="0.22" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/fragment_signin_greeting.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/fragment_signin_helpee.xml" value="0.2265625" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/fragment_signin_helping.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/item_ex.xml" value="0.13333333333333333" />
       </map>
     </option>
   </component>

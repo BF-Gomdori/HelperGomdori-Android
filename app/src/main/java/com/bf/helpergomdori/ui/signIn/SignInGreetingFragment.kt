@@ -31,7 +31,7 @@ class SignInGreetingFragment :
             }
 
             btnNaverLogin.setOnClickListener {
-                navController.navigate(R.id.signInHelpingFragment)
+                navController.navigate(R.id.signInAdditionalInfoFragment)
             }
         }
     }
