@@ -87,7 +87,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
             }
         }
 
-        val marker = Marker().apply {
+        val gomdori = Marker().apply {
             val location = OpenLocationCode("8Q98FXV5+QX").decode() // 숭실대 정보과학관
             position = LatLng(location.centerLatitude, location.centerLongitude)
             icon = OverlayImage.fromResource(R.drawable.ic_marker_gomdori)
@@ -97,6 +97,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
             map = naverMap
         }
 
+        val bf = Marker().apply {
+            val location = OpenLocationCode("8Q98FXW5+FC").decode() // 숭실대 도서관
+            position = LatLng(location.centerLatitude, location.centerLongitude)
+            icon = OverlayImage.fromResource(R.drawable.ic_marker_bf)
+            DensityUtil.setResouces(resources)
+            width = DensityUtil.dp2px(65f).toInt()
+            height = DensityUtil.dp2px(65f).toInt()
+            map = naverMap
+        }
 
     }
 
