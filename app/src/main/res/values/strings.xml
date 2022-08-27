@@ -12,4 +12,6 @@
     <string name="select_disabled_type">장애 유형 선택</string>
     <string name="ok">확인</string>
     <string name="go_settings_and_allow_location">설정 > 애플리케이션 > 도움곰돌이에서 위치 권한을 허용해주세요</string>
+    <string name="text_bf">베:프</string>
+    <string name="text_gomdori">곰돌이</string>
 </resources>
