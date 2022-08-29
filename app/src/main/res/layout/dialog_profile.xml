@@ -4,7 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="android.view.View"/>
+        <import type="com.bf.helpergomdori.model.Gender"/>
+        <variable
+            name="type"
+            type="String" />
+        <variable
+            name="name"
+            type="String"/>
+        <variable
+            name="age"
+            type="int" />
+        <variable
+            name="gender"
+            type="Gender" />
+        <variable
+            name="requested_term"
+            type="String" />
+        <variable
+            name="location"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,20 +32,22 @@
         android:backgroundTint="@color/transparent">
 
         <LinearLayout
-            android:id="@+id/img_profile"
+            android:id="@+id/ll_profile"
             android:layout_width="81dp"
             android:layout_height="81dp"
             android:background="@drawable/ic_circle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/cl_profile"
-            android:layout_marginBottom="-31dp"
+            android:layout_marginBottom="-28dp"
             android:translationZ="1dp">
 
             <ImageView
+                android:id="@+id/img_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/img_helper_gomdori" />
+                android:src="@drawable/img_helper_gomdori"
+                />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,7 +86,7 @@
                     style="@style/font_profile.15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="지체장애"
+                    android:text="@{type}"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -74,7 +95,7 @@
                 style="@style/font_profile.15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="김철수(27)"
+                android:text="@{@string/main_profile_name(name, age)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_type"
@@ -83,7 +104,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_gender_male"
+                android:src="@{gender == Gender.FEMALE ? @drawable/ic_gender_female : @drawable/ic_gender_male}"
                 android:layout_marginStart="2dp"
                 app:layout_constraintStart_toEndOf="@id/tv_name"
                 app:layout_constraintTop_toTopOf="@id/tv_name"
@@ -95,35 +116,38 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tv_name"
                 android:layout_marginTop="10dp"
-                android:text="택시 타는 것을 도와주세요"
+                android:text="@{requested_term}"
                 style="@style/font_profile.title"
                 android:textFontWeight="600"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:visibility="@{requested_term == null ? View.GONE : View.VISIBLE}"/>
 
             <TextView
                 android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tv_request"
+                app:layout_constraintBottom_toTopOf="@id/btn_response"
+                app:layout_constraintVertical_bias="0"
                 android:layout_marginTop="6dp"
+                android:layout_marginBottom="12dp"
                 style="@style/font_profile"
                 android:textSize="13sp"
-                android:text="강남구 테헤란로 329 삼흥빌딩"
+                android:text="@{location}"
                 tools:ignore="MissingConstraints" />
 
             <LinearLayout
+                android:id="@+id/btn_response"
                 android:layout_width="156dp"
                 android:layout_height="34dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_location"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginTop="12dp"
                 android:layout_marginBottom="4dp"
                 android:background="@drawable/bg_btn_response_dialog"
                 android:gravity="center"
                 android:clickable="true"
-                android:translationZ="2dp"
+                android:translationZ="1dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
