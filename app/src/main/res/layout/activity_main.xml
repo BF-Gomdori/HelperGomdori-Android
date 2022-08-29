@@ -105,14 +105,14 @@
 
         <LinearLayout
             android:id="@+id/btn_mypage"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/ll_topbar"
             app:layout_constraintBottom_toBottomOf="@id/ll_topbar"
             android:background="@drawable/btn_circle"
             android:gravity="center"
-            android:padding="2dp"
+            android:padding="6dp"
             android:layout_marginEnd="16dp"
             android:translationZ="10dp"
             android:elevation="10dp"
@@ -122,8 +122,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_user"
-                android:padding="4dp"
-                />
+                app:tint="@color/skyblue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_my_location"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/btn_circle"
+            android:gravity="center"
+            android:layout_margin="16dp"
+            android:padding="8dp"
+            android:translationZ="10dp"
+            android:elevation="10dp"
+            android:clickable="true"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_my_location"
+                app:tint="@color/gray" />
         </LinearLayout>
 
         <fragment

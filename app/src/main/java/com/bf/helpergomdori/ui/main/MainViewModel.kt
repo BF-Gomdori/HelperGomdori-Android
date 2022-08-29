@@ -16,6 +16,14 @@ class MainViewModel @Inject constructor(
     private val remoteRepository: RemoteRepository
 ) : ViewModel() {
 
+    private var _currentLocation = mutableMapOf("x" to 0.0, "y" to 0.0)
+    val currentLocation get() = _currentLocation
+
+    fun setCurrentLocation(x: Double, y: Double){
+        _currentLocation["x"] = x
+        _currentLocation["y"] = y
+    }
+
     fun getLocationPermission(permissions: Map<String, Boolean>, isNotPermitted: (Boolean) -> Unit) {
         when {
             permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {

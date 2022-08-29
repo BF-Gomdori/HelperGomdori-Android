@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2295" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_circle.xml" value="0.232" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_default.xml" value="0.16" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_default_.xml" value="0.16" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_login.xml" value="0.16" />
@@ -16,7 +17,7 @@
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_marker_gomdori.xml" value="0.1425" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_mypage.xml" value="0.232" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_user.xml" value="0.232" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_main.xml" value="0.536" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_signin.xml" value="0.2171875" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_splash.xml" value="0.2" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_greeting.xml" value="0.1" />
