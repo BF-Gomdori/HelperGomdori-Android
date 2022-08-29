@@ -24,6 +24,7 @@ import com.google.openlocationcode.OpenLocationCode
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import dagger.hilt.android.AndroidEntryPoint
@@ -114,6 +115,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
             map = naverMap
         }
 
+        gomdori.setOnClickListener {
+            val profileDialog = ProfileDialog().apply {
+                isCancelable = true
+            }
+            profileDialog.show(supportFragmentManager,"ProfileDialog")
+            true
+        }
+
         val bf = Marker().apply {
             val location = OpenLocationCode("8Q98FXW5+FC").decode() // 숭실대 도서관
             position = LatLng(location.centerLatitude, location.centerLongitude)
@@ -126,6 +135,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
 
     }
 
+    /**
+     * Location Permission
+     */
 
     private fun isLocationPermitted(): Boolean {
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)

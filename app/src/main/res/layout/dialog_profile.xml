@@ -8,17 +8,20 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent">
 
         <LinearLayout
+            android:id="@+id/img_profile"
             android:layout_width="81dp"
             android:layout_height="81dp"
             android:background="@drawable/ic_circle"
-            android:translationZ="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintBottom_toTopOf="@id/cl_profile"
+            android:layout_marginBottom="-31dp"
+            android:translationZ="1dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -27,19 +30,19 @@
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/card_profile"
-            android:layout_width="332dp"
+            android:id="@+id/cl_profile"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/bg_dialog_rectangle"
-            android:elevation="8dp"
+            android:background="@drawable/bg_dialog"
             android:padding="16dp"
+            android:layout_margin="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintBaseline_toBottomOf="parent">
 
             <ImageView
+                android:id="@+id/btn_x"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:clickable="true"
@@ -109,23 +112,27 @@
                 tools:ignore="MissingConstraints" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="156dp"
+                android:layout_height="34dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_location"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/bg_btn_in_dialog"
-                android:translationZ="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/bg_btn_response_dialog"
                 android:gravity="center"
+                android:clickable="true"
+                android:translationZ="2dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_response"
-                    style="@style/font_profile.title"
-                    android:textFontWeight="700"
-                    android:textColor="@color/white"
+                    style="@style/font_btn"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
