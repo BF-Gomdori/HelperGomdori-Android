@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -24,23 +25,13 @@
 
         <LinearLayout
             android:id="@+id/btn_next"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_marginHorizontal="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/btn_default"
-            android:backgroundTint="@color/color_default"
-            android:gravity="center"
-            android:layout_marginBottom="24dp"
-            android:clickable="true"
-            android:focusable="true">
+            style="@style/btn"
+            tools:ignore="MissingConstraints">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ok"
-                android:textSize="25sp"
-                style="@style/font_title"
-                android:textColor="@color/white"/>
+                style="@style/font_btn"/>
 
         </LinearLayout>
 

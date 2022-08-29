@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/ic_main_topbar"
+            android:background="@drawable/bg_main_topbar"
             android:layout_marginTop="16dp"
             android:translationZ="10dp"
             android:elevation="10dp"
@@ -130,7 +130,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_request"
             android:background="@drawable/btn_circle"
             android:gravity="center"
             android:layout_margin="16dp"
@@ -144,6 +144,20 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_my_location"
                 app:tint="@color/gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_request"
+            style="@style/btn"
+            android:translationZ="10dp"
+            android:elevation="10dp"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/font_btn"
+                android:text="@string/main_request_bf"
+                />
         </LinearLayout>
 
         <fragment
