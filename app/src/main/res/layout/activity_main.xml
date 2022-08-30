@@ -4,13 +4,167 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="bfCnt"
+            type="int" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.main.MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_topbar"
+            android:layout_width="149dp"
+            android:layout_height="48dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/bg_main_topbar"
+            android:layout_marginTop="16dp"
+            android:translationZ="10dp"
+            android:elevation="10dp"
+            >
+            <View
+                android:id="@+id/topbar_line"
+                android:layout_width="1.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="5dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_bf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/topbar_line"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_bf"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:includeFontPadding="false"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:includeFontPadding="false"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_gomdori"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/topbar_line"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_gomdori"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:includeFontPadding="false"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:includeFontPadding="false"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_mypage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ll_topbar"
+            app:layout_constraintBottom_toBottomOf="@id/ll_topbar"
+            android:background="@drawable/btn_circle"
+            android:gravity="center"
+            android:padding="6dp"
+            android:layout_marginEnd="16dp"
+            android:translationZ="10dp"
+            android:elevation="10dp"
+            android:clickable="true"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_user"
+                app:tint="@color/skyblue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_my_location"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_request"
+            android:background="@drawable/btn_circle"
+            android:gravity="center"
+            android:layout_margin="16dp"
+            android:padding="8dp"
+            android:translationZ="10dp"
+            android:elevation="10dp"
+            android:clickable="true"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_my_location"
+                app:tint="@color/gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_request"
+            style="@style/btn"
+            android:translationZ="10dp"
+            android:elevation="10dp"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/font_btn"
+                android:text="@string/main_request_bf"
+                />
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/map_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.naver.maps.map.MapFragment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

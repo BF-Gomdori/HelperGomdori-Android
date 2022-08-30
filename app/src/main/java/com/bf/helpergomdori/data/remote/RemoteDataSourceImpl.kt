@@ -1,14 +1,27 @@
 package com.bf.helpergomdori.data.remote
 
 import com.bf.helpergomdori.model.Data
+import com.bf.helpergomdori.model.body.PostUser
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RemoteDataSourceImpl(
+class RemoteDataSourceImpl @Inject constructor(
     private val apiService: ApiService,
     private val ioDispatcher: CoroutineDispatcher
 ) : RemoteDataSource {
 
-    override suspend fun getData(): Data {
-        return apiService.getData()
+    override suspend fun getData(): Flow<Data> = flow {
+        emit(apiService.getData())
+    }.flowOn(ioDispatcher)
+
+    override suspend fun postMember(postUser: PostUser) {
+        return apiService.postMember(postUser)
     }
+
+
 }

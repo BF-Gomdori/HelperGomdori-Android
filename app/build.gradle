@@ -1,13 +1,16 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id "com.google.protobuf" version "0.8.17"
 }
 
 android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.kimchuu.helpergomdori"
+        applicationId "com.bf.helpergomdori"
         minSdk 25
         targetSdk 32
         versionCode 1
@@ -64,8 +67,10 @@ dependencies {
 
     // Network
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     // Naver maps sdk
     implementation "com.naver.maps:map-sdk:$naver_maps_version"
@@ -78,6 +83,9 @@ dependencies {
     // Google play service
     implementation "com.google.android.gms:play-services-location:$google_play_version"
 
+    // OpenLocationCode (convert plusCode to LatLng)
+    implementation 'com.google.openlocationcode:openlocationcode:1.0.4'
+
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.13.0'
 
@@ -86,5 +94,37 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
+    // Dragger Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
 
+    // Data Store
+    implementation "androidx.datastore:datastore-preferences:$dataStore_version"
+    implementation "androidx.datastore:datastore:$dataStore_version"
+    implementation  "com.google.protobuf:protobuf-javalite:3.18.0"
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.14.0"
+    }
+
+    // Generates the java Protobuf-lite code for the Protobufs in this project. See
+    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
+    // for more information.
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+            }
+        }
+    }
 }

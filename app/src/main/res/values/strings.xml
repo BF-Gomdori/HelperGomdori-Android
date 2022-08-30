@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">helperGomdori</string>
+    <string name="naver_map_client_id">0bvotwa6np</string>
+    <string name="kakao_app_key">kakao17abb9ddb66ddc971dd9ccf2c95a1a8e</string>
     <string name="app_name_kor">도움곰돌이</string>
+    <!-- Signin -->
     <string name="signin_naver">네이버로 가입하기</string>
     <string name="signin_kakao">카카오로 가입하기</string>
     <string name="hello_helper_gomdori">안녕하세요.\n도움곰돌이에요.</string>
@@ -24,5 +27,11 @@
     <string name="essential_phone_ex">ex) 010-XXXX-XXXX</string>
     <string name="essential_input_name">이름을 입력하세요.</string>
     <string name="essential_name_ex">ex) 홍길동</string>
-
+    <!-- Main -->
+    <string name="go_settings_and_allow_location">설정 > 애플리케이션 > 도움곰돌이에서 위치 권한을 허용해주세요</string>
+    <string name="text_bf">베:프</string>
+    <string name="text_gomdori">곰돌이</string>
+    <string name="text_response">응답하기</string>
+    <string name="main_request_bf">베어프렌즈 요청</string>
+    <string name="main_profile_name">%1$s (%2$d)</string>
 </resources>

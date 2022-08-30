@@ -1,18 +1,25 @@
 package com.bf.helpergomdori.ui.signIn
 
+import android.content.Intent
 import android.util.Log
+import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseFragment
 import com.bf.helpergomdori.databinding.FragmentSigninGreetingBinding
+import com.bf.helpergomdori.ui.main.MainActivity
 import com.bf.helpergomdori.utils.SIGNIN_TAG
 import com.kakao.sdk.user.UserApiClient
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignInGreetingFragment :
     BaseFragment<FragmentSigninGreetingBinding>(R.layout.fragment_signin_greeting) {
-
+    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_graph)
     private lateinit var navController: NavController
 
     override fun createView(binding: FragmentSigninGreetingBinding) {
@@ -21,11 +28,12 @@ class SignInGreetingFragment :
     }
 
     override fun createFragment() {
-
     }
 
+
+
     private fun setupClicks() {
-        binding!!.apply {
+        binding.apply {
             btnKakaoLogin.setOnClickListener {
                 kakaoLogin()
             }
@@ -43,7 +51,7 @@ class SignInGreetingFragment :
                     Log.e(SIGNIN_TAG, "카카오 로그인 실패 : $error")
                 } else if (token != null) {
                     Log.i(SIGNIN_TAG, "카카오 로그인 성공 ${token.accessToken}")
-                    //todo 추후에 accessToken 백엔드에 보낸 후에 jwt 받아옴
+                    viewModel.postUser(token.accessToken)
                     navController.navigate(R.id.signInHelpingFragment)
                 }
             }
@@ -53,11 +61,10 @@ class SignInGreetingFragment :
                     Log.e(SIGNIN_TAG, "카카오 로그인 실패", error)
                 } else if (token != null) {
                     Log.i(SIGNIN_TAG, "카카오 로그인 성공 ${token.accessToken}")
-                    //todo 추후에 accessToken 백엔드에 보낸 후에 jwt 받아옴
+                    viewModel.postUser(token.accessToken)
                     navController.navigate(R.id.signInHelpingFragment)
                 }
             }
         }
-
     }
 }

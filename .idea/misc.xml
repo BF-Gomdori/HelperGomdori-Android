@@ -3,24 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/all_edge.xml" value="0.1115" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/btn_getting_help.xml" value="0.17" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/btn_gettinghelp.xml" value="0.17" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/btn_giving_help.xml" value="0.1" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/edge.xml" value="0.187" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/ic_checkbox_checked.xml" value="0.188" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/drawable/underline_edge.xml" value="0.186" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/activity_ex.xml" value="0.14666666666666667" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/activity_main.xml" value="0.12" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/activity_signin.xml" value="0.12" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/activity_signin_practice.xml" value="0.13333333333333333" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/fragment_signin_additional_info.xml" value="0.1890625" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/fragment_signin_announcement.xml" value="0.22" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/fragment_signin_greeting.xml" value="0.14666666666666667" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/fragment_signin_helpee.xml" value="0.2265625" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/fragment_signin_helping.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/choco/AndroidStudioProjects/cho/app/src/main/res/layout/item_ex.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable-v24/bg_btn_response_dialog.xml" value="0.228" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable-v24/bg_dialog.xml" value="0.228" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2295" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/bg_dialog_rectangle.xml" value="0.228" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_circle.xml" value="0.232" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_default.xml" value="0.16" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_default_.xml" value="0.16" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_login.xml" value="0.16" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_login_background.xml" value="0.224" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_mypage.xml" value="0.232" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_naver_login.xml" value="0.1755" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/dialog_profile_rect.xml" value="0.227" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_btn_default.xml" value="0.109" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_circle.xml" value="0.227" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_gender_female.xml" value="0.232" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2295" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_main_topbar.xml" value="0.1" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_marker_gomdori.xml" value="0.1425" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_mypage.xml" value="0.232" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_user.xml" value="0.232" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_signin.xml" value="0.2171875" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_splash.xml" value="0.2" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/dialog_profile.xml" value="0.4" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_greeting.xml" value="0.1" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_greeting.xml" value="0.2028985507246377" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_helpee.xml" value="0.152" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_helping.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_singin_greeting.xml" value="0.264" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.233" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2285" />
       </map>
     </option>
   </component>
