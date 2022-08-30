@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_request_help_graph"
+    app:startDestination="@id/requestWriteFragment">
+
+    <fragment
+        android:id="@+id/requestWriteFragment"
+        android:name="com.bf.helpergomdori.ui.request.RequestWriteFragment"
+        android:label="RequestWriteFragment"
+        tools:layout="@layout/fragment_request_write"
+        >
+        <action
+            android:id="@+id/action_requestWriteFragment_to_requestLocationFragment"
+            app:destination="@id/requestLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestLocationFragment"
+        android:name="com.bf.helpergomdori.ui.request.RequestLocationFragment"
+        android:label="RequestLocationFragment"
+        tools:layout="@layout/fragment_request_location">
+        <action
+            android:id="@+id/action_requestLocationFragment_to_requestIngFragment"
+            app:destination="@id/requestIngFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestIngFragment"
+        android:name="com.bf.helpergomdori.ui.request.RequestIngFragment"
+        android:label="RequestIngFragment"
+        tools:layout="@layout/fragment_request_ing">
+        <action
+            android:id="@+id/action_requestIngFragment_to_requestMatchingFragment"
+            app:destination="@id/requestMatchingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestMatchingFragment"
+        android:name="com.bf.helpergomdori.ui.request.RequestMatchingFragment"
+        android:label="RequestMatchingFragment"
+        tools:layout="@layout/fragment_request_matching">
+        <action
+            android:id="@+id/action_requestMatchingFragment_to_requestFinishedFragment"
+            app:destination="@id/requestFinishedFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/requestFinishedFragment"
+        android:name="com.bf.helpergomdori.ui.request.RequestFinishedFragment"
+        android:label="RequestFinishedFragment"
+        tools:layout="@layout/fragment_request_finished"/>
+
+</navigation>
