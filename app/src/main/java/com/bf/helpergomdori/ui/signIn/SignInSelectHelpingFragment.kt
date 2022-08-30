@@ -1,6 +1,8 @@
 package com.bf.helpergomdori.ui.signIn
 
 import android.content.Intent
+import android.os.Bundle
+import androidx.activity.addCallback
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.findNavController
 import com.bf.helpergomdori.R
@@ -14,6 +16,18 @@ class SignInSelectHelpingFragment :
     BaseFragment<FragmentSigninSelectHelpingBinding>(R.layout.fragment_signin_select_helping) {
 
     private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_signin_graph)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback {
+            requireActivity().finish()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setCurrentNavController(this.findNavControllerSafely())
+    }
 
     override fun createView(binding: FragmentSigninSelectHelpingBinding) {
         setListener()
@@ -36,8 +50,10 @@ class SignInSelectHelpingFragment :
 
             btnGettingHelp.setOnClickListener {
                 val navController = it.findNavController()
-                navController.navigate(R.id.signInHelpeeFragment)
+                navController.navigate(R.id.action_signInHelpingFragment_to_signInHelpeeFragment)
             }
         }
+
     }
+
 }

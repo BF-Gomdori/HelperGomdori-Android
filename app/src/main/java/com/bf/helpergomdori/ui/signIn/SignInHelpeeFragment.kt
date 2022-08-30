@@ -1,8 +1,11 @@
 package com.bf.helpergomdori.ui.signIn
 
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
+import androidx.activity.addCallback
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.navigation.fragment.findNavController
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseFragment
 import com.bf.helpergomdori.databinding.FragmentSigninHelpeeBinding
@@ -14,6 +17,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignInHelpeeFragment: BaseFragment<FragmentSigninHelpeeBinding>(R.layout.fragment_signin_helpee) {
 
     private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_signin_graph)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback {
+            navController?.popBackStack()
+        }
+    }
 
     override fun createView(binding: FragmentSigninHelpeeBinding) {
         setListener()

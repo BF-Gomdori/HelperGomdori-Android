@@ -15,16 +15,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignInGreetingFragment :
     BaseFragment<FragmentSigninGreetingBinding>(R.layout.fragment_signin_greeting) {
     private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_signin_graph)
-    private lateinit var navController: NavController
 
     override fun createView(binding: FragmentSigninGreetingBinding) {
-        navController = this@SignInGreetingFragment.findNavController()
         setupClicks()
     }
 
     override fun createFragment() {
     }
-
 
 
     private fun setupClicks() {
@@ -34,7 +31,7 @@ class SignInGreetingFragment :
             }
 
             btnNaverLogin.setOnClickListener {
-                navController.navigate(R.id.signInAdditionalInfoFragment)
+                navController?.navigate(R.id.action_signInGreetingFragment_to_signInAdditionalInfoFragment)
             }
         }
     }
@@ -47,7 +44,7 @@ class SignInGreetingFragment :
                 } else if (token != null) {
                     Log.i(SIGNIN_TAG, "카카오 로그인 성공 ${token.accessToken}")
                     viewModel.setUserAccessToken(token.accessToken)
-                    navController.navigate(R.id.signInAdditionalInfoFragment)
+                    navController?.navigate(R.id.action_signInGreetingFragment_to_signInAdditionalInfoFragment)
                 }
             }
         } else {
@@ -57,7 +54,7 @@ class SignInGreetingFragment :
                 } else if (token != null) {
                     Log.i(SIGNIN_TAG, "카카오 로그인 성공 ${token.accessToken}")
                     viewModel.setUserAccessToken(token.accessToken)
-                    navController.navigate(R.id.signInAdditionalInfoFragment)
+                    navController?.navigate(R.id.action_signInGreetingFragment_to_signInAdditionalInfoFragment)
                 }
             }
         }

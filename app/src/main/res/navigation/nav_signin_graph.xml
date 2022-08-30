@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_signin_greeting">
         <action
             android:id="@+id/action_signInGreetingFragment_to_signInAdditionalInfoFragment"
-            app:destination="@id/signInAdditionalInfoFragment" />
+            app:destination="@id/signInAdditionalInfoFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -38,7 +39,9 @@
         tools:layout="@layout/fragment_signin_additional_info">
         <action
             android:id="@+id/action_signInAdditionalInfoFragment_to_signInHelpingFragment"
-            app:destination="@id/signInHelpingFragment" />
+            app:destination="@id/signInHelpingFragment"
+            app:popUpToInclusive="true"
+            />
     </fragment>
 
 </navigation>
