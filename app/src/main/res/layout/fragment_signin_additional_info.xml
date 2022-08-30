@@ -12,29 +12,29 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/tv_title"
             style="@style/font_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:text="@string/essential_input_info"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.221" />
+            app:layout_constraintVertical_bias="0.2" />
 
 
         <TextView
+            android:id="@+id/tv_input_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:text="@string/essential_input_phone"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.423" />
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:layout_marginTop="71dp"/>
 
 
         <EditText
@@ -43,20 +43,21 @@
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             android:hint="@string/essential_phone_ex"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.477" />
+            app:layout_constraintTop_toBottomOf="@id/tv_input_phone"
+            android:inputType="phone"
+            android:imeOptions="actionNext"
+            android:maxLines="1"/>
 
 
         <TextView
+            android:id="@+id/tv_input_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:text="@string/essential_input_name"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -70,31 +71,25 @@
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             android:hint="@string/essential_name_ex"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_input_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.636"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
             />
 
-        <Button
-            android:id="@+id/btn_giving_help"
-            style="@style/font_title"
-            android:layout_width="162dp"
-            android:layout_height="60dp"
-            android:text="@string/ok"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            tools:ignore="MissingConstraints"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="90dp"
 
-
-
-            />
-
+        <LinearLayout
+            android:id="@+id/btn_ok"
+            style="@style/btn"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/font_btn"
+                android:text="@string/ok"
+                />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

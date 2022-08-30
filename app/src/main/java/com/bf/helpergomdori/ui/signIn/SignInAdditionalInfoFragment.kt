@@ -19,8 +19,8 @@ class SignInAdditionalInfoFragment : BaseFragment<FragmentSigninAdditionalInfoBi
     }
 
     private fun setupClicks(){
-        binding!!.apply {
-            btnGivingHelp.setOnClickListener {
+        binding.apply {
+            btnOk.setOnClickListener {
                 navController.navigate(R.id.signInHelpingFragment)
             }
         }

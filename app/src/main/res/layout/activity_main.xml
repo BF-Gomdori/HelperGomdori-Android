@@ -149,8 +149,6 @@
         <LinearLayout
             android:id="@+id/btn_request"
             style="@style/btn"
-            android:translationZ="10dp"
-            android:elevation="10dp"
             tools:ignore="MissingConstraints">
             <TextView
                 android:layout_width="wrap_content"
