@@ -5,7 +5,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
 
@@ -19,13 +19,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelperGomdori"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
 
         <activity
             android:name=".ui.signIn.SignInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
+
+        </activity>
+
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:clearTaskOnLaunch="true"
+            android:exported="true"
+            android:launchMode="singleTop">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,12 +42,8 @@
         </activity>
 
         <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="true"
-            android:clearTaskOnLaunch="true"
-            android:launchMode="singleTop">
-
-        </activity>
+            android:name=".ui.mypage.MypageActivity"
+            android:exported="true" />
 
         <activity
             android:name=".ui.ex.ExActivity"
@@ -50,20 +54,23 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="@string/kakao_app_key" />
             </intent-filter>
         </activity>
+
 
         <service
             android:name=".service.LocationService"
             android:foregroundServiceType="location">
 
-    </service>
+        </service>
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"

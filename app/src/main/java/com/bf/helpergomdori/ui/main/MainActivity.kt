@@ -3,6 +3,7 @@ package com.bf.helpergomdori.ui.main
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.util.Log
 import android.widget.Toast
@@ -15,6 +16,7 @@ import com.bf.helpergomdori.base.BaseActivity
 import com.bf.helpergomdori.databinding.ActivityMainBinding
 import com.bf.helpergomdori.model.ProfileBf
 import com.bf.helpergomdori.model.ProfileGomdori
+import com.bf.helpergomdori.ui.mypage.MypageActivity
 import com.bf.helpergomdori.utils.CAMERA_ZOOM_DENSITY
 import com.bf.helpergomdori.utils.DensityUtil
 import com.bf.helpergomdori.utils.LOCATION_PERMISSION_REQUEST_CODE
@@ -76,6 +78,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                     val cameraPosition = CameraPosition(LatLng(latitude!!, longitude!!), CAMERA_ZOOM_DENSITY)
                     naverMap.moveCamera(CameraUpdate.toCameraPosition(cameraPosition))
                 }
+            }
+
+            btnMypage.setOnClickListener {
+                val intent = Intent(this@MainActivity, MypageActivity::class.java)
+                startActivity(intent)
             }
         }
     }
