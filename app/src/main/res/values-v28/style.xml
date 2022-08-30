@@ -11,4 +11,6 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:textFontWeight">700</item>
     </style>
+
+
 </resources>

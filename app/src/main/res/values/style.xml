@@ -38,6 +38,8 @@
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+        <item name="android:translationZ">10dp</item>
+        <item name="android:elevation">10dp</item>
     </style>
     <style name="dialog_profile">
         <item name="android:windowFrame">@null</item>
@@ -55,4 +57,28 @@
         <item name="android:colorControlActivated">#63ccf9</item>
         <item name="android:colorControlHighlight">#3db5ea</item>
     </style>
+
+    <style name="login_btn">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/btn_login</item>
+        <item name="android:elevation">3dp</item>
+    </style>
+
+    <style name="font_login_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="android:textSize">17sp</item>
+        <item name="fontFamily">@font/notosans_kr_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
 </resources>

@@ -1,12 +1,8 @@
 package com.bf.helpergomdori.ui.signIn
 
-import android.content.Intent
 import android.util.Log
-import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseFragment
@@ -51,8 +47,8 @@ class SignInGreetingFragment :
                     Log.e(SIGNIN_TAG, "카카오 로그인 실패 : $error")
                 } else if (token != null) {
                     Log.i(SIGNIN_TAG, "카카오 로그인 성공 ${token.accessToken}")
-                    viewModel.postUser(token.accessToken)
-                    navController.navigate(R.id.signInHelpingFragment)
+                    viewModel.setUserAccessToken(token.accessToken)
+                    navController.navigate(R.id.signInAdditionalInfoFragment)
                 }
             }
         } else {
@@ -61,8 +57,8 @@ class SignInGreetingFragment :
                     Log.e(SIGNIN_TAG, "카카오 로그인 실패", error)
                 } else if (token != null) {
                     Log.i(SIGNIN_TAG, "카카오 로그인 성공 ${token.accessToken}")
-                    viewModel.postUser(token.accessToken)
-                    navController.navigate(R.id.signInHelpingFragment)
+                    viewModel.setUserAccessToken(token.accessToken)
+                    navController.navigate(R.id.signInAdditionalInfoFragment)
                 }
             }
         }

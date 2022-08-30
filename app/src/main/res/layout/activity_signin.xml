@@ -13,7 +13,6 @@
         tools:context=".ui.signIn.SignInActivity"
         tools:ignore="ExtraText">
 
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -27,17 +26,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:navGraph="@navigation/nav_graph" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="188dp"
-            android:layout_height="242dp"
-            tools:layout_editor_absoluteX="111dp"
-            tools:layout_editor_absoluteY="244dp"
-            tools:ignore="MissingConstraints" />
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -7,17 +7,20 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-30dp">
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="36dp">
 
         <TextView
             style="@style/font_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
             android:text="@string/select_disabled_type"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +32,6 @@
             style="@style/CardView.Light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
             android:text="@string/what_kind_of_help"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,11 +39,12 @@
             app:layout_constraintVertical_bias="0.228" />
 
         <CheckBox
+            android:id="@+id/checkbox_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="188dp"
-            android:text="언어장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_language"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,11 +53,11 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:text="지체장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_body"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,11 +66,11 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_eye"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:text="시각장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_eye"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,11 +79,11 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_ear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:text="청각장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_ear"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,11 +92,11 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_etc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:text="기타"
-            android:textSize="20dp"
+            android:text="@string/helpee_etc"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,11 +105,12 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_developmental"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="188dp"
-            android:text="발달장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_developmental"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -115,11 +119,12 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_mental"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="188dp"
-            android:text="정신장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_mental"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,66 +132,51 @@
             app:layout_constraintVertical_bias="0.395"
             tools:ignore="MissingConstraints" />
 
-        <LinearLayout
-            android:id="@+id/btn_next"
-            android:layout_width="350dp"
-            android:layout_height="61dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/btn_default"
-            android:backgroundTint="@color/color_default"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.508"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints">
-
-            <TextView
-                style="@style/font_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ok"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
-
-
-        </LinearLayout>
-
         <TextView
+            android:id="@+id/tv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
             android:text="@string/what_kind_of_help_specifically"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.529" />
+            app:layout_constraintVertical_bias="0.53" />
 
         <EditText
-            android:layout_width="350dp"
+            android:id="@+id/et_info"
+            android:layout_width="match_parent"
             android:layout_height="181dp"
             android:background="@drawable/all_edge"
-            android:textSize="14dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="140dp"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_info"
+            android:layout_marginTop="7dp"
+            android:gravity="top"
+            android:padding="16dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="200dp"
             android:text="@string/message_to_bearfriend"
-            android:textSize="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.847" />
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/et_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="6dp"/>
+
+        <LinearLayout
+            android:id="@+id/btn_ok"
+            style="@style/btn"
+            android:layout_marginHorizontal="0dp"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/font_btn"
+                android:text="@string/ok"
+                />
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
