@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignInHelpeeFragment: BaseFragment<FragmentSigninHelpeeBinding>(R.layout.fragment_signin_helpee) {
 
-    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_graph)
+    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_signin_graph)
 
     override fun createView(binding: FragmentSigninHelpeeBinding) {
         setListener()

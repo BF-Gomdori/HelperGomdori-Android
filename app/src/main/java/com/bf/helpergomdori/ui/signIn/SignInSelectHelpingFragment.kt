@@ -3,7 +3,6 @@ package com.bf.helpergomdori.ui.signIn
 import android.content.Intent
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.findNavController
-import androidx.navigation.navGraphViewModels
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseFragment
 import com.bf.helpergomdori.databinding.FragmentSigninSelectHelpingBinding
@@ -14,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignInSelectHelpingFragment :
     BaseFragment<FragmentSigninSelectHelpingBinding>(R.layout.fragment_signin_select_helping) {
 
-    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_graph)
+    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_signin_graph)
 
     override fun createView(binding: FragmentSigninSelectHelpingBinding) {
         setListener()

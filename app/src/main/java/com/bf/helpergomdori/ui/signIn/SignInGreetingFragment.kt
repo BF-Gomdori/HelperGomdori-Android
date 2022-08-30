@@ -7,7 +7,6 @@ import androidx.navigation.fragment.findNavController
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseFragment
 import com.bf.helpergomdori.databinding.FragmentSigninGreetingBinding
-import com.bf.helpergomdori.ui.main.MainActivity
 import com.bf.helpergomdori.utils.SIGNIN_TAG
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignInGreetingFragment :
     BaseFragment<FragmentSigninGreetingBinding>(R.layout.fragment_signin_greeting) {
-    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_graph)
+    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_signin_graph)
     private lateinit var navController: NavController
 
     override fun createView(binding: FragmentSigninGreetingBinding) {
