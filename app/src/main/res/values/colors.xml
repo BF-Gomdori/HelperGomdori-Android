@@ -13,6 +13,10 @@
     <color name="naver_pressed">#05982A</color>
     <color name="kakao">#FFE920</color>
     <color name="kakao_pressed">#CCBA1A</color>
+    <color name="kakao_text">#392020</color>
+    <color name="google">#F5F5F5</color>
+    <color name="google_pressed">#40000000</color>
+    <color name="google_text">#8A000000</color>
     <color name="gray">#878787</color>
     <color name="transparent">#00000000</color>
 </resources>
