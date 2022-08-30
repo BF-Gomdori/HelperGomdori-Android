@@ -22,46 +22,51 @@
             app:layout_constraintVertical_bias="0.15" />
 
         <TextView
-            style="@style/CardView.Light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:text="@string/duplicate_selection"
+            android:text="@string/signin_only_one_select"
+            android:textSize="17sp"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.285" />
 
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_giving_help"
             android:layout_width="267dp"
-            android:layout_height="107dp"
+            android:layout_height="120dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/giving_help"
             android:textSize="30sp"
-            android:clickable="true"
-            style="@style/font_title"
+            android:textStyle="bold"
             android:textColor="@color/white"
+            app:cornerRadius="20dp"
+            android:backgroundTint="@color/color_help_btn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_getting_help"
-            style="@style/font_title"
             android:layout_width="267dp"
-            android:layout_height="107dp"
-            android:clickable="true"
+            android:layout_height="120dp"
             android:text="@string/getting_help"
             android:textColor="@color/white"
             android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.782" />
+            app:layout_constraintVertical_bias="0.75"
+            app:cornerRadius="20dp"
+            android:backgroundTint="@color/color_help_btn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

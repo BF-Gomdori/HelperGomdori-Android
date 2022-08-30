@@ -1,17 +1,12 @@
 package com.bf.helpergomdori.ui.signIn
 
-import android.content.Intent
 import android.util.Log
-import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseFragment
 import com.bf.helpergomdori.databinding.FragmentSigninGreetingBinding
-import com.bf.helpergomdori.ui.main.MainActivity
 import com.bf.helpergomdori.utils.SIGNIN_TAG
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,17 +14,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignInGreetingFragment :
     BaseFragment<FragmentSigninGreetingBinding>(R.layout.fragment_signin_greeting) {
-    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_graph)
-    private lateinit var navController: NavController
+    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_signin_graph)
 
     override fun createView(binding: FragmentSigninGreetingBinding) {
-        navController = this@SignInGreetingFragment.findNavController()
         setupClicks()
     }
 
     override fun createFragment() {
     }
-
 
 
     private fun setupClicks() {
@@ -39,7 +31,7 @@ class SignInGreetingFragment :
             }
 
             btnNaverLogin.setOnClickListener {
-                navController.navigate(R.id.signInAdditionalInfoFragment)
+                navController?.navigate(R.id.action_signInGreetingFragment_to_signInAdditionalInfoFragment)
             }
         }
     }
@@ -51,8 +43,8 @@ class SignInGreetingFragment :
                     Log.e(SIGNIN_TAG, "카카오 로그인 실패 : $error")
                 } else if (token != null) {
                     Log.i(SIGNIN_TAG, "카카오 로그인 성공 ${token.accessToken}")
-                    viewModel.postUser(token.accessToken)
-                    navController.navigate(R.id.signInHelpingFragment)
+                    viewModel.setUserAccessToken(token.accessToken)
+                    navController?.navigate(R.id.action_signInGreetingFragment_to_signInAdditionalInfoFragment)
                 }
             }
         } else {
@@ -61,8 +53,8 @@ class SignInGreetingFragment :
                     Log.e(SIGNIN_TAG, "카카오 로그인 실패", error)
                 } else if (token != null) {
                     Log.i(SIGNIN_TAG, "카카오 로그인 성공 ${token.accessToken}")
-                    viewModel.postUser(token.accessToken)
-                    navController.navigate(R.id.signInHelpingFragment)
+                    viewModel.setUserAccessToken(token.accessToken)
+                    navController?.navigate(R.id.action_signInGreetingFragment_to_signInAdditionalInfoFragment)
                 }
             }
         }

@@ -12,6 +12,17 @@ class UserInfoRepository @Inject constructor(
         return dataStore.data
     }
 
+
+    suspend fun updateUserInfo(jwt: String, name: String, phone: String){
+        dataStore.updateData {
+            it.toBuilder().apply {
+                setJwt(jwt)
+                setName(name)
+                setPhone(phone)
+            }.build()
+        }
+    }
+
     suspend fun updateUserInfo(jwt: String, name: String, photoLink: String, phone: String, intro: String, gender: UserInfo.Gender, type: UserInfo.Type) {
         dataStore.updateData {
             it.toBuilder().apply{

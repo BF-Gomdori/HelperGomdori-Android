@@ -14,5 +14,21 @@
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+        <item name="android:translationZ">12dp</item>
+        <item name="android:elevation">12dp</item>
     </style>
+
+    <style name="login_btn">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/btn_login</item>
+        <item name="android:paddingHorizontal">17dp</item>
+        <item name="android:layout_marginVertical">4dp</item>
+    </style>
+
 </resources>

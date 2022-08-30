@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/nav_signin_graph"
     app:startDestination="@id/signInGreetingFragment">
 
     <fragment
@@ -12,14 +12,15 @@
         tools:layout="@layout/fragment_signin_greeting">
         <action
             android:id="@+id/action_signInGreetingFragment_to_signInAdditionalInfoFragment"
-            app:destination="@id/signInAdditionalInfoFragment" />
+            app:destination="@id/signInAdditionalInfoFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
         android:id="@+id/signInHelpingFragment"
-        android:name="com.bf.helpergomdori.ui.signIn.SignInHelpingFragment"
+        android:name="com.bf.helpergomdori.ui.signIn.SignInSelectHelpingFragment"
         android:label="SignInHelpingFragment"
-        tools:layout="@layout/fragment_signin_helping">
+        tools:layout="@layout/fragment_signin_select_helping">
         <action
             android:id="@+id/action_signInHelpingFragment_to_signInHelpeeFragment"
             app:destination="@id/signInHelpeeFragment" />
@@ -38,7 +39,9 @@
         tools:layout="@layout/fragment_signin_additional_info">
         <action
             android:id="@+id/action_signInAdditionalInfoFragment_to_signInHelpingFragment"
-            app:destination="@id/signInHelpingFragment" />
+            app:destination="@id/signInHelpingFragment"
+            app:popUpToInclusive="true"
+            />
     </fragment>
 
 </navigation>

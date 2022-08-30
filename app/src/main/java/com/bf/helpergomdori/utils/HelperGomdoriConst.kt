@@ -26,3 +26,9 @@ const val LOCATION_PERMISSION_REQUEST_CODE = 1000
  * MainActivity
  */
 const val CAMERA_ZOOM_DENSITY = 15.5
+
+
+/**
+ * API
+ */
+const val HEADER_KEY = "Authorization"

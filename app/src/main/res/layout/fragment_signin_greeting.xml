@@ -12,74 +12,126 @@
         android:layout_height="match_parent">
 
         <TextView
+            style="@style/font_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
             android:text="@string/hello_helper_gomdori"
-            android:textStyle="bold"
-            style="@style/font_title"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="36dp"
+            app:layout_constraintVertical_bias="0.15" />
+
+        <ImageView
+            android:id="@+id/iv_gomdori"
+            android:layout_width="235dp"
+            android:layout_height="235dp"
+            android:src="@drawable/img_helper_gomdori"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.15"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/signin_one_comment"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textFontWeight="500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_gomdori" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp"
             android:gravity="center"
             android:text="@string/easy_login"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@id/ll_login_btns"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_kakao_login"
-            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
 
         <LinearLayout
-            android:id="@+id/btn_kakao_login"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_naver_login"
-            android:layout_marginBottom="12dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/btn_login"
-            android:backgroundTint="@color/color_kakao"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/signin_kakao"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:fontFamily="@font/notosans_kr_medium"
-                android:includeFontPadding="false"
-                />
+            android:id="@+id/ll_login_btns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="44dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_google_login"
+                style="@style/login_btn"
+                android:backgroundTint="@color/color_google">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/ic_google"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    style="@style/font_login_btn"
+                    android:textColor="@color/google_text"
+                    android:text="@string/signin_google"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_kakao_login"
+                style="@style/login_btn"
+                android:backgroundTint="@color/color_kakao">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/ic_kakao"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    style="@style/font_login_btn"
+                    android:textColor="@color/kakao_text"
+                    android:text="@string/signin_kakao"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_naver_login"
+                style="@style/login_btn"
+                android:backgroundTint="@color/color_naver">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/ic_naver"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    style="@style/font_login_btn"
+                    android:textColor="@color/white"
+                    android:text="@string/signin_naver"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/btn_naver_login"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="30dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/btn_login"
-            android:backgroundTint="@color/color_naver"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/signin_naver"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:fontFamily="@font/notosans_kr_medium"
-                android:includeFontPadding="false"
-                />
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
