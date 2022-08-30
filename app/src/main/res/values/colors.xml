@@ -13,4 +13,6 @@
     <color name="naver_pressed">#05982A</color>
     <color name="kakao">#FFE920</color>
     <color name="kakao_pressed">#CCBA1A</color>
+    <color name="gray">#878787</color>
+    <color name="transparent">#00000000</color>
 </resources>

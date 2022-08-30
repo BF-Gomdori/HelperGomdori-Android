@@ -19,7 +19,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-    private val BASE_URL = "http://bc0e-219-255-158-173.ngrok.io"
+    private val BASE_URL = "http://ec2-3-38-49-6.ap-northeast-2.compute.amazonaws.com:8080/auth/barrierfree/"
 
     @Singleton
     @Provides

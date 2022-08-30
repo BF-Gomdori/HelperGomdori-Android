@@ -9,18 +9,21 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.lifecycleScope
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseActivity
 import com.bf.helpergomdori.databinding.ActivityMainBinding
+import com.bf.helpergomdori.model.ProfileBf
+import com.bf.helpergomdori.model.ProfileGomdori
+import com.bf.helpergomdori.utils.CAMERA_ZOOM_DENSITY
+import com.bf.helpergomdori.utils.DensityUtil
 import com.bf.helpergomdori.utils.LOCATION_PERMISSION_REQUEST_CODE
 import com.bf.helpergomdori.utils.MAIN_TAG
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.openlocationcode.OpenLocationCode
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.LocationTrackingMode
-import com.naver.maps.map.MapFragment
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
@@ -50,43 +53,141 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
             requestLocationPermission()
         }
         initView()
+        setListener()
+        //observeViewModel()
     }
 
 
     private fun initView() {
-        // 지도 객체 생성
-        mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as MapFragment
+        mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as MapFragment?
+            ?: MapFragment.newInstance().also {
+                supportFragmentManager.beginTransaction().add(R.id.map_fragment, it).commit()
+            }
         mapFragment.getMapAsync(this)
 
+    }
 
+    private fun setListener() {
+        binding.apply {
+            btnMyLocation.setOnClickListener {
+                val latitude = viewModel.currentLocation["x"]
+                val longitude = viewModel.currentLocation["y"]
+                if (latitude != 0.0 && longitude != 0.0) {
+                    val cameraPosition = CameraPosition(LatLng(latitude!!, longitude!!), CAMERA_ZOOM_DENSITY)
+                    naverMap.moveCamera(CameraUpdate.toCameraPosition(cameraPosition))
+                }
+            }
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.apply {
+            lifecycleScope.launchWhenCreated {
+                gomdoriList.collect{
+                    if (this@MainActivity::naverMap.isInitialized) putGomdoriMarker(it)
+                }
+            }
+
+            lifecycleScope.launchWhenCreated {
+                bfList.collect{
+                    if (this@MainActivity::naverMap.isInitialized) putBfMarker(it)
+                }
+            }
+
+            lifecycleScope.launchWhenCreated {
+                selectedGomdori.collect {
+                    if (it != null) {
+                        Log.d(MAIN_TAG, "observeViewModel: ${it}")
+                        val profileDialog = ProfileDialog(it).apply {
+                            isCancelable = true
+                        }
+                        profileDialog.show(supportFragmentManager, "ProfileDialog")
+                        setSelectedGomdori(null)
+                    }
+                }
+            }
+
+            lifecycleScope.launchWhenCreated {
+                selectedBf.collect {
+                    if (it != null) {
+                        Log.d(MAIN_TAG, "observeViewModel: ${it}")
+                        val profileDialog = ProfileDialog(it).apply {
+                            isCancelable = true
+                        }
+                        profileDialog.show(supportFragmentManager, "ProfileDialog")
+                        setSelectedBf(null)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun putGomdoriMarker(gomdoriList: MutableList<ProfileGomdori>) {
+        gomdoriList.forEach { profileGomdori ->
+            val gomdori = Marker().apply {
+                position = LatLng(profileGomdori.latitude, profileGomdori.longitude)
+                icon = OverlayImage.fromResource(R.drawable.ic_marker_gomdori)
+                DensityUtil.setResouces(resources)
+                width = DensityUtil.dp2px(80f).toInt()
+                height = DensityUtil.dp2px(80f).toInt()
+                map = naverMap
+            }
+            gomdori.setOnClickListener {
+                viewModel.setSelectedGomdori(profileGomdori)
+                true
+            }
+        }
+    }
+
+    private fun putBfMarker(bfList: MutableList<ProfileBf>) {
+        bfList.forEach { profileBf ->
+            val bf = Marker().apply {
+                position = LatLng(profileBf.latitude, profileBf.longitude)
+                icon = OverlayImage.fromResource(R.drawable.ic_marker_bf)
+                DensityUtil.setResouces(resources)
+                width = DensityUtil.dp2px(65f).toInt()
+                height = DensityUtil.dp2px(65f).toInt()
+                map = naverMap
+            }
+            bf.setOnClickListener {
+                viewModel.setSelectedBf(profileBf)
+                true
+            }
+        }
     }
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(nmap: NaverMap) {
         naverMap = nmap
+        observeViewModel()
 
         naverMap.locationSource = locationSource // 내장 위치 추적 기능
         fusedLocationClient.lastLocation.addOnSuccessListener { currentLocation ->
             Log.d(MAIN_TAG, "location : $currentLocation")
+            viewModel.setCurrentLocation(currentLocation.latitude, currentLocation.longitude)
 
-            naverMap.locationOverlay.run {
-                isVisible = true
-                position = LatLng(currentLocation.latitude, currentLocation.longitude)
+            naverMap.apply {
+                mapType = NaverMap.MapType.Basic
+                setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, true)
+                val cameraPosition = CameraPosition(
+                    LatLng(currentLocation.latitude, currentLocation.longitude),
+                    CAMERA_ZOOM_DENSITY
+                )
+                naverMap.moveCamera(CameraUpdate.toCameraPosition(cameraPosition))
+                locationOverlay.run {
+                    isVisible = true
+                    position = LatLng(currentLocation.latitude, currentLocation.longitude)
+                }
+                locationTrackingMode = LocationTrackingMode.Follow
+                isIndoorEnabled = true
             }
-
-            naverMap.locationTrackingMode = LocationTrackingMode.Follow
-//                val marker = Marker().apply {
-//                    icon = OverlayImage.fromResource(R.drawable.img_helper_gomdori)
-//                    map = nmap
-//                }
-//
-//                marker.position = LatLng(
-//                    currentLocation.latitude, currentLocation.longitude
-//                )
         }
 
     }
 
+    /**
+     * Location Permission
+     */
 
     private fun isLocationPermitted(): Boolean {
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)

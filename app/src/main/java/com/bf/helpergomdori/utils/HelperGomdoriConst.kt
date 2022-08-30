@@ -21,3 +21,8 @@ const val DATA_STORE_FILE_NAME = "user_info.pb"
  * Request Code
  */
 const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+
+/**
+ * MainActivity
+ */
+const val CAMERA_ZOOM_DENSITY = 15.5

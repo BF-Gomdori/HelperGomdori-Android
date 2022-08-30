@@ -3,17 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable-v24/bg_btn_response_dialog.xml" value="0.228" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable-v24/bg_dialog.xml" value="0.228" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2295" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/bg_dialog_rectangle.xml" value="0.228" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_circle.xml" value="0.232" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_default.xml" value="0.16" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_default_.xml" value="0.16" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_login.xml" value="0.16" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_login_background.xml" value="0.224" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_mypage.xml" value="0.232" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/btn_naver_login.xml" value="0.1755" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/dialog_profile_rect.xml" value="0.227" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_btn_default.xml" value="0.109" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_circle.xml" value="0.227" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_gender_female.xml" value="0.232" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2295" />
-        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_main.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_main_topbar.xml" value="0.1" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_marker_gomdori.xml" value="0.1425" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_mypage.xml" value="0.232" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_user.xml" value="0.232" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_signin.xml" value="0.2171875" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_splash.xml" value="0.2" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/dialog_profile.xml" value="0.4" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_greeting.xml" value="0.1" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_greeting.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_helpee.xml" value="0.152" />
