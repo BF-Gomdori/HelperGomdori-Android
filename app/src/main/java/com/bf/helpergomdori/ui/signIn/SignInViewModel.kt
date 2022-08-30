@@ -24,24 +24,30 @@ class SignInViewModel @Inject constructor(
     private var _currentUserInfo: MutableStateFlow<UserInfo?> = MutableStateFlow(null)
     val currentUserInfo get() = _currentUserInfo
 
-    fun postUser(accessToken: String) {
+    private var _newUser = PostUser()
+    val newUser get() = _newUser
+
+    fun postUser() {
         CoroutineScope(Dispatchers.IO).launch {
-            val phone = "01055924249"
-            val name = "밍도리"
-            val intro = "자기 소개"
-            val age = 20
-            val jwt = remoteRepository.postUserInfo(
-                PostUser(
-                    accessToken,
-                    phone,
-                    name,
-                    intro,
-                    age
-                )
-            ) //todo 저장해서 api 보낼 때마다 헤더에 추가해서 보내줘야함
+            val jwt = remoteRepository.postUserInfo(newUser)
+            Log.d(SIGNIN_TAG, "postUser: ${jwt}")
             //updateUserInfo(jwt, name, photoLink, phone, intro, gender, type)
         }
     }
+
+    fun setUserAccessToken(token: String) {
+        _newUser.access_token = token
+    }
+
+    fun setUserPhone(phone: String) {
+        _newUser.phone = phone
+    }
+
+    fun setUserName(name: String) {
+        _newUser.name = name
+    }
+
+
 
     fun updateUserInfo(jwt: String, name: String, photoLink: String, phone: String, intro: String, gender: UserInfo.Gender, type: UserInfo.Type) {
         CoroutineScope(Dispatchers.IO).launch {

@@ -2,6 +2,7 @@ package com.bf.helpergomdori.data.remote
 
 import com.bf.helpergomdori.model.Data
 import com.bf.helpergomdori.model.body.PostUser
+import com.bf.helpergomdori.model.response.Token
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +20,7 @@ class RemoteDataSourceImpl @Inject constructor(
         emit(apiService.getData())
     }.flowOn(ioDispatcher)
 
-    override suspend fun postMember(postUser: PostUser) {
+    override suspend fun postMember(postUser: PostUser): Token {
         return apiService.postMember(postUser)
     }
 

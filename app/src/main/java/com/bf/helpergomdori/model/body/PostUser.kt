@@ -1,9 +1,9 @@
 package com.bf.helpergomdori.model.body
 
 data class PostUser(
-    val access_token: String,
-    val phone: String,
-    val name: String,
-    val intro: String,
-    val age: Int
+    var access_token: String? = "",
+    var phone: String? = "",
+    var name: String? = "",
+    var intro: String? = "",
+    var age: Int? = 0
 )
