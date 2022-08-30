@@ -23,7 +23,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/bg_main_topbar"
             android:layout_marginTop="16dp"
-            android:translationZ="10dp"
             android:elevation="10dp"
             >
             <View
@@ -146,18 +145,12 @@
                 app:tint="@color/gray" />
         </LinearLayout>
 
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_request"
-            style="@style/btn"
+            style="@style/btn_material"
+            android:text="@string/main_request_bf"
             tools:ignore="MissingConstraints"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/font_btn"
-                android:text="@string/main_request_bf"
-                />
-        </LinearLayout>
+            />
 
         <fragment
             android:id="@+id/map_fragment"

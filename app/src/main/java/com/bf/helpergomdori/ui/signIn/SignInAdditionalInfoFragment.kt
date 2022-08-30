@@ -1,12 +1,8 @@
 package com.bf.helpergomdori.ui.signIn
 
 import android.telephony.PhoneNumberFormattingTextWatcher
-import android.telephony.PhoneNumberUtils
 import android.util.Log
 import android.view.inputmethod.EditorInfo
-import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -19,11 +15,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignInAdditionalInfoFragment : BaseFragment<FragmentSigninAdditionalInfoBinding>(R.layout.fragment_signin_additional_info){
 
-    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_graph)
-    private lateinit var navController: NavController
+    private val viewModel: SignInViewModel by hiltNavGraphViewModels(R.id.nav_signin_graph)
 
     override fun createView(binding: FragmentSigninAdditionalInfoBinding) {
-        navController = this.findNavController()
     }
 
     override fun createFragment() {
@@ -35,7 +29,7 @@ class SignInAdditionalInfoFragment : BaseFragment<FragmentSigninAdditionalInfoBi
         binding.apply {
             btnOk.setOnClickListener {
                 viewModel.postUser()
-                navController.navigate(R.id.signInHelpingFragment)
+                navController?.navigate(R.id.action_signInAdditionalInfoFragment_to_signInHelpingFragment)
             }
 
             binding.etPhone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
