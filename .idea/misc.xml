@@ -25,10 +25,14 @@
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/drawable/ic_user.xml" value="0.232" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_mypage.xml" value="0.2296195652173913" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_request_help.xml" value="0.20425724637681159" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_signin.xml" value="0.2171875" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/activity_splash.xml" value="0.2" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/dialog_profile.xml" value="0.4" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_greeting.xml" value="0.1" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_request_help_ing.xml" value="0.20425724637681159" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_request_help_location.xml" value="0.20425724637681159" />
+        <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_request_help_write.xml" value="0.20425724637681159" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_additional_info.xml" value="0.22760416666666666" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_greeting.xml" value="0.2" />
         <entry key="..\:/Users/mindo/helperGomdori/app/src/main/res/layout/fragment_signin_helpee.xml" value="0.176" />
