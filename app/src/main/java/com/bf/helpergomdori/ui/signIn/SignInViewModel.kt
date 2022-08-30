@@ -6,13 +6,16 @@ import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.UserInfo
 import com.bf.helpergomdori.data.repository.RemoteRepository
 import com.bf.helpergomdori.data.repository.UserInfoRepository
-import com.bf.helpergomdori.model.body.PostUser
+import com.bf.helpergomdori.model.remote.DefaultHeader
+import com.bf.helpergomdori.model.remote.body.PostUser
+import com.bf.helpergomdori.model.remote.body.SigninBody
 import com.bf.helpergomdori.utils.SIGNIN_TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,9 +32,54 @@ class SignInViewModel @Inject constructor(
 
     fun postUser() {
         CoroutineScope(Dispatchers.IO).launch {
-            val jwt = remoteRepository.postUserInfo(newUser)
+            val jwt = remoteRepository.postUserInfo(newUser).token
             Log.d(SIGNIN_TAG, "postUser: ${jwt}")
-            //updateUserInfo(jwt, name, photoLink, phone, intro, gender, type)
+            updateUserInfo(jwt, newUser.name!!, newUser.phone!!)
+        }
+    }
+
+    fun postHelpee(disableTypeList: MutableList<String>) {
+        getUserInfo()
+        viewModelScope.launch {
+            Log.d(SIGNIN_TAG, "postHelpee: ${currentUserInfo.value?.jwt}")
+            if (currentUserInfo.value != null) {
+                val header = DefaultHeader("Bearer "+ currentUserInfo.value!!.jwt)
+                val body = SigninBody(disableTypeList[0], null) //todo api에서 장애유형 여러 개 받을 수 있게되면 list로 보내 주기
+                remoteRepository.runCatching {
+                    postHelpee(header, body)
+                }.onFailure {
+                    when(it) {
+                        is HttpException -> {
+                            Log.e(SIGNIN_TAG, "postHelper: httpException $it" )
+                        }
+                        else -> {
+                            Log.e(SIGNIN_TAG, "postHelper: $it")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun postHelper() {
+        getUserInfo()
+        viewModelScope.launch {
+            Log.d(SIGNIN_TAG, "postHelper: ${currentUserInfo.value?.jwt}")
+            if (currentUserInfo.value != null) {
+                val header = DefaultHeader("Bearer "+ currentUserInfo.value!!.jwt)
+                remoteRepository.runCatching {
+                    postHelper(header)
+                }.onFailure {
+                    when(it) {
+                        is HttpException -> {
+                            Log.e(SIGNIN_TAG, "postHelper: httpException ${it.message()}" )
+                        }
+                        else -> {
+                            Log.e(SIGNIN_TAG, "postHelper: $it")
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -48,14 +96,17 @@ class SignInViewModel @Inject constructor(
     }
 
 
-
-    fun updateUserInfo(jwt: String, name: String, photoLink: String, phone: String, intro: String, gender: UserInfo.Gender, type: UserInfo.Type) {
+    fun updateUserInfo(
+        jwt: String,
+        name: String,
+        phone: String,
+    ) {
         CoroutineScope(Dispatchers.IO).launch {
-            userRepository.updateUserInfo(jwt, name, photoLink, phone, intro, gender, type)
+            userRepository.updateUserInfo(jwt = jwt, name = name, phone = phone)
         }
     }
 
-    fun getUserInfo(){
+    fun getUserInfo() {
         viewModelScope.launch {
             userRepository.getUserInfo().collect {
                 _currentUserInfo.value = it

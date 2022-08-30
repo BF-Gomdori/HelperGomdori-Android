@@ -39,11 +39,12 @@
             app:layout_constraintVertical_bias="0.228" />
 
         <CheckBox
+            android:id="@+id/checkbox_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="188dp"
-            android:text="언어장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_language"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,10 +53,11 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="지체장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_body"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,11 +66,11 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_eye"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
-            android:text="시각장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_eye"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,11 +79,11 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_ear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
-            android:text="청각장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_ear"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -90,11 +92,11 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_etc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
-            android:text="기타"
-            android:textSize="20dp"
+            android:text="@string/helpee_etc"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,11 +105,12 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_developmental"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="188dp"
-            android:text="발달장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_developmental"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -116,11 +119,12 @@
             tools:ignore="MissingConstraints" />
 
         <CheckBox
+            android:id="@+id/checkbox_mental"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="188dp"
-            android:text="정신장애"
-            android:textSize="20dp"
+            android:text="@string/helpee_mental"
+            android:textSize="20sp"
             android:theme="@style/signin_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -143,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="181dp"
             android:background="@drawable/all_edge"
-            android:textSize="14sp"
+            android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@id/tv_info"
             android:layout_marginTop="7dp"
             android:gravity="top"

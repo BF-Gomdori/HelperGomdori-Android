@@ -1,4 +1,4 @@
-package com.bf.helpergomdori.model.body
+package com.bf.helpergomdori.model.remote.body
 
 data class PostUser(
     var access_token: String? = "",

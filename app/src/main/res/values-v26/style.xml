@@ -14,8 +14,8 @@
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="android:translationZ">10dp</item>
-        <item name="android:elevation">10dp</item>
+        <item name="android:translationZ">12dp</item>
+        <item name="android:elevation">12dp</item>
     </style>
 
     <style name="login_btn">

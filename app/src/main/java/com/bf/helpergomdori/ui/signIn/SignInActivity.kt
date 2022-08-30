@@ -17,24 +17,24 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
     private val viewModel: SignInViewModel by viewModels()
 
     override fun createActivity() {
-        viewModel.getUserInfo()
-        //viewModel.updateUserInfo("djfkd1234","minju","","","",UserInfo.Gender.FEMALE, UserInfo.Type.BF)
+        //viewModel.getUserInfo()
         observeViewModel()
     }
 
     private fun observeViewModel() {
-        lifecycleScope.launchWhenCreated {
-            viewModel.currentUserInfo.collect {
-                Log.d(SIGNIN_TAG, "currentUserInfo: ${it?.name} ${it?.jwt}")
-                if (it != null && it.jwt != "") {
-                    val intent = Intent(this@SignInActivity, MainActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK and Intent.FLAG_ACTIVITY_NEW_TASK
-                    }
-                    startActivity(intent)
-                    this@SignInActivity.finish()
-                }
-            }
-        }
+        // todo splash에서 검사
+//        lifecycleScope.launchWhenCreated {
+//            viewModel.currentUserInfo.collect {
+//                Log.d(SIGNIN_TAG, "currentUserInfo: ${it?.name} ${it?.jwt}")
+//                if (it != null && it.jwt != "") {
+//                    val intent = Intent(this@SignInActivity, MainActivity::class.java).apply {
+//                        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK and Intent.FLAG_ACTIVITY_NEW_TASK
+//                    }
+//                    startActivity(intent)
+//                    this@SignInActivity.finish()
+//                }
+//            }
+//        }
 
     }
 }
