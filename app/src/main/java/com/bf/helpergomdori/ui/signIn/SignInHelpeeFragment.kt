@@ -16,7 +16,7 @@ class SignInHelpeeFragment: BaseFragment<FragmentSigninHelpeeBinding>(R.layout.f
     }
 
     private fun setUpClicks() {
-        binding.btnNext.setOnClickListener {
+        binding.btnOk.setOnClickListener {
             val intent = Intent(requireActivity(), MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TASK and Intent.FLAG_ACTIVITY_NEW_TASK
             }

@@ -17,9 +17,9 @@
 
     <fragment
         android:id="@+id/signInHelpingFragment"
-        android:name="com.bf.helpergomdori.ui.signIn.SignInHelpingFragment"
+        android:name="com.bf.helpergomdori.ui.signIn.SignInSelectHelpingFragment"
         android:label="SignInHelpingFragment"
-        tools:layout="@layout/fragment_signin_helping">
+        tools:layout="@layout/fragment_signin_select_helping">
         <action
             android:id="@+id/action_signInHelpingFragment_to_signInHelpeeFragment"
             app:destination="@id/signInHelpeeFragment" />

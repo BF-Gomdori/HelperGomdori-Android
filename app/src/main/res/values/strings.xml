@@ -10,11 +10,12 @@
     <string name="hello_helper_gomdori">안녕하세요.\n도움곰돌이에요.</string>
     <string name="signin_one_comment">도움이 돌아 더 나은 하루를</string>
     <string name="select_helping">도움 주기/받기를\n선택해주세요</string>
-    <string name="giving_help">도움주기</string>
-    <string name="getting_help">도움받기</string>
+    <string name="giving_help">도움 주기</string>
+    <string name="getting_help">도움 받기</string>
     <string name="select_disabled_type">장애 유형 선택</string>
     <string name="what_kind_of_help">어떤 도움이 필요한지 알려주세요.</string>
     <string name="duplicate_selection">중복선택 가능합니다.</string>
+    <string name="signin_only_one_select">하나만 선택해주세요.</string>
     <string name="what_kind_of_help_specifically">불편한 사항이나 도움받을 때 주의할 점 등\n자세하게 알려주세요.</string>
     <string name="message_to_bearfriend">* 도움을 줄 베어프렌드에게 전달됩니다.</string>
     <string name="ok">확인</string>
