@@ -16,6 +16,7 @@ object WebSocketUtil {
     private const val WEBSOCKET_URL =
         "ws://ec2-3-38-49-6.ap-northeast-2.compute.amazonaws.com:8080/dori"
     private const val TOPIC_DEST_PATH = "/map/main"
+    private const val TOPIC_USER_DEST_PATH = "/user/map/main"
     private const val SEND_DEST_PATH = "/gom-dori/connecting"
 
     @SuppressLint("CheckResult")
@@ -30,12 +31,17 @@ object WebSocketUtil {
         stompClient.connect(headerList)
 
         try {
-            val topic = stompClient.topic(TOPIC_DEST_PATH)
-            Log.i(WEBSOCKET_TAG, "runStomp: ${topic}")
-
-            topic.subscribe {
-                Log.i(WEBSOCKET_TAG, "runStomp: ${it?.payload}")
+            val userTopic = stompClient.topic(TOPIC_USER_DEST_PATH)
+            userTopic.subscribe {
+                Log.i(WEBSOCKET_TAG, "userTopic runStomp: ${it?.payload}")
             }
+
+            val topic = stompClient.topic(TOPIC_DEST_PATH)
+            //Log.i(WEBSOCKET_TAG, "runStomp: ${topic}")
+            topic.subscribe {
+                Log.i(WEBSOCKET_TAG, "topic runStomp: ${it?.payload}")
+            }
+
         } catch (e: NullPointerException) {
             Log.e(WEBSOCKET_TAG, "runStomp: ${e.printStackTrace()}")
             return
@@ -62,7 +68,7 @@ object WebSocketUtil {
         }
 
 
-        val websocketData =WebSocketData(
+        val websocketData = WebSocketData(
             type = EnterType.ENTER.name,
             jwt = PrefsUtil.getJwt(),
             location = JSONObject().apply {
@@ -72,8 +78,8 @@ object WebSocketUtil {
         )
 
 
-
         stompClient.send(SEND_DEST_PATH, Gson().toJson(websocketData)).subscribe()
+
     }
 
 }

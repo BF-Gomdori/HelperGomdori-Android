@@ -115,13 +115,6 @@ class MainViewModel @Inject constructor(
         }
     }
 
-
-    /**
-     * Web Socket
-     */
-
-
-
-
+    
 
 }

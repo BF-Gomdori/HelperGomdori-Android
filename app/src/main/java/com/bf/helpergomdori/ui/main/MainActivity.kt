@@ -23,7 +23,6 @@ import com.bf.helpergomdori.utils.LOCATION_PERMISSION_REQUEST_CODE
 import com.bf.helpergomdori.utils.MAIN_TAG
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.openlocationcode.OpenLocationCode
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
@@ -105,7 +104,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 selectedGomdori.collect {
                     if (it != null) {
                         Log.d(MAIN_TAG, "observeViewModel: ${it}")
-                        val profileDialog = ProfileDialog(it).apply {
+                        val profileDialog = MainProfileDialog(it).apply {
                             isCancelable = true
                         }
                         profileDialog.show(supportFragmentManager, "ProfileDialog")
@@ -118,7 +117,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 selectedBf.collect {
                     if (it != null) {
                         Log.d(MAIN_TAG, "observeViewModel: ${it}")
-                        val profileDialog = ProfileDialog(it).apply {
+                        val profileDialog = MainProfileDialog(it).apply {
                             isCancelable = true
                         }
                         profileDialog.show(supportFragmentManager, "ProfileDialog")

@@ -11,7 +11,7 @@ data class WebSocketData(
 )
 
 enum class EnterType{
-    ENTER, HELP, ACCEPT
+    ENTER, HELP, ACCEPT // ENTER: 비장애인, HELP : 장애인, ACCPET : 도움 수락했을 때
 }
 
 data class Location(
