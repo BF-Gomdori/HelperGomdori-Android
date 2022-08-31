@@ -1,4 +1,4 @@
-package com.bf.helpergomdori.model
+package com.bf.helpergomdori.model.local
 
 abstract class Profile(
     open val jwt: String,

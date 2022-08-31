@@ -2,25 +2,17 @@ package com.bf.helpergomdori.ui.main
 
 import android.Manifest
 import android.util.Log
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.lifecycle.ViewModel
 import com.bf.helpergomdori.data.repository.RemoteRepository
-import com.bf.helpergomdori.model.Gender
-import com.bf.helpergomdori.model.ProfileBf
-import com.bf.helpergomdori.model.ProfileGomdori
+import com.bf.helpergomdori.model.local.Gender
+import com.bf.helpergomdori.model.local.ProfileBf
+import com.bf.helpergomdori.model.local.ProfileGomdori
 import com.bf.helpergomdori.utils.MAIN_TAG
-import com.bf.helpergomdori.utils.WEBSOCKET_TAG
 import com.bf.helpergomdori.utils.WebSocketUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import org.json.JSONObject
-import ua.naiksoftware.stomp.Stomp
-import ua.naiksoftware.stomp.dto.LifecycleEvent
-import ua.naiksoftware.stomp.dto.StompHeader
 import javax.inject.Inject
-import kotlin.system.exitProcess
 
 @HiltViewModel
 class MainViewModel @Inject constructor(

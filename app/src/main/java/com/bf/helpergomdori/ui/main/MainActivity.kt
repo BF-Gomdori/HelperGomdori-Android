@@ -14,8 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseActivity
 import com.bf.helpergomdori.databinding.ActivityMainBinding
-import com.bf.helpergomdori.model.ProfileBf
-import com.bf.helpergomdori.model.ProfileGomdori
+import com.bf.helpergomdori.model.local.ProfileBf
+import com.bf.helpergomdori.model.local.ProfileGomdori
 import com.bf.helpergomdori.ui.mypage.MypageActivity
 import com.bf.helpergomdori.utils.CAMERA_ZOOM_DENSITY
 import com.bf.helpergomdori.utils.DensityUtil

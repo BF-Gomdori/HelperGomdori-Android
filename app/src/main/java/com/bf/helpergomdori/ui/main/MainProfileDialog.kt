@@ -13,13 +13,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.databinding.DialogMainProfileBinding
-import com.bf.helpergomdori.model.Profile
-import com.bf.helpergomdori.model.ProfileGomdori
+import com.bf.helpergomdori.model.local.Profile
+import com.bf.helpergomdori.model.local.ProfileGomdori
 import com.bf.helpergomdori.utils.*
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import java.net.URLDecoder
-import java.net.URLEncoder
 
 class MainProfileDialog(private val profile: Profile) : DialogFragment() {
 
@@ -82,20 +80,11 @@ class MainProfileDialog(private val profile: Profile) : DialogFragment() {
     }
 
     private fun connectNaverMapScheme() {
-        val slat = 37.494437500000004
-        val slng = 126.9599375
-        val sname = "숭실대 정보과학관"
-        val dlat = 37.496187500000005
-        val dlng = 126.9585625
-        val dname = "숭실대 도서관"
         val uri = Uri.parse(NAVER_MAP_SCHEME_BASE_URL)
             .buildUpon()
-            .appendQueryParameter(SLAT_PARAM, slat.toString())
-            .appendQueryParameter(SLNG_PRARM, slng.toString())
-            .appendQueryParameter(SNAME_PARAM, sname)
-            .appendQueryParameter(DLAT_PARAM, dlat.toString())
-            .appendQueryParameter(DLNG_PARRAM, dlng.toString())
-            .appendQueryParameter(DNAME_PARAM, dname)
+            .appendQueryParameter(DLAT_PARAM, profile.latitude.toString())
+            .appendQueryParameter(DLNG_PARRAM, profile.longitude.toString())
+            .appendQueryParameter(DNAME_PARAM, profile.location)
             .appendQueryParameter(APP_NAME_PARAM,resources.getString(R.string.package_name))
             .build()
 
