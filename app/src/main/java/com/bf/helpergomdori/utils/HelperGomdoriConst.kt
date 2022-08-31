@@ -10,6 +10,7 @@ const val NATIVE_APP_KEY = "17abb9ddb66ddc971dd9ccf2c95a1a8e"
  */
 const val SIGNIN_TAG = "SIGNIN_TAG"
 const val MAIN_TAG = "MAIN_TAG"
+const val WEBSOCKET_TAG = "WEBSOCKET_TAG"
 
 /**
  * DataStore
@@ -39,3 +40,9 @@ const val APP_NAME_PARAM = "appname"
  * API
  */
 const val HEADER_KEY = "Authorization"
+
+/**
+ * SHARED_PREFERENCE
+ */
+const val SHARED_PREFERENCE_NAME = "SHARED_PREFERENCE_NAME"
+const val JWT_KEY = "jwt"

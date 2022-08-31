@@ -10,9 +10,15 @@ import com.bf.helpergomdori.model.Gender
 import com.bf.helpergomdori.model.ProfileBf
 import com.bf.helpergomdori.model.ProfileGomdori
 import com.bf.helpergomdori.utils.MAIN_TAG
+import com.bf.helpergomdori.utils.WEBSOCKET_TAG
+import com.bf.helpergomdori.utils.WebSocketUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import org.json.JSONObject
+import ua.naiksoftware.stomp.Stomp
+import ua.naiksoftware.stomp.dto.LifecycleEvent
+import ua.naiksoftware.stomp.dto.StompHeader
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
@@ -38,6 +44,8 @@ class MainViewModel @Inject constructor(
     val bfList get() = _bfList
 
     init {
+        WebSocketUtil.runStomp()
+
         val gomdori = ProfileGomdori(
             jwt = "",
             type = "지체장애",
@@ -58,7 +66,8 @@ class MainViewModel @Inject constructor(
             gender = Gender.FEMALE,
             location = "서울특별시 동작구 상도로 369",
             latitude = 37.496187500000005,
-            longitude = 126.9585625)
+            longitude = 126.9585625
+        )
         addBfList(bf)
     }
 
@@ -66,8 +75,8 @@ class MainViewModel @Inject constructor(
         //todo api로 gomdori 정보 받아오기
         //_selectedGomdori.value =
     }
-    
-    fun addGomdoriList(gomdori: ProfileGomdori){
+
+    fun addGomdoriList(gomdori: ProfileGomdori) {
         _gomdoriList.value.add(gomdori)
     }
 
@@ -79,7 +88,7 @@ class MainViewModel @Inject constructor(
         _selectedGomdori.value = gomdori
     }
 
-    fun setSelectedBf(bf: ProfileBf?){
+    fun setSelectedBf(bf: ProfileBf?) {
         _selectedBf.value = bf
     }
 
@@ -105,5 +114,14 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
+
+    /**
+     * Web Socket
+     */
+
+
+
+
 
 }
