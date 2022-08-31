@@ -3,8 +3,8 @@ package com.bf.helpergomdori.ui.ex
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.base.BaseViewModel
 import com.bf.helpergomdori.data.repository.RemoteRepository
-import com.bf.helpergomdori.model.DataIntent
-import com.bf.helpergomdori.model.DataState
+import com.bf.helpergomdori.model.ex.DataIntent
+import com.bf.helpergomdori.model.ex.DataState
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow

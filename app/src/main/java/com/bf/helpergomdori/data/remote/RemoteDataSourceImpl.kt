@@ -30,11 +30,12 @@ class RemoteDataSourceImpl @Inject constructor(
         return apiService.postMember(postUser)
     }
 
-    override suspend fun postHelpee(header: DefaultHeader, signinBody: SigninBody): HelpeeResponse {
+
+    override suspend fun postHelpee(header: String, signinBody: SigninBody): HelpeeResponse {
         return apiService.postHelpee(header, signinBody)
     }
 
-    override suspend fun postHelper(header: DefaultHeader): HelperResponse {
+    override suspend fun postHelper(header: String): HelperResponse {
         return apiService.postHelper(header)
     }
 

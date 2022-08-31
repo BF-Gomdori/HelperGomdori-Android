@@ -1,6 +1,5 @@
 package com.bf.helpergomdori.ui.ex
 
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -13,9 +12,8 @@ import com.bf.helpergomdori.base.BaseActivity
 import com.bf.helpergomdori.data.remote.RemoteDataSourceImpl
 import com.bf.helpergomdori.data.remote.RetrofitBuilder
 import com.bf.helpergomdori.databinding.ActivityExBinding
-import com.bf.helpergomdori.databinding.ActivityMainBinding
-import com.bf.helpergomdori.model.DataIntent
-import com.bf.helpergomdori.model.DataState
+import com.bf.helpergomdori.model.ex.DataIntent
+import com.bf.helpergomdori.model.ex.DataState
 import com.bf.helpergomdori.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

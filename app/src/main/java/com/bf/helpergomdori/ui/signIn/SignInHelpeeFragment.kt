@@ -37,14 +37,14 @@ class SignInHelpeeFragment: BaseFragment<FragmentSigninHelpeeBinding>(R.layout.f
         binding.apply {
             btnOk.setOnClickListener {
                 val checkedDisableTypeList = getCheckedType()
-                viewModel.postHelpee(checkedDisableTypeList)
+                val intro = etInfo.text.toString()
+                viewModel.postHelpee(checkedDisableTypeList, intro)
                 val intent = Intent(requireActivity(), MainActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_CLEAR_TASK and Intent.FLAG_ACTIVITY_NEW_TASK
                 }
                 startActivity(intent)
                 requireActivity().finish()
             }
-
 
         }
 
