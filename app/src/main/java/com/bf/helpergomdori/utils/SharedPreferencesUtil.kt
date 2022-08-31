@@ -11,7 +11,7 @@ class SharedPreferencesUtil(context: Context) {
         editor.putString(JWT_KEY, jwt).apply()
     }
 
-    fun getJwt() {
-        prefs.getString(JWT_KEY, "")
+    fun getJwt(): String {
+        return prefs.getString(JWT_KEY, "")!!
     }
 }
