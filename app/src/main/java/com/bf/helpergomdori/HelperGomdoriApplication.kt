@@ -12,6 +12,10 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class HelperGomdoriApplication: Application() {
+    companion object {
+        lateinit var PrefsUtil: SharedPreferencesUtil
+    }
+
     override fun onCreate() {
         super.onCreate()
 
@@ -19,6 +23,6 @@ class HelperGomdoriApplication: Application() {
         KakaoSdk.init(this, NATIVE_APP_KEY)
 
         // sharedPreference 초기화
-        SharedPreferencesUtil(this)
+        PrefsUtil = SharedPreferencesUtil(this)
     }
 }

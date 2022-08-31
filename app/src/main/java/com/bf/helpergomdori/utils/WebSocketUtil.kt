@@ -2,6 +2,7 @@ package com.bf.helpergomdori.utils
 
 import android.annotation.SuppressLint
 import android.util.Log
+import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import org.json.JSONObject
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.dto.LifecycleEvent
@@ -17,6 +18,7 @@ object WebSocketUtil {
     fun runStomp() {
         val stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, WEBSOCKET_URL)
 
+        PrefsUtil.getJwt()
         val jwt =
             "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLsnKDsirnrr7wiLCJpYXQiOjE2NjE5MzEwNDMsImV4cCI6MTY2MjAxNzQ0M30.MpJCboZBoLP1YE14y9WkHJHg-jMPe2Ue-SKfvUDFIdLYWmwBKypZTHRdyJz4HD_kVpgEzRr0GYsp1D2puGCFeQ"
 

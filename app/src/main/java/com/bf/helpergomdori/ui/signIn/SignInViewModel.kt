@@ -3,6 +3,7 @@ package com.bf.helpergomdori.ui.signIn
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.UserInfo
 import com.bf.helpergomdori.data.repository.RemoteRepository
 import com.bf.helpergomdori.data.repository.UserInfoRepository
@@ -10,6 +11,7 @@ import com.bf.helpergomdori.model.remote.DefaultHeader
 import com.bf.helpergomdori.model.remote.body.PostUser
 import com.bf.helpergomdori.model.remote.body.SigninBody
 import com.bf.helpergomdori.utils.SIGNIN_TAG
+import com.bf.helpergomdori.utils.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,6 +35,7 @@ class SignInViewModel @Inject constructor(
     fun postUser() {
         CoroutineScope(Dispatchers.IO).launch {
             val jwt = remoteRepository.postUserInfo(newUser).token
+            PrefsUtil.setJwt(jwt)
             Log.d(SIGNIN_TAG, "postUser: ${jwt}")
             updateUserInfo(jwt, newUser.name!!, newUser.phone!!)
         }
