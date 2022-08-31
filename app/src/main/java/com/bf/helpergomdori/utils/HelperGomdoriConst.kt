@@ -36,6 +36,13 @@ const val DLNG_PARRAM = "dlng"
 const val DNAME_PARAM = "dname"
 const val APP_NAME_PARAM = "appname"
 
+
+/**
+ * WebSocket
+ */
+const val WEBSOCKET_HEADER = "Authorization"
+
+
 /**
  * API
  */

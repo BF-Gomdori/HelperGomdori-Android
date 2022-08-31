@@ -3,6 +3,10 @@ package com.bf.helpergomdori.utils
 import android.annotation.SuppressLint
 import android.util.Log
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
+import com.bf.helpergomdori.model.websocket.EnterType
+import com.bf.helpergomdori.model.websocket.Location
+import com.bf.helpergomdori.model.websocket.WebSocketData
+import com.google.gson.Gson
 import org.json.JSONObject
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.dto.LifecycleEvent
@@ -18,12 +22,10 @@ object WebSocketUtil {
     fun runStomp() {
         val stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, WEBSOCKET_URL)
 
-        PrefsUtil.getJwt()
-        val jwt =
-            "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLsnKDsirnrr7wiLCJpYXQiOjE2NjE5MzEwNDMsImV4cCI6MTY2MjAxNzQ0M30.MpJCboZBoLP1YE14y9WkHJHg-jMPe2Ue-SKfvUDFIdLYWmwBKypZTHRdyJz4HD_kVpgEzRr0GYsp1D2puGCFeQ"
+        val jwt = PrefsUtil.getJwt()
 
         val headerList = mutableListOf<StompHeader>().apply {
-            add(StompHeader("Authorization", jwt))
+            add(StompHeader(WEBSOCKET_HEADER, jwt))
         }
         stompClient.connect(headerList)
 
@@ -59,17 +61,19 @@ object WebSocketUtil {
             }
         }
 
-        val data = JSONObject().apply {
-            put("type", "ENTER") // ENTER, HELP, ACCEPT
-            put("sub", "main")
-            put("jwt", jwt)
-            put("location", JSONObject().apply {
-                put("x", "11111")
-                put("y", "11111")
-            })
-        }
 
-        stompClient.send(SEND_DEST_PATH, data.toString()).subscribe()
+        val websocketData =WebSocketData(
+            type = EnterType.ENTER.name,
+            jwt = PrefsUtil.getJwt(),
+            location = JSONObject().apply {
+                put("x", "126.9599375")
+                put("y", "37.496187500000005")
+            }
+        )
+
+
+
+        stompClient.send(SEND_DEST_PATH, Gson().toJson(websocketData)).subscribe()
     }
 
 }
