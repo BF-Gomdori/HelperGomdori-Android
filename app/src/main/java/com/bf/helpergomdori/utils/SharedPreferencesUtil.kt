@@ -14,4 +14,20 @@ class SharedPreferencesUtil(context: Context) {
     fun getJwt(): String {
         return prefs.getString(JWT_KEY, "")!!
     }
+
+    fun setWebSocketJwt(jwt: String){
+        editor.putString(JWT_WEBSOCKET_KEY, jwt).apply()
+    }
+
+    fun getWebSocketJwt(): String {
+        return prefs.getString(JWT_WEBSOCKET_KEY, "")!!
+    }
+
+    fun setFirebaseToken(token: String) {
+        editor.putString(FIREBASE_TOKEN, token).apply()
+    }
+
+    fun getFirebaseToken(): String {
+        return prefs.getString(FIREBASE_TOKEN, "")!!
+    }
 }

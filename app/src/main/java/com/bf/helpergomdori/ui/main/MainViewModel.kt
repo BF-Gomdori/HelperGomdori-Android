@@ -15,6 +15,7 @@ import com.bf.helpergomdori.model.remote.body.NotificationBody
 import com.bf.helpergomdori.model.remote.body.NotificationData
 import com.bf.helpergomdori.utils.MAIN_TAG
 import com.bf.helpergomdori.utils.NotificationUtil.getFirebaseToken
+import com.bf.helpergomdori.utils.PUSH_TAG
 import com.bf.helpergomdori.utils.WebSocketUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -117,11 +118,14 @@ class MainViewModel @Inject constructor(
     }
 
     fun postPush(){
-        var token = getFirebaseToken()
-        if (token == null) token = ""
+        getFirebaseToken()
+        val token = PrefsUtil.getFirebaseToken()
         val jwt = PrefsUtil.getJwt()
+        Log.d(PUSH_TAG, "postPush: $token, $jwt")
         viewModelScope.launch {
-            mainMapRepository.postPush(jwt, NotificationBody(MessageData(NotificationData(), token)))
+            if (token != "" && jwt != "") {
+                //mainMapRepository.postPush(jwt, NotificationBody(MessageData(NotificationData(), token)))
+            }
         }
     }
 

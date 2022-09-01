@@ -31,7 +31,7 @@ interface RemoteDataSource {
      */
     suspend fun getHelpAccepted(@Header(HEADER_KEY) authorization: String, @Header(HEADER_TOKEN_KEY) token: String) // 도움 요청이 수락되었을 때 웹소켓으로 수락되었음을 받았을 때
 
-    suspend fun getBfCntAndGomdoriCnt(): UserCnt // 베프 숫자 & 곰돌이 숫자
+    suspend fun getBfCntAndGomdoriCnt(): Flow<UserCnt> // 베프 숫자 & 곰돌이 숫자
 
     suspend fun getHelpeePing(@Header(HEADER_KEY) header: String): HelpeePing
 

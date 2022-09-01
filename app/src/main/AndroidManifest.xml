@@ -26,8 +26,6 @@
             android:name=".ui.signIn.SignInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
-
-
         </activity>
 
         <activity

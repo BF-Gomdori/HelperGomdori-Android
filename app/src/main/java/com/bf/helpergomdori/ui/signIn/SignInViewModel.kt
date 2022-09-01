@@ -34,8 +34,9 @@ class SignInViewModel @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             val jwt = remoteRepository.postUserInfo(newUser).token
             PrefsUtil.setJwt(jwt)
+            PrefsUtil.setWebSocketJwt(jwt)
             Log.d(SIGNIN_TAG, "postUser: ${jwt}")
-            updateUserInfo(jwt, newUser.name!!, newUser.phone!!)
+            //updateUserInfo(jwt, newUser.name!!, newUser.phone!!)
         }
     }
 
@@ -66,8 +67,8 @@ class SignInViewModel @Inject constructor(
         getUserInfo()
         viewModelScope.launch {
             Log.d(SIGNIN_TAG, "postHelper: ${currentUserInfo.value?.jwt}")
-            if (currentUserInfo.value != null) {
-                val header = currentUserInfo.value!!.jwt
+            if (PrefsUtil.getJwt() != "") {
+                val header = PrefsUtil.getJwt()
                 remoteRepository.runCatching {
                     postHelper(header)
                 }.onFailure {

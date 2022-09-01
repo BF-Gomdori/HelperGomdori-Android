@@ -46,8 +46,8 @@ class RemoteDataSourceImpl @Inject constructor(
         return apiService.getHelpAccepted(authorization, token)
     }
 
-    override suspend fun getBfCntAndGomdoriCnt(): UserCnt {
-        return apiService.getBfCntAndGomdoriCnt()
+    override suspend fun getBfCntAndGomdoriCnt(): Flow<UserCnt> = flow {
+        emit(apiService.getBfCntAndGomdoriCnt())
     }
 
     override suspend fun getHelpeePing(header: String): HelpeePing {

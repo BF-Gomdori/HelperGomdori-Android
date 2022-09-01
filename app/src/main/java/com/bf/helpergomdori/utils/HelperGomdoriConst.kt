@@ -61,3 +61,5 @@ const val HEADER_TOKEN_KEY = "token"
  */
 const val SHARED_PREFERENCE_NAME = "SHARED_PREFERENCE_NAME"
 const val JWT_KEY = "jwt"
+const val JWT_WEBSOCKET_KEY = "jwt_websocket"
+const val FIREBASE_TOKEN = "FIREBASE_TOKEN"

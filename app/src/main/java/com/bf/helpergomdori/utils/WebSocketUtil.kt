@@ -23,7 +23,7 @@ object WebSocketUtil {
     fun runStomp() {
         val stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, WEBSOCKET_URL)
 
-        val jwt = PrefsUtil.getJwt()
+        val jwt = PrefsUtil.getWebSocketJwt()
 
         val headerList = mutableListOf<StompHeader>().apply {
             add(StompHeader(WEBSOCKET_HEADER, jwt))
@@ -75,18 +75,38 @@ object WebSocketUtil {
             }
         }
 
+//
+//        val websocketData = WebSocketData(
+//            type = EnterType.ENTER.name,
+//            jwt = PrefsUtil.getWebSocketJwt(),
+//            location = JSONObject().apply {
+//                put("x", "126.9599375")
+//                put("y", "37.496187500000005")
+//            }
+//        )
+
 
         val websocketData = WebSocketData(
             type = EnterType.ENTER.name,
-            jwt = PrefsUtil.getJwt(),
+            jwt = PrefsUtil.getWebSocketJwt(),
             location = JSONObject().apply {
                 put("x", "126.9599375")
                 put("y", "37.496187500000005")
             }
         )
+        Log.d(WEBSOCKET_TAG, "data = ${Gson().toJson(websocketData)}")
 
+        val socket = JSONObject().apply {
+            put("type", EnterType.HELP.name)
+            put("sub", "main")
+            put("jwt", PrefsUtil.getWebSocketJwt())
+            put("location", JSONObject().apply {
+                put("x", "126.9599375")
+                put("y", "37.496187500000005")
+            })
+        }
 
-        stompClient.send(SEND_DEST_PATH, Gson().toJson(websocketData)).subscribe()
+        stompClient.send(SEND_DEST_PATH, socket.toString()).subscribe()
 
     }
 
