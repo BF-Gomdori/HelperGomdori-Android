@@ -59,7 +59,12 @@
     <string name="go_to_home">홈으로 이동</string>
     <string name="say_thank_you">감사인사 남기기</string>
     <string name="help_done">도움 받기 완료!</string>
-    <string name="how_was_the_help">ㅇㅇ님, 도움은 어떠셨나요?\n감사한 마음을 표현해보아요.</string>ㅌ`
+    <string name="how_was_the_help">ㅇㅇ님, 도움은 어떠셨나요?\n감사한 마음을 표현해보아요.</string>
+
+    <!-- mypage -->
+    <string name="my_page">마이페이지</string>
+    <string name="mypage_specific_info">특이사항</string>
+    <string name="percentage">도움받은 비율</string>
 
 
     <!-- Main -->
