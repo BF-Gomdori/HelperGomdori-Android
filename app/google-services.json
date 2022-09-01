@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "630535554538",
+    "project_id": "barrier-free-78fb2",
+    "storage_bucket": "barrier-free-78fb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630535554538:android:cf1ccbc6653a6f44fa9e93",
+        "android_client_info": {
+          "package_name": "com.bf.helpergomdori"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630535554538-rq3q5letu60j0p7uqrfgcm4cdbfe22q5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYvL9q7hnZUNPJmDUBeRG4z0QIU2JPOy8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630535554538-rq3q5letu60j0p7uqrfgcm4cdbfe22q5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

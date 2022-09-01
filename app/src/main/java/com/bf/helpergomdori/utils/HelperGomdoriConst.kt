@@ -11,6 +11,7 @@ const val NATIVE_APP_KEY = "17abb9ddb66ddc971dd9ccf2c95a1a8e"
 const val SIGNIN_TAG = "SIGNIN_TAG"
 const val MAIN_TAG = "MAIN_TAG"
 const val WEBSOCKET_TAG = "WEBSOCKET_TAG"
+const val PUSH_TAG = "PUSH_TAG"
 
 /**
  * DataStore
@@ -35,6 +36,12 @@ const val DLAT_PARAM = "dlat"
 const val DLNG_PARRAM = "dlng"
 const val DNAME_PARAM = "dname"
 const val APP_NAME_PARAM = "appname"
+
+/**
+ * Notification
+ */
+const val BROADCAST_ACTION = "BROADCAST_ACTION"
+const val BROADCAST = "BROADCAST"
 
 
 /**
