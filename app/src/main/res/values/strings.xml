@@ -47,7 +47,9 @@
     <string name="etc">기타</string>
     <string name="hello_name">안녕하세요         님,</string>
     <string name="request">요청사항</string>
+    <string name="additional_info">특이사항</string>
     <string name="select_your_situation">도움이 필요한 상황을 선택해주세요.</string>
+    <string name="bf_start">베어프렌즈 출발</string>
 
     <!-- request location -->
     <string name="current_location">강남구 테헤란로 329 삼흥빌딩</string>
@@ -60,6 +62,7 @@
     <string name="say_thank_you">감사인사 남기기</string>
     <string name="help_done">도움 받기 완료!</string>
     <string name="how_was_the_help">ㅇㅇ님, 도움은 어떠셨나요?\n감사한 마음을 표현해보아요.</string>
+
 
     <!-- mypage -->
     <string name="my_page">마이페이지</string>
