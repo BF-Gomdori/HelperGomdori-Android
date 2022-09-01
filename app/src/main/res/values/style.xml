@@ -43,6 +43,56 @@
         <item name="cornerRadius">20dp</item>
     </style>
 
+    <style name="btn_material2" parent="ThemeOverlay.Material3.Button.TextButton">
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="android:layout_marginBottom">22dp</item>
+        <item name="android:backgroundTint">@color/color_default</item>
+        <item name="android:elevation">10dp</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+    <style name="btn_material3" parent="ThemeOverlay.Material3.Button.TextButton">
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="android:layout_marginBottom">110dp</item>
+        <item name="android:backgroundTint">@color/color_default</item>
+        <item name="android:elevation">10dp</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+    <style name="btn_material4" parent="ThemeOverlay.Material3.Button.TextButton">
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="android:layout_marginBottom">22dp</item>
+        <item name="android:backgroundTint">@color/color_reverse</item>
+        <item name="android:elevation">10dp</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+
+
     <style name="btn">
         <item name="layout_constraintStart_toStartOf">parent</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>

@@ -38,6 +38,31 @@
     <string name="essential_input_name">이름을 입력하세요.</string>
     <string name="essential_name_ex">ex) 홍길동</string>
 
+    <!-- Request Write -->
+    <string name="specific_info_plz_1">세부 요청사항</string>
+    <string name="specific_info_plz_2">을 입력해주세요.</string>
+    <string name="stairs_lift">계단/리프트</string>
+    <string name="sidewalks_crosswalks">인도/횡단보도</string>
+    <string name="public_transport">대중교통</string>
+    <string name="communication_problem">의사소통 문제</string>
+    <string name="etc">기타</string>
+    <string name="hello_name">안녕하세요         님,</string>
+    <string name="request">요청사항</string>
+    <string name="select_your_situation">도움이 필요한 상황을 선택해주세요.</string>
+
+    <!-- request location -->
+    <string name="current_location">강남구 테헤란로 329 삼흥빌딩</string>
+    <string name="current_location_plz">현재 이 위치가 맞으신가요?\n정확한 위치를 알려주세요.</string>
+    <string name="essential_location_ex">ex) 00편의점 바로 오른쪽 골목에 있어요.</string>
+    <string name="main_request_bf_cancel">베어프렌즈 취소</string>
+    <string name="searching_bf">베어프렌즈 찾는중...</string>
+    <string name="we_met">만났어요</string>
+    <string name="go_to_home">홈으로 이동</string>
+    <string name="say_thank_you">감사인사 남기기</string>
+    <string name="help_done">도움 받기 완료!</string>
+    <string name="how_was_the_help">ㅇㅇ님, 도움은 어떠셨나요?\n감사한 마음을 표현해보아요.</string>ㅌ`
+
+
     <!-- Main -->
     <string name="go_settings_and_allow_location">설정 > 애플리케이션 > 도움곰돌이에서 위치 권한을 허용해주세요</string>
     <string name="text_bf">베:프</string>

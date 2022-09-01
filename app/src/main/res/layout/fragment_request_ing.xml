@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -7,7 +9,64 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/ic_gomdori_head"
+            android:layout_width="235dp"
+            android:layout_height="235dp"
+            android:src="@drawable/img_gomdori_head"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38" />
+
+        <ImageView
+            android:id="@+id/ic_loading"
+            android:layout_width="235dp"
+            android:layout_height="235dp"
+            android:src="@drawable/img_loading"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.36" />
+
+        <ImageView
+            android:id="@+id/ic_loading_bar"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:src="@drawable/img_loading_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.04" />
+
+        <TextView
+            android:id="@+id/searching_bf"
+            android:textStyle="bold"
+            android:textColor="#63CCF9"
+            android:text="@string/searching_bf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6"
+            android:textSize="28dp"
+            android:gravity="center"
+            tools:ignore="MissingConstraints,UnknownId" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_requestIng"
+            style="@style/btn_material"
+            android:text="@string/main_request_bf_cancel"
+            tools:ignore="MissingConstraints"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
