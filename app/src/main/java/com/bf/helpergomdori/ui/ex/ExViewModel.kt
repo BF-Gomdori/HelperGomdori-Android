@@ -2,7 +2,7 @@ package com.bf.helpergomdori.ui.ex
 
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.base.BaseViewModel
-import com.bf.helpergomdori.data.repository.RemoteRepository
+import com.bf.helpergomdori.data.repository.LoginRepository
 import com.bf.helpergomdori.model.ex.DataIntent
 import com.bf.helpergomdori.model.ex.DataState
 import kotlinx.coroutines.channels.Channel
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 
-class ExViewModel(private val repository: RemoteRepository) : BaseViewModel() {
+class ExViewModel(private val repository: LoginRepository) : BaseViewModel() {
     //todo data 관련 작업
     val dataIntent = Channel<DataIntent>(Channel.UNLIMITED)
     val dataState = MutableStateFlow<DataState>(DataState.Inactive)

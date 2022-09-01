@@ -5,13 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.UserInfo
-import com.bf.helpergomdori.data.repository.RemoteRepository
+import com.bf.helpergomdori.data.repository.LoginRepository
 import com.bf.helpergomdori.data.repository.UserInfoRepository
-import com.bf.helpergomdori.model.remote.DefaultHeader
 import com.bf.helpergomdori.model.remote.body.PostUser
 import com.bf.helpergomdori.model.remote.body.SigninBody
 import com.bf.helpergomdori.utils.SIGNIN_TAG
-import com.bf.helpergomdori.utils.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val remoteRepository: RemoteRepository,
+    private val remoteRepository: LoginRepository,
     private val userRepository: UserInfoRepository
 ) : ViewModel() {
 

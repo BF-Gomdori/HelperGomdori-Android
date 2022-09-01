@@ -3,7 +3,7 @@ package com.bf.helpergomdori.ui.main
 import android.Manifest
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.bf.helpergomdori.data.repository.RemoteRepository
+import com.bf.helpergomdori.data.repository.LoginRepository
 import com.bf.helpergomdori.model.local.Gender
 import com.bf.helpergomdori.model.local.ProfileBf
 import com.bf.helpergomdori.model.local.ProfileGomdori
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val remoteRepository: RemoteRepository
+    private val loginRepository: LoginRepository
 ) : ViewModel() {
 
     private var _currentLocation = mutableMapOf("x" to 0.0, "y" to 0.0)

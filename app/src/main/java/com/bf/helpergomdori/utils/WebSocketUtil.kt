@@ -59,10 +59,15 @@ object WebSocketUtil {
                 }
                 LifecycleEvent.Type.ERROR -> {
                     Log.i(WEBSOCKET_TAG, "ERROR!!")
-                    Log.e(WEBSOCKET_TAG, "CONNECT ERROR : $lifecycleEvent.exception.toString()")
+                    Log.e(WEBSOCKET_TAG, "CONNECT ERROR : ${lifecycleEvent.exception}")
                 }
                 else -> {
                     Log.i(WEBSOCKET_TAG, "SUCCESS : ${lifecycleEvent.message}")
+                    val message = lifecycleEvent.message
+                    val startIndex = message.indexOf("{")
+                    val endIndex = message.indexOf("}")
+                    val data = message.substring(startIndex, endIndex)
+                    Log.d(WEBSOCKET_TAG, "data: ${data}")
                 }
             }
         }

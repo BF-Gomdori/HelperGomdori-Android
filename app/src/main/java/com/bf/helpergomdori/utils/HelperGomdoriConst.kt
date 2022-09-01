@@ -47,6 +47,7 @@ const val WEBSOCKET_HEADER = "Authorization"
  * API
  */
 const val HEADER_KEY = "Authorization"
+const val HEADER_TOKEN_KEY = "token"
 
 /**
  * SHARED_PREFERENCE
