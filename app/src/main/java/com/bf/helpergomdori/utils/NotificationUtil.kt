@@ -5,8 +5,10 @@ import android.app.NotificationManager
 import android.app.NotificationManager.IMPORTANCE_HIGH
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.bf.helpergomdori.R
+import com.google.firebase.messaging.FirebaseMessaging
 import java.util.*
 
 object NotificationUtil {
@@ -48,6 +50,22 @@ object NotificationUtil {
         val notiId = Random().nextInt()
         notificationManager.notify(notiId, builder.build())
 
+    }
+
+    fun getFirebaseToken(): String? {
+        var token: String? = null
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(PUSH_TAG, "Fetching FCM registration token failed", task.exception)
+                return@addOnCompleteListener
+            }
+
+            token = task.result
+            Log.d(PUSH_TAG, "getFirebaseToken : $token")
+            //prefs.setString(PREF_FIREBASE_TOKEN, token)
+
+        }
+        return token
     }
 
 }

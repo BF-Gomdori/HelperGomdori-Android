@@ -1,6 +1,7 @@
 package com.bf.helpergomdori.data.repository
 
 import com.bf.helpergomdori.data.remote.RemoteDataSourceImpl
+import com.bf.helpergomdori.model.remote.body.NotificationBody
 import javax.inject.Inject
 
 class MainMapRepository @Inject constructor(
@@ -16,4 +17,5 @@ class MainMapRepository @Inject constructor(
 
     suspend fun getHelperPing(header: String) = remoteDataSource.getHelperPing(header)
 
+    suspend fun postPush(header: String, body: NotificationBody) = remoteDataSource.postPush(header, body)
 }

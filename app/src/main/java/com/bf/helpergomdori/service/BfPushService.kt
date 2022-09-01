@@ -5,7 +5,6 @@ import android.util.Log
 import com.bf.helpergomdori.model.local.MessageData
 import com.bf.helpergomdori.utils.BROADCAST
 import com.bf.helpergomdori.utils.BROADCAST_ACTION
-import com.bf.helpergomdori.utils.NotificationUtil
 import com.bf.helpergomdori.utils.PUSH_TAG
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -14,6 +13,7 @@ class BfPushService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
+        Log.d(PUSH_TAG, "onNewToken: ${token} ")
     }
 
     override fun onMessageReceived(message: RemoteMessage) {

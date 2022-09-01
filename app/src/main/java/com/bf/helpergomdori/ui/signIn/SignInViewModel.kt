@@ -44,7 +44,7 @@ class SignInViewModel @Inject constructor(
         viewModelScope.launch {
             Log.d(SIGNIN_TAG, "postHelpee: ${PrefsUtil.getJwt()}")
             if (PrefsUtil.getJwt() != "") {
-                val header = "Bearer "+ PrefsUtil.getJwt()
+                val header = PrefsUtil.getJwt()
                 val body = SigninBody(disableTypeList[0], intro) //todo api에서 장애유형 여러 개 받을 수 있게되면 list로 보내 주기
                 remoteRepository.runCatching {
                     postHelpee(header, body)
@@ -67,7 +67,7 @@ class SignInViewModel @Inject constructor(
         viewModelScope.launch {
             Log.d(SIGNIN_TAG, "postHelper: ${currentUserInfo.value?.jwt}")
             if (currentUserInfo.value != null) {
-                val header = "Bearer "+ currentUserInfo.value!!.jwt
+                val header = currentUserInfo.value!!.jwt
                 remoteRepository.runCatching {
                     postHelper(header)
                 }.onFailure {

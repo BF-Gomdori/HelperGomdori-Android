@@ -2,6 +2,7 @@ package com.bf.helpergomdori.data.remote
 
 import com.bf.helpergomdori.model.Data
 import com.bf.helpergomdori.model.remote.DefaultHeader
+import com.bf.helpergomdori.model.remote.body.NotificationBody
 import com.bf.helpergomdori.model.remote.body.PostUser
 import com.bf.helpergomdori.model.remote.body.SigninBody
 import com.bf.helpergomdori.model.remote.response.*
@@ -55,6 +56,10 @@ class RemoteDataSourceImpl @Inject constructor(
 
     override suspend fun getHelperPing(header: String): HelperPing {
         return apiService.getHelperPing(header)
+    }
+
+    override suspend fun postPush(header: String, body: NotificationBody): NotificationResponse {
+        return apiService.postPush(header, body)
     }
 
 

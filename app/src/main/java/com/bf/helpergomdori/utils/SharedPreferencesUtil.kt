@@ -8,7 +8,7 @@ class SharedPreferencesUtil(context: Context) {
     private var editor: SharedPreferences.Editor = prefs.edit()
 
     fun setJwt(jwt: String){
-        editor.putString(JWT_KEY, jwt).apply()
+        editor.putString(JWT_KEY, "Bearer $jwt").apply()
     }
 
     fun getJwt(): String {

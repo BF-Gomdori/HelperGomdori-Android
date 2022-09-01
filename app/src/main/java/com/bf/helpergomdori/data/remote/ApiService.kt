@@ -1,6 +1,7 @@
 package com.bf.helpergomdori.data.remote
 
 import com.bf.helpergomdori.model.Data
+import com.bf.helpergomdori.model.remote.body.NotificationBody
 import com.bf.helpergomdori.model.remote.body.PostUser
 import com.bf.helpergomdori.model.remote.body.SigninBody
 import com.bf.helpergomdori.model.remote.response.*
@@ -43,4 +44,10 @@ interface ApiService {
 
     @POST("/api/helper/ping")
     suspend fun getHelperPing(@Header(HEADER_KEY) header: String): HelperPing
+
+    /**
+     * FCM
+     */
+    @POST("/fcm/push")
+    suspend fun postPush(@Header(HEADER_KEY) header: String, @Body body: NotificationBody): NotificationResponse
 }

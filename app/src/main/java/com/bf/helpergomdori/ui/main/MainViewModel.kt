@@ -3,20 +3,28 @@ package com.bf.helpergomdori.ui.main
 import android.Manifest
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.data.repository.LoginRepository
+import com.bf.helpergomdori.data.repository.MainMapRepository
 import com.bf.helpergomdori.model.local.Gender
 import com.bf.helpergomdori.model.local.ProfileBf
 import com.bf.helpergomdori.model.local.ProfileGomdori
+import com.bf.helpergomdori.model.remote.body.MessageData
+import com.bf.helpergomdori.model.remote.body.NotificationBody
+import com.bf.helpergomdori.model.remote.body.NotificationData
 import com.bf.helpergomdori.utils.MAIN_TAG
+import com.bf.helpergomdori.utils.NotificationUtil.getFirebaseToken
 import com.bf.helpergomdori.utils.WebSocketUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val loginRepository: LoginRepository
+    private val mainMapRepository: MainMapRepository
 ) : ViewModel() {
 
     private var _currentLocation = mutableMapOf("x" to 0.0, "y" to 0.0)
@@ -37,6 +45,7 @@ class MainViewModel @Inject constructor(
 
     init {
         WebSocketUtil.runStomp()
+        postPush()
 
         val gomdori = ProfileGomdori(
             jwt = "",
@@ -107,6 +116,13 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    
+    fun postPush(){
+        var token = getFirebaseToken()
+        if (token == null) token = ""
+        val jwt = PrefsUtil.getJwt()
+        viewModelScope.launch {
+            mainMapRepository.postPush(jwt, NotificationBody(MessageData(NotificationData(), token)))
+        }
+    }
 
 }

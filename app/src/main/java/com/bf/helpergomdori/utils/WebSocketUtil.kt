@@ -45,6 +45,9 @@ object WebSocketUtil {
         } catch (e: NullPointerException) {
             Log.e(WEBSOCKET_TAG, "runStomp: ${e.printStackTrace()}")
             return
+        } catch (e: Exception) {
+            Log.e(WEBSOCKET_TAG, "runStomp: ${e.printStackTrace()}")
+            return
         }
 
 
@@ -67,7 +70,7 @@ object WebSocketUtil {
                     val startIndex = message.indexOf("{")
                     val endIndex = message.indexOf("}")
                     val data = message.substring(startIndex, endIndex)
-                    Log.d(WEBSOCKET_TAG, "data: ${data}")
+                    Log.i(WEBSOCKET_TAG, "data: ${data}")
                 }
             }
         }

@@ -17,10 +17,7 @@ import com.bf.helpergomdori.databinding.ActivityMainBinding
 import com.bf.helpergomdori.model.local.ProfileBf
 import com.bf.helpergomdori.model.local.ProfileGomdori
 import com.bf.helpergomdori.ui.mypage.MypageActivity
-import com.bf.helpergomdori.utils.CAMERA_ZOOM_DENSITY
-import com.bf.helpergomdori.utils.DensityUtil
-import com.bf.helpergomdori.utils.LOCATION_PERMISSION_REQUEST_CODE
-import com.bf.helpergomdori.utils.MAIN_TAG
+import com.bf.helpergomdori.utils.*
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.naver.maps.geometry.LatLng
