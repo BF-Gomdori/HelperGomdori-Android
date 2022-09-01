@@ -58,14 +58,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_say_thank_you"
-            style="@style/btn_material3"
-            android:layout_marginStart="36dp"
-            android:layout_marginEnd="36dp"
-            android:text="@string/say_thank_you"
-            tools:ignore="MissingConstraints"
-            />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_go_to_home"
             style="@style/btn_material4"
