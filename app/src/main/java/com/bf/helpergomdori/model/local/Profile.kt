@@ -22,7 +22,7 @@ data class ProfileBf(
     override val location: String,
     override val latitude: Double,
     override val longitude: Double
-): Profile(jwt, type, name, age, gender, img, location, latitude, longitude)
+) : Profile(jwt, type, name, age, gender, img, location, latitude, longitude)
 
 data class ProfileGomdori(
     override val jwt: String,
@@ -35,8 +35,12 @@ data class ProfileGomdori(
     override val location: String,
     override val latitude: Double,
     override val longitude: Double
-): Profile(jwt, type, name, age, gender, img, location, latitude, longitude)
+) : Profile(jwt, type, name, age, gender, img, location, latitude, longitude)
 
 enum class Gender {
     MALE, FEMALE, NONE
+}
+
+enum class HelpType {
+    BF, GOMDORI, NONE
 }

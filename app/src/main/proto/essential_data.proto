@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "com.bf.helpergomdori";
+option java_multiple_files = true;
+
+message EssentialData {
+  string jwt = 1;
+  string webSocketJwt = 2;
+  EnterType type = 3;
+}
+
+enum EnterType{
+  ENTER = 0;
+  HELP = 1;
+  ACCEPT = 2;
+}

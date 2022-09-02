@@ -82,24 +82,17 @@ object WebSocketUtil {
                     Log.i(WEBSOCKET_TAG, "SUCCESS : ${lifecycleEvent.message}")
                     val message = lifecycleEvent.message
 
-//                    val startIndex = message.indexOf("{")
-//                    val endIndex = message.indexOf("}")
-//                    val data = message.substring(startIndex, endIndex)
-//                    Log.i(WEBSOCKET_TAG, "data: ${data}")
+                    val startIndex = message.indexOf("{")
+                    val endIndex = message.indexOf("}")
+                    if (startIndex != -1 && endIndex != -1) {
+                        val data = message.substring(startIndex, endIndex)
+                        Log.i(WEBSOCKET_TAG, "data: ${data}")
+                    }
                 }
             }
         }
 
 
-//        val websocketData = WebSocketData(
-//            type = EnterType.ENTER.name,
-//            jwt = PrefsUtil.getWebSocketJwt(),
-//            location = LocationString("126.9599375","37.496187500000005")
-//        )
-//
-//        Log.d(WEBSOCKET_TAG, "data = ${Gson().toJson(websocketData)}")
-//
-//        stompClient.send(SEND_DEST_PATH, Gson().toJson(websocketData)).subscribe()
 
     }
 

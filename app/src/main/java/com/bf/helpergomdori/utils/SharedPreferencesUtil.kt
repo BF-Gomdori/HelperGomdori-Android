@@ -3,6 +3,7 @@ package com.bf.helpergomdori.utils
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.bf.helpergomdori.model.local.HelpType
 
 class SharedPreferencesUtil(context: Context) {
     private val prefs: SharedPreferences = context.getSharedPreferences(SHARED_PREFERENCE_NAME, 0)
@@ -31,5 +32,18 @@ class SharedPreferencesUtil(context: Context) {
 
     fun getFirebaseToken(): String {
         return prefs.getString(FIREBASE_TOKEN, "")!!
+    }
+
+    fun setHelpType(type: HelpType) {
+        editor.putString(HELP_TYPE_KEY, type.name).apply()
+    }
+
+    fun getHelpType(): HelpType {
+        val type = prefs.getString(HELP_TYPE_KEY, HelpType.NONE.name)
+        return when (type) {
+            "BF" -> HelpType.BF
+            "GOMDORI" -> HelpType.GOMDORI
+            else -> HelpType.NONE
+        }
     }
 }

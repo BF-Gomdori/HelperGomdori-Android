@@ -43,4 +43,5 @@ class DataStoreModule {
     fun provideUserInfoRepository(dataStore: DataStore<UserInfo>): UserInfoRepository {
         return UserInfoRepository(dataStore)
     }
+
 }
