@@ -1,8 +1,5 @@
 package com.bf.helpergomdori.model.websocket
 
-
-
-import com.bf.helpergomdori.model.remote.response.HelpRequest
 import java.io.Serializable
 
 data class WebSocketSendData(
@@ -22,6 +19,12 @@ data class WebSocketReceiveData(
     val time: String
 )
 
+data class HelpRequest(
+    val detailLocation: String,
+    val helpeeJwt: String,
+    val requestDetail: String,
+    val requestType: String
+)
 
 enum class EnterType{
     ENTER, HELP, ACCEPT // ENTER: 비장애인, HELP : 장애인, ACCPET : 도움 수락했을 때

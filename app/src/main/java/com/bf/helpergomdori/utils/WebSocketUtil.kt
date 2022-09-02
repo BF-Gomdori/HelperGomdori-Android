@@ -4,21 +4,21 @@ import android.annotation.SuppressLint
 import android.util.Log
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.model.local.HelpType
-import com.bf.helpergomdori.model.remote.response.HelpRequest
+import com.bf.helpergomdori.model.remote.response.Ping
 import com.bf.helpergomdori.model.websocket.*
+import com.bf.helpergomdori.ui.main.MainViewModel
 import com.google.gson.Gson
-import org.json.JSONObject
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
 import ua.naiksoftware.stomp.dto.LifecycleEvent
 import ua.naiksoftware.stomp.dto.StompHeader
 
-object WebSocketUtil {
-    const val WEBSOCKET_URL =
+class WebSocketUtil(private val viewModel: MainViewModel) {
+    private val WEBSOCKET_URL =
         "ws://ec2-3-38-49-6.ap-northeast-2.compute.amazonaws.com:8080/dori"
-    const val TOPIC_DEST_PATH = "/map/main"
-    const val TOPIC_USER_DEST_PATH = "/user/map/main"
-    const val SEND_DEST_PATH = "/gom-dori/connecting"
+    private val TOPIC_DEST_PATH = "/map/main"
+    private val TOPIC_USER_DEST_PATH = "/user/map/main"
+    private val SEND_DEST_PATH = "/gom-dori/connecting"
 
     private lateinit var stompClient: StompClient
     private var _currentLocation: Location? = null
@@ -60,12 +60,7 @@ object WebSocketUtil {
             val userTopic = stompClient.topic(TOPIC_USER_DEST_PATH)
             userTopic.subscribe {
                 Log.i(WEBSOCKET_TAG, "receiveExistedMessage: ${it?.payload}")
-                val startIndex = it.payload.indexOf("{")
-                val endIndex = it.payload.indexOf("}")
-                if (startIndex != -1 && endIndex != -1) {
-                    val data = it.payload.substring(startIndex, endIndex)
-                    Log.i(WEBSOCKET_TAG, "user topic data: ${data}")
-                }
+                convertReceivedDataToPing(it.payload)
             }
         } catch (e: Exception) {
             Log.e(WEBSOCKET_TAG, "receiveExistedMessage: ${e.printStackTrace()}")
@@ -77,15 +72,26 @@ object WebSocketUtil {
     private fun receiveNewMessage() {
         try {
             val topic = stompClient.topic(TOPIC_DEST_PATH)
-            //Log.i(WEBSOCKET_TAG, "runStomp: ${topic}")
             topic.subscribe {
                 Log.i(WEBSOCKET_TAG, "receiveNewMessage: ${it?.payload}")
-
+                convertReceivedDataToPing(it.payload)
             }
         } catch (e: Exception) {
             Log.e(WEBSOCKET_TAG, "receiveNewMessage: ${e.printStackTrace()}")
             return
         }
+    }
+
+    private fun convertReceivedDataToPing(payload: String) {
+        val data = Gson().fromJson(payload, WebSocketReceiveData::class.java)
+        //Log.i(WEBSOCKET_TAG, "data = $data")
+
+        val ping = Ping(
+            data.type.convertEnterToHelpType(),
+            data.location,
+            data.time
+        )
+        viewModel.receivePing(ping)
     }
 
     private fun sendEnterMessage() {
@@ -104,6 +110,13 @@ object WebSocketUtil {
         return PrefsUtil.getHelpType()
     }
 
+    private fun String.convertEnterToHelpType(): HelpType {
+        return when (this) {
+            EnterType.ENTER.name -> HelpType.BF
+            EnterType.HELP.name -> HelpType.GOMDORI
+            else -> HelpType.NONE
+        }
+    }
 
     @SuppressLint("CheckResult")
     private fun observeStompClient() {

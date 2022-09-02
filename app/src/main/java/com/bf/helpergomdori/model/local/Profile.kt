@@ -1,5 +1,6 @@
 package com.bf.helpergomdori.model.local
 
+
 abstract class Profile(
     open val jwt: String,
     open val type: String? = "베:프",

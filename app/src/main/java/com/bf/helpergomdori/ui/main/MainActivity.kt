@@ -14,6 +14,7 @@ import com.bf.helpergomdori.databinding.ActivityMainBinding
 import com.bf.helpergomdori.model.local.HelpType
 import com.bf.helpergomdori.model.local.ProfileBf
 import com.bf.helpergomdori.model.local.ProfileGomdori
+import com.bf.helpergomdori.model.remote.response.Ping
 import com.bf.helpergomdori.ui.mypage.MypageActivity
 import com.bf.helpergomdori.utils.*
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -116,10 +117,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         }
     }
 
-    private fun putGomdoriMarker(gomdoriList: MutableList<ProfileGomdori>) {
-        gomdoriList.forEach { profileGomdori ->
+    private fun putGomdoriMarker(gomdoriList: MutableList<Ping>) {
+        gomdoriList.forEach { ping ->
             val gomdori = Marker().apply {
-                position = LatLng(profileGomdori.latitude, profileGomdori.longitude)
+                position = LatLng(ping.location.x, ping.location.y)
                 icon = OverlayImage.fromResource(R.drawable.ic_marker_gomdori)
                 DensityUtil.setResouces(resources)
                 width = DensityUtil.dp2px(80f).toInt()
@@ -127,16 +128,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 map = naverMap
             }
             gomdori.setOnClickListener {
-                viewModel.setSelectedGomdori(profileGomdori)
+                //todo getapi
                 true
             }
         }
     }
 
-    private fun putBfMarker(bfList: MutableList<ProfileBf>) {
-        bfList.forEach { profileBf ->
+    private fun putBfMarker(bfList: MutableList<Ping>) {
+        bfList.forEach { ping ->
             val bf = Marker().apply {
-                position = LatLng(profileBf.latitude, profileBf.longitude)
+                position = LatLng(ping.location.x, ping.location.y)
                 icon = OverlayImage.fromResource(R.drawable.ic_marker_bf)
                 DensityUtil.setResouces(resources)
                 width = DensityUtil.dp2px(65f).toInt()
@@ -144,7 +145,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 map = naverMap
             }
             bf.setOnClickListener {
-                viewModel.setSelectedBf(profileBf)
+                //viewModel.setSelectedBf(profileBf)
                 true
             }
         }
@@ -160,7 +161,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
             fusedLocationClient.lastLocation.addOnSuccessListener { currentLocation ->
                 Log.d(MAIN_TAG, "location : $currentLocation")
                 viewModel.setCurrentLocation(currentLocation.latitude, currentLocation.longitude)
-                viewModel.startWebsocket()
+                viewModel.startWebSocket()
 
                 naverMap.apply {
                     mapType = NaverMap.MapType.Basic

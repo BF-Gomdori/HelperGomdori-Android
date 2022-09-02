@@ -1,6 +1,16 @@
 package com.bf.helpergomdori.model.remote.response
 
-abstract class Ping(
+import com.bf.helpergomdori.model.local.HelpType
+import com.bf.helpergomdori.model.websocket.HelpRequest
+import com.bf.helpergomdori.model.websocket.Location
+
+data class Ping(
+    val type: HelpType,
+    val location: Location,
+    val time: String? = ""
+)
+
+abstract class DetailPing(
     open val age: String,
     open val gender: String,
     open val name: String,
@@ -18,14 +28,8 @@ data class HelpeePing(
     override val phone: String,
     override val photoLink: String,
     val type: String
-): Ping(age, gender, name, phone, photoLink, location)
+): DetailPing(age, gender, name, phone, photoLink, location)
 
-data class HelpRequest(
-    val detailLocation: String,
-    val helpeeJwt: String,
-    val requestDetail: String,
-    val requestType: String
-)
 
 data class HelperPing(
     override val age: String,
@@ -36,4 +40,4 @@ data class HelperPing(
     override val phone: String,
     override val photoLink: String,
     val type: String
-): Ping(age, gender, name, phone, photoLink, location)
+): DetailPing(age, gender, name, phone, photoLink, location)
