@@ -10,7 +10,7 @@ const val NATIVE_APP_KEY = "17abb9ddb66ddc971dd9ccf2c95a1a8e"
  */
 const val SIGNIN_TAG = "SIGNIN_TAG"
 const val MAIN_TAG = "MAIN_TAG"
-const val WEBSOCKET_TAG = "WEBSOCKET_TAG"
+const val WEBSOCKET_TAG = "STOMP"
 const val PUSH_TAG = "PUSH_TAG"
 
 /**
@@ -50,6 +50,7 @@ const val BROADCAST = "BROADCAST"
 const val WEBSOCKET_HEADER = "Authorization"
 
 
+
 /**
  * API
  */
@@ -63,3 +64,5 @@ const val SHARED_PREFERENCE_NAME = "SHARED_PREFERENCE_NAME"
 const val JWT_KEY = "jwt"
 const val JWT_WEBSOCKET_KEY = "jwt_websocket"
 const val FIREBASE_TOKEN = "FIREBASE_TOKEN"
+const val EX_HELPEE_JWT = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmanslKgiLCJpYXQiOjE2NjIwOTkwOTMsImV4cCI6MTY2MjE4NTQ5M30.ysiSQYH6t_8xFqXjb_g7d_864-V_FB-__ib4O-miRiwWV0iPyM7jS1La1oma3mSrxJojHqQni7vS9ExuMWngpQ"
+const val EX_HELPEE_WEBSOCKET_JWT = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmanslKgiLCJpYXQiOjE2NjIwOTkwOTMsImV4cCI6MTY2MjE4NTQ5M30.ysiSQYH6t_8xFqXjb_g7d_864-V_FB-__ib4O-miRiwWV0iPyM7jS1La1oma3mSrxJojHqQni7vS9ExuMWngpQ"

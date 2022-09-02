@@ -68,10 +68,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
     private fun setListener() {
         binding.apply {
             btnMyLocation.setOnClickListener {
-                val latitude = viewModel.currentLocation["x"]
-                val longitude = viewModel.currentLocation["y"]
+                val latitude = viewModel.currentLocation.x
+                val longitude = viewModel.currentLocation.y
                 if (latitude != 0.0 && longitude != 0.0) {
-                    val cameraPosition = CameraPosition(LatLng(latitude!!, longitude!!), CAMERA_ZOOM_DENSITY)
+                    val cameraPosition = CameraPosition(LatLng(latitude, longitude), CAMERA_ZOOM_DENSITY)
                     naverMap.moveCamera(CameraUpdate.toCameraPosition(cameraPosition))
                 }
             }
@@ -168,6 +168,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         fusedLocationClient.lastLocation.addOnSuccessListener { currentLocation ->
             Log.d(MAIN_TAG, "location : $currentLocation")
             viewModel.setCurrentLocation(currentLocation.latitude, currentLocation.longitude)
+            viewModel.startWebsocket()
 
             naverMap.apply {
                 mapType = NaverMap.MapType.Basic
@@ -218,6 +219,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
             )
         )
     }
-
 
 }

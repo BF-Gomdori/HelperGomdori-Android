@@ -5,14 +5,11 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
-import com.bf.helpergomdori.data.repository.LoginRepository
 import com.bf.helpergomdori.data.repository.MainMapRepository
 import com.bf.helpergomdori.model.local.Gender
 import com.bf.helpergomdori.model.local.ProfileBf
 import com.bf.helpergomdori.model.local.ProfileGomdori
-import com.bf.helpergomdori.model.remote.body.MessageData
-import com.bf.helpergomdori.model.remote.body.NotificationBody
-import com.bf.helpergomdori.model.remote.body.NotificationData
+import com.bf.helpergomdori.model.websocket.Location
 import com.bf.helpergomdori.utils.MAIN_TAG
 import com.bf.helpergomdori.utils.NotificationUtil.getFirebaseToken
 import com.bf.helpergomdori.utils.PUSH_TAG
@@ -28,7 +25,7 @@ class MainViewModel @Inject constructor(
     private val mainMapRepository: MainMapRepository
 ) : ViewModel() {
 
-    private var _currentLocation = mutableMapOf("x" to 0.0, "y" to 0.0)
+    private var _currentLocation = Location( 0.0,  0.0)
     val currentLocation get() = _currentLocation
 
     private var _selectedGomdori: MutableStateFlow<ProfileGomdori?> = MutableStateFlow(null)
@@ -45,7 +42,6 @@ class MainViewModel @Inject constructor(
     val bfList get() = _bfList
 
     init {
-        WebSocketUtil.runStomp()
         postPush()
 
         val gomdori = ProfileGomdori(
@@ -95,8 +91,8 @@ class MainViewModel @Inject constructor(
     }
 
     fun setCurrentLocation(x: Double, y: Double) {
-        _currentLocation["x"] = x
-        _currentLocation["y"] = y
+        _currentLocation.x= x
+        _currentLocation.y = y
     }
 
     fun getLocationPermission(
@@ -127,6 +123,11 @@ class MainViewModel @Inject constructor(
                 //mainMapRepository.postPush(jwt, NotificationBody(MessageData(NotificationData(), token)))
             }
         }
+    }
+
+    fun startWebsocket(){
+        WebSocketUtil.runStomp()
+        WebSocketUtil.setCurrentLocation(currentLocation)
     }
 
 }
