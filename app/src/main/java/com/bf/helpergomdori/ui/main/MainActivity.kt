@@ -4,7 +4,6 @@ package com.bf.helpergomdori.ui.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
@@ -12,11 +11,12 @@ import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseActivity
 import com.bf.helpergomdori.databinding.ActivityMainBinding
 import com.bf.helpergomdori.model.local.HelpType
-import com.bf.helpergomdori.model.local.ProfileBf
-import com.bf.helpergomdori.model.local.ProfileGomdori
 import com.bf.helpergomdori.model.remote.response.Ping
 import com.bf.helpergomdori.ui.mypage.MypageActivity
-import com.bf.helpergomdori.utils.*
+import com.bf.helpergomdori.ui.request.RequestActivity
+import com.bf.helpergomdori.utils.CAMERA_ZOOM_DENSITY
+import com.bf.helpergomdori.utils.DensityUtil
+import com.bf.helpergomdori.utils.MAIN_TAG
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.naver.maps.geometry.LatLng
@@ -72,6 +72,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 val intent = Intent(this@MainActivity, MypageActivity::class.java)
                 startActivity(intent)
             }
+
+            btnRequest.setOnClickListener {
+                val intent =Intent(this@MainActivity, RequestActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
@@ -79,12 +84,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         viewModel.apply {
             lifecycleScope.launchWhenCreated {
                 gomdoriList.collect{
+                    Log.d(MAIN_TAG, "gomdoriList: ${it}")
                     if (this@MainActivity::naverMap.isInitialized) putGomdoriMarker(it)
                 }
             }
 
             lifecycleScope.launchWhenCreated {
                 bfList.collect{
+                    Log.d(MAIN_TAG, "bfList: ${it}")
                     if (this@MainActivity::naverMap.isInitialized) putBfMarker(it)
                 }
             }
@@ -92,7 +99,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
             lifecycleScope.launchWhenCreated {
                 selectedGomdori.collect {
                     if (it != null) {
-                        Log.d(MAIN_TAG, "observeViewModel: ${it}")
+                        Log.d(MAIN_TAG, "selectedGomdori: ${it}")
                         val profileDialog = MainProfileDialog(it).apply {
                             isCancelable = true
                         }
@@ -105,7 +112,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
             lifecycleScope.launchWhenCreated {
                 selectedBf.collect {
                     if (it != null) {
-                        Log.d(MAIN_TAG, "observeViewModel: ${it}")
+                        Log.d(MAIN_TAG, "selectedBf: ${it}")
                         val profileDialog = MainProfileDialog(it).apply {
                             isCancelable = true
                         }

@@ -73,6 +73,11 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp-urlconnection:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
+    // loading json
+    def lottieVersion = "5.2.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+
     // Naver maps sdk
     implementation "com.naver.maps:map-sdk:$naver_maps_version"
 
@@ -104,6 +109,10 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:$dataStore_version"
     implementation "androidx.datastore:datastore:$dataStore_version"
     implementation  "com.google.protobuf:protobuf-javalite:3.18.0"
+
+    // Graph
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 
     // STOMP WebSocket
     implementation 'com.github.NaikSoftware:StompProtocolAndroid:1.6.6'
