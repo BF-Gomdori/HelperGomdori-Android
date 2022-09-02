@@ -17,6 +17,7 @@ import com.bf.helpergomdori.databinding.ActivityMainBinding
 import com.bf.helpergomdori.model.ProfileBf
 import com.bf.helpergomdori.model.ProfileGomdori
 import com.bf.helpergomdori.ui.mypage.MypageActivity
+import com.bf.helpergomdori.ui.request.RequestActivity
 import com.bf.helpergomdori.utils.CAMERA_ZOOM_DENSITY
 import com.bf.helpergomdori.utils.DensityUtil
 import com.bf.helpergomdori.utils.LOCATION_PERMISSION_REQUEST_CODE
@@ -82,6 +83,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
 
             btnMypage.setOnClickListener {
                 val intent = Intent(this@MainActivity, MypageActivity::class.java)
+                startActivity(intent)
+            }
+
+            btnRequest.setOnClickListener {
+                val intent =Intent(this@MainActivity, RequestActivity::class.java)
                 startActivity(intent)
             }
         }

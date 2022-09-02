@@ -21,18 +21,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.38" />
+            app:layout_constraintVertical_bias="0.4" />
 
-        <ImageView
-            android:id="@+id/ic_loading"
-            android:layout_width="235dp"
-            android:layout_height="235dp"
-            android:src="@drawable/img_loading"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ic_loading_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_fileName="loading.json"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.36" />
+            app:layout_constraintVertical_bias="0.38"
+            tools:ignore="MissingClass,MissingConstraints"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"/>
+
 
         <ImageView
             android:id="@+id/ic_loading_bar"
