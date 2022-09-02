@@ -5,13 +5,22 @@ package com.bf.helpergomdori.model.websocket
 import com.bf.helpergomdori.model.remote.response.HelpRequest
 import java.io.Serializable
 
-data class WebSocketData(
+data class WebSocketSendData(
     val type: String,
     val sub: String? = "main",
     val jwt: String,
     val location: Location,
-    val helpRequest: HelpRequest? = null
+    val helpRequest: HelpRequest? = null,
 ):Serializable
+
+data class WebSocketReceiveData(
+    val type: String,
+    val sub: String,
+    val jwt: String,
+    val location: Location,
+    val helpRequest: HelpRequest,
+    val time: String
+)
 
 
 enum class EnterType{
@@ -23,7 +32,3 @@ data class Location(
     var y: Double
 )
 
-data class LocationString(
-    val x: String,
-    val y: String
-)

@@ -5,10 +5,7 @@ import android.util.Log
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.model.local.HelpType
 import com.bf.helpergomdori.model.remote.response.HelpRequest
-import com.bf.helpergomdori.model.websocket.EnterType
-import com.bf.helpergomdori.model.websocket.Location
-import com.bf.helpergomdori.model.websocket.LocationString
-import com.bf.helpergomdori.model.websocket.WebSocketData
+import com.bf.helpergomdori.model.websocket.*
 import com.google.gson.Gson
 import org.json.JSONObject
 import ua.naiksoftware.stomp.Stomp
@@ -27,8 +24,21 @@ object WebSocketUtil {
     private var _currentLocation: Location? = null
     val currentLocation get() = _currentLocation
 
-    @SuppressLint("CheckResult")
+
     fun runStomp() {
+        connectStompClient()
+
+        receiveExistedMessage()
+        receiveNewMessage()
+
+        observeStompClient()
+    }
+
+
+    /**
+     * INTERNAL PROCESS
+     */
+    private fun connectStompClient() {
         try {
             stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, WEBSOCKET_URL)
 
@@ -42,69 +52,45 @@ object WebSocketUtil {
             Log.e(WEBSOCKET_TAG, "stompclient: ${e.printStackTrace()}")
             return
         }
+    }
 
-
+    @SuppressLint("CheckResult")
+    private fun receiveExistedMessage() {
         try {
             val userTopic = stompClient.topic(TOPIC_USER_DEST_PATH)
             userTopic.subscribe {
-                Log.i(WEBSOCKET_TAG, "userTopic runStomp: ${it?.payload}")
+                Log.i(WEBSOCKET_TAG, "receiveExistedMessage: ${it?.payload}")
+                val startIndex = it.payload.indexOf("{")
+                val endIndex = it.payload.indexOf("}")
+                if (startIndex != -1 && endIndex != -1) {
+                    val data = it.payload.substring(startIndex, endIndex)
+                    Log.i(WEBSOCKET_TAG, "user topic data: ${data}")
+                }
             }
+        } catch (e: Exception) {
+            Log.e(WEBSOCKET_TAG, "receiveExistedMessage: ${e.printStackTrace()}")
+            return
+        }
+    }
 
+    @SuppressLint("CheckResult")
+    private fun receiveNewMessage() {
+        try {
             val topic = stompClient.topic(TOPIC_DEST_PATH)
             //Log.i(WEBSOCKET_TAG, "runStomp: ${topic}")
             topic.subscribe {
-                Log.i(WEBSOCKET_TAG, "topic runStomp: ${it?.payload}")
-            }
+                Log.i(WEBSOCKET_TAG, "receiveNewMessage: ${it?.payload}")
 
-        } catch (e: NullPointerException) {
-            Log.e(WEBSOCKET_TAG, "runStomp: ${e.printStackTrace()}")
-            return
+            }
         } catch (e: Exception) {
-            Log.e(WEBSOCKET_TAG, "runStomp: ${e.printStackTrace()}")
+            Log.e(WEBSOCKET_TAG, "receiveNewMessage: ${e.printStackTrace()}")
             return
         }
-
-
-        stompClient.lifecycle().subscribe { lifecycleEvent ->
-            when (lifecycleEvent.type) {
-                LifecycleEvent.Type.OPENED -> {
-                    Log.i(WEBSOCKET_TAG, "OPEND!!")
-                    if (checkHelpType() == HelpType.BF) {
-                        sendEnterMessage()
-                    }
-                }
-                LifecycleEvent.Type.CLOSED -> {
-                    Log.i(WEBSOCKET_TAG, "CLOSED!!")
-
-                }
-                LifecycleEvent.Type.ERROR -> {
-                    Log.i(WEBSOCKET_TAG, "ERROR!!")
-                    Log.e(WEBSOCKET_TAG, "CONNECT ERROR : ${lifecycleEvent.exception}")
-                    return@subscribe
-                }
-                else -> {
-                    Log.i(WEBSOCKET_TAG, "SUCCESS : ${lifecycleEvent.message}")
-                    val message = lifecycleEvent.message
-
-                    val startIndex = message.indexOf("{")
-                    val endIndex = message.indexOf("}")
-                    if (startIndex != -1 && endIndex != -1) {
-                        val data = message.substring(startIndex, endIndex)
-                        Log.i(WEBSOCKET_TAG, "data: ${data}")
-                    }
-                }
-            }
-        }
-
-
     }
 
-    /**
-     * INTERNAL PROCESS
-     */
     private fun sendEnterMessage() {
         if (currentLocation != null && this::stompClient.isInitialized) {
-            val data = WebSocketData(
+            val data = WebSocketSendData(
                 type = EnterType.ENTER.name,
                 jwt = PrefsUtil.getWebSocketJwt(),
                 location = currentLocation!!
@@ -119,6 +105,34 @@ object WebSocketUtil {
     }
 
 
+    @SuppressLint("CheckResult")
+    private fun observeStompClient() {
+        stompClient.lifecycle().subscribe { lifecycleEvent ->
+            when (lifecycleEvent.type) {
+                LifecycleEvent.Type.OPENED -> {
+                    Log.i(WEBSOCKET_TAG, "OPEND!!")
+                    if (checkHelpType() == HelpType.BF) {
+                        sendEnterMessage()
+                    }
+                    Log.i(WEBSOCKET_TAG, "RECEIVE : ${lifecycleEvent.message}")
+                }
+                LifecycleEvent.Type.CLOSED -> {
+                    Log.i(WEBSOCKET_TAG, "CLOSED!!")
+
+                }
+                LifecycleEvent.Type.ERROR -> {
+                    Log.i(WEBSOCKET_TAG, "ERROR!!")
+                    Log.e(WEBSOCKET_TAG, "CONNECT ERROR : ${lifecycleEvent.exception}")
+                    return@subscribe
+                }
+                else -> {
+                    Log.i(WEBSOCKET_TAG, "SUCCESS : ${lifecycleEvent.message}")
+                }
+            }
+        }
+    }
+
+
     /**
      * EXTERNAL PROCESS
      */
@@ -128,7 +142,7 @@ object WebSocketUtil {
 
     fun sendHelpMessage(helpRequest: HelpRequest) {
         if (currentLocation != null && this::stompClient.isInitialized) {
-            val data = WebSocketData(
+            val data = WebSocketSendData(
                 type = EnterType.HELP.name,
                 jwt = PrefsUtil.getWebSocketJwt(),
                 location = currentLocation!!,
