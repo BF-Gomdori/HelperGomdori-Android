@@ -1,19 +1,17 @@
 package com.bf.helpergomdori.ui.main
 
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
+import android.view.View
 import androidx.activity.viewModels
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
+import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseActivity
 import com.bf.helpergomdori.databinding.ActivityMainBinding
+import com.bf.helpergomdori.model.local.HelpType
 import com.bf.helpergomdori.model.local.ProfileBf
 import com.bf.helpergomdori.model.local.ProfileGomdori
 import com.bf.helpergomdori.ui.mypage.MypageActivity
@@ -24,7 +22,6 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
-import com.naver.maps.map.util.FusedLocationSource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,17 +30,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var mapFragment: MapFragment
     private lateinit var naverMap: NaverMap
-    private lateinit var locationSource: FusedLocationSource
-    private val locationPermissionRequest =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            viewModel.getLocationPermission(permissions) { isNotPermitted ->
-                if (isNotPermitted) {
-                    Toast.makeText(this, R.string.go_settings_and_allow_location, Toast.LENGTH_LONG)
-                        .show()
-                }
-            }
-        }
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    lateinit var fusedLocationClient: FusedLocationProviderClient
+
 
     override fun createActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -63,6 +51,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
             }
         mapFragment.getMapAsync(this)
 
+        if (PrefsUtil.getHelpType() == HelpType.BF) {
+            //todo binding.btnRequest.visibility = View.GONE
+        }
     }
 
     private fun setListener() {
@@ -164,60 +155,34 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         naverMap = nmap
         observeViewModel()
 
-        naverMap.locationSource = locationSource // 내장 위치 추적 기능
-        fusedLocationClient.lastLocation.addOnSuccessListener { currentLocation ->
-            Log.d(MAIN_TAG, "location : $currentLocation")
-            viewModel.setCurrentLocation(currentLocation.latitude, currentLocation.longitude)
-            viewModel.startWebsocket()
+        if (getFusedLocationSource() != null) {
+            naverMap.locationSource = getFusedLocationSource() // 내장 위치 추적 기능
+            fusedLocationClient.lastLocation.addOnSuccessListener { currentLocation ->
+                Log.d(MAIN_TAG, "location : $currentLocation")
+                viewModel.setCurrentLocation(currentLocation.latitude, currentLocation.longitude)
+                viewModel.startWebsocket()
 
-            naverMap.apply {
-                mapType = NaverMap.MapType.Basic
-                setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, true)
-                val cameraPosition = CameraPosition(
-                    LatLng(currentLocation.latitude, currentLocation.longitude),
-                    CAMERA_ZOOM_DENSITY
-                )
-                naverMap.moveCamera(CameraUpdate.toCameraPosition(cameraPosition))
-                locationOverlay.run {
-                    isVisible = true
-                    position = LatLng(currentLocation.latitude, currentLocation.longitude)
+                naverMap.apply {
+                    mapType = NaverMap.MapType.Basic
+                    setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, true)
+                    val cameraPosition = CameraPosition(
+                        LatLng(currentLocation.latitude, currentLocation.longitude),
+                        CAMERA_ZOOM_DENSITY
+                    )
+                    naverMap.moveCamera(CameraUpdate.toCameraPosition(cameraPosition))
+                    locationOverlay.run {
+                        isVisible = true
+                        position = LatLng(currentLocation.latitude, currentLocation.longitude)
+                    }
+                    locationTrackingMode = LocationTrackingMode.Follow
+                    isIndoorEnabled = true
                 }
-                locationTrackingMode = LocationTrackingMode.Follow
-                isIndoorEnabled = true
             }
         }
 
     }
 
-    /**
-     * Location Permission
-     */
 
-    private fun isLocationPermitted(): Boolean {
-        locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            Log.d(MAIN_TAG, "isLocationPermitted : NOT GRANTED")
-            return false
-        }
-        Log.d(MAIN_TAG, "isLocationPermitted : GRANTED")
-        return true
-    }
 
-    private fun requestLocationPermission() {
-        locationPermissionRequest.launch(
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-        )
-    }
 
 }

@@ -95,23 +95,6 @@ class MainViewModel @Inject constructor(
         _currentLocation.y = y
     }
 
-    fun getLocationPermission(
-        permissions: Map<String, Boolean>,
-        isNotPermitted: (Boolean) -> Unit
-    ) {
-        when {
-            permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
-                Log.d(MAIN_TAG, "createActivity: ACCESS_FINE_LOCATION")
-            }
-            permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
-                Log.d(MAIN_TAG, "createActivity: ACCESS_COARSE_LOCATION")
-            }
-            else -> {
-                Log.d(MAIN_TAG, "createActivity: NOT ACCEPTED LOCATION")
-                isNotPermitted(true)
-            }
-        }
-    }
 
     fun postPush(){
         getFirebaseToken()

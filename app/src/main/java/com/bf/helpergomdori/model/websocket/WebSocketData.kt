@@ -1,14 +1,16 @@
 package com.bf.helpergomdori.model.websocket
 
 
-import org.json.JSONObject
+
+import com.bf.helpergomdori.model.remote.response.HelpRequest
 import java.io.Serializable
 
 data class WebSocketData(
     val type: String,
     val sub: String? = "main",
     val jwt: String,
-    val location: LocationString // Location
+    val location: Location,
+    val helpRequest: HelpRequest? = null
 ):Serializable
 
 

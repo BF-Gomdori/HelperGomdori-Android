@@ -3,6 +3,8 @@ package com.bf.helpergomdori.utils
 import android.annotation.SuppressLint
 import android.util.Log
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
+import com.bf.helpergomdori.model.local.HelpType
+import com.bf.helpergomdori.model.remote.response.HelpRequest
 import com.bf.helpergomdori.model.websocket.EnterType
 import com.bf.helpergomdori.model.websocket.Location
 import com.bf.helpergomdori.model.websocket.LocationString
@@ -36,7 +38,7 @@ object WebSocketUtil {
                 add(StompHeader(WEBSOCKET_HEADER, jwt))
             }
             stompClient.connect(headerList)
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             Log.e(WEBSOCKET_TAG, "stompclient: ${e.printStackTrace()}")
             return
         }
@@ -67,7 +69,9 @@ object WebSocketUtil {
             when (lifecycleEvent.type) {
                 LifecycleEvent.Type.OPENED -> {
                     Log.i(WEBSOCKET_TAG, "OPEND!!")
-                    sendCurrentLocation()
+                    if (checkHelpType() == HelpType.BF) {
+                        sendEnterMessage()
+                    }
                 }
                 LifecycleEvent.Type.CLOSED -> {
                     Log.i(WEBSOCKET_TAG, "CLOSED!!")
@@ -93,22 +97,25 @@ object WebSocketUtil {
         }
 
 
-
     }
 
     /**
      * INTERNAL PROCESS
      */
-    private fun sendCurrentLocation() {
+    private fun sendEnterMessage() {
         if (currentLocation != null && this::stompClient.isInitialized) {
             val data = WebSocketData(
                 type = EnterType.ENTER.name,
                 jwt = PrefsUtil.getWebSocketJwt(),
-                location = LocationString(currentLocation!!.x.toString(), currentLocation!!.y.toString()) // todo api 바뀌면 그냥 currentLocation 넣기
+                location = currentLocation!!
             )
-            Log.d(WEBSOCKET_TAG, "data = ${Gson().toJson(data)}")
+            Log.d(WEBSOCKET_TAG, "sendEnterMessage = ${Gson().toJson(data)}")
             stompClient.send(SEND_DEST_PATH, Gson().toJson(data)).subscribe()
         }
+    }
+
+    private fun checkHelpType(): HelpType {
+        return PrefsUtil.getHelpType()
     }
 
 
@@ -117,6 +124,19 @@ object WebSocketUtil {
      */
     fun setCurrentLocation(location: Location) {
         _currentLocation = location
+    }
+
+    fun sendHelpMessage(helpRequest: HelpRequest) {
+        if (currentLocation != null && this::stompClient.isInitialized) {
+            val data = WebSocketData(
+                type = EnterType.HELP.name,
+                jwt = PrefsUtil.getWebSocketJwt(),
+                location = currentLocation!!,
+                helpRequest = helpRequest
+            )
+            Log.d(WEBSOCKET_TAG, "sendHelpMessage = ${Gson().toJson(data)}")
+            stompClient.send(SEND_DEST_PATH, Gson().toJson(data)).subscribe()
+        }
     }
 
 }

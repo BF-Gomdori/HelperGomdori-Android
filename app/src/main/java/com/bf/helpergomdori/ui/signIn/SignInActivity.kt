@@ -18,6 +18,11 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
     private val viewModel: SignInViewModel by viewModels()
 
     override fun createActivity() {
+
+        if (!isLocationPermitted()) {
+            requestLocationPermission()
+        }
+
         if (viewModel.isExistUser()){
             startActivity(Intent(this, MainActivity::class.java))
             finish()
