@@ -26,8 +26,8 @@ interface ApiService {
     suspend fun postMember(@Body postUser: PostUser) : Token
 
     @POST("/auth/signup/helpee")
-    suspend fun postHelpee(@Header(HEADER_KEY) header: DefaultHeader, @Body signinBody: SigninBody): HelpeeResponse
+    suspend fun postHelpee(@Header(HEADER_KEY) header: String, @Body signinBody: SigninBody): HelpeeResponse
 
     @POST("/auth/signup/helper")
-    suspend fun postHelper(@Header(HEADER_KEY) header: DefaultHeader): HelperResponse
+    suspend fun postHelper(@Header(HEADER_KEY) header: String): HelperResponse
 }

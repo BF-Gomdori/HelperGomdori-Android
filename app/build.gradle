@@ -112,6 +112,12 @@ dependencies {
     // Graph
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+
+    // STOMP WebSocket
+    implementation 'com.github.NaikSoftware:StompProtocolAndroid:1.6.6'
+    // Rx
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
 }
 
 // Allow references to generated code

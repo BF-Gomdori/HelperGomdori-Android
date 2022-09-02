@@ -3,6 +3,7 @@
     <string name="naver_map_client_id">0bvotwa6np</string>
     <string name="kakao_app_key">kakao17abb9ddb66ddc971dd9ccf2c95a1a8e</string>
     <string name="app_name_kor">도움곰돌이</string>
+    <string name="package_name">com.bf.helpergomdori</string>
 
     <!-- Signin Greeting-->
     <string name="signin_google">구글로 가입하기</string>

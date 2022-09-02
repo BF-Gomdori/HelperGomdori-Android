@@ -22,8 +22,8 @@ class RemoteRepository @Inject constructor(
 
     suspend fun postUserInfo(postUser: PostUser): Token = remoteDataSource.postMember(postUser)
 
-    suspend fun postHelpee(header: DefaultHeader, body: SigninBody) = remoteDataSource.postHelpee(header, body)
+    suspend fun postHelpee(header: String, body: SigninBody) = remoteDataSource.postHelpee(header, body)
 
-    suspend fun postHelper(header: DefaultHeader) = remoteDataSource.postHelper(header)
+    suspend fun postHelper(header: String) = remoteDataSource.postHelper(header)
 }
 

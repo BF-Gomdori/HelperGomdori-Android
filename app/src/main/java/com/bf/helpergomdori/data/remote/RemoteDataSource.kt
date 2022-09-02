@@ -23,7 +23,7 @@ interface RemoteDataSource {
 
     suspend fun postMember(@Body postUser: PostUser) : Token
 
-    suspend fun postHelpee(@Header(HEADER_KEY) header: DefaultHeader, @Body signinBody: SigninBody): HelpeeResponse
+    suspend fun postHelpee(@Header(HEADER_KEY) header: String, @Body signinBody: SigninBody): HelpeeResponse
 
-    suspend fun postHelper(@Header(HEADER_KEY) header: DefaultHeader): HelperResponse
+    suspend fun postHelper(@Header(HEADER_KEY) header: String): HelperResponse
 }

@@ -1,6 +1,6 @@
-package com.bf.helpergomdori.model
+package com.bf.helpergomdori.model.ex
 
-import kotlinx.coroutines.flow.Flow
+import com.bf.helpergomdori.model.Data
 
 sealed class DataState {
     object Inactive: DataState()
