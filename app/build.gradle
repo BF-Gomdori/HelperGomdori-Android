@@ -72,6 +72,11 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp-urlconnection:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
+    // loading json
+    def lottieVersion = "5.2.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+
     // Naver maps sdk
     implementation "com.naver.maps:map-sdk:$naver_maps_version"
 
