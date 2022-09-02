@@ -10,15 +10,11 @@ import com.bf.helpergomdori.model.remote.response.Token
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class RemoteRepository @Inject constructor(
+class LoginRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSourceImpl,
     //private val externalScope: CoroutineScope
 ) {
     suspend fun getData(): Flow<Data> = remoteDataSource.getData()
-
-    /**
-     * auth-controller
-     */
 
     suspend fun postUserInfo(postUser: PostUser): Token = remoteDataSource.postMember(postUser)
 

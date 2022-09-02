@@ -2,12 +2,12 @@ package com.bf.helpergomdori.di
 
 import com.bf.helpergomdori.data.remote.ApiService
 import com.bf.helpergomdori.data.remote.RemoteDataSourceImpl
-import com.bf.helpergomdori.data.repository.RemoteRepository
+import com.bf.helpergomdori.data.repository.MainMapRepository
+import com.bf.helpergomdori.data.repository.LoginRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -60,7 +60,13 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRemoteRepository(remoteDataSourceImpl: RemoteDataSourceImpl): RemoteRepository {
-        return RemoteRepository(remoteDataSourceImpl)
+    fun provideLoginRepository(remoteDataSourceImpl: RemoteDataSourceImpl): LoginRepository {
+        return LoginRepository(remoteDataSourceImpl)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMainMapRepository(remoteDataSourceImpl: RemoteDataSourceImpl): MainMapRepository {
+        return MainMapRepository(remoteDataSourceImpl)
     }
 }

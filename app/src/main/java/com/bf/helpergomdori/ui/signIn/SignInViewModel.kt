@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.UserInfo
-import com.bf.helpergomdori.data.repository.RemoteRepository
+import com.bf.helpergomdori.data.repository.LoginRepository
 import com.bf.helpergomdori.data.repository.UserInfoRepository
-import com.bf.helpergomdori.model.remote.DefaultHeader
+import com.bf.helpergomdori.model.local.HelpType
 import com.bf.helpergomdori.model.remote.body.PostUser
 import com.bf.helpergomdori.model.remote.body.SigninBody
+import com.bf.helpergomdori.model.websocket.EnterType
 import com.bf.helpergomdori.utils.SIGNIN_TAG
-import com.bf.helpergomdori.utils.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,12 +22,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val remoteRepository: RemoteRepository,
-    private val userRepository: UserInfoRepository
+    private val remoteRepository: LoginRepository
 ) : ViewModel() {
-
-    private var _currentUserInfo: MutableStateFlow<UserInfo?> = MutableStateFlow(null)
-    val currentUserInfo get() = _currentUserInfo
 
     private var _newUser = PostUser()
     val newUser get() = _newUser
@@ -36,17 +32,17 @@ class SignInViewModel @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             val jwt = remoteRepository.postUserInfo(newUser).token
             PrefsUtil.setJwt(jwt)
+            PrefsUtil.setWebSocketJwt(jwt)
             Log.d(SIGNIN_TAG, "postUser: ${jwt}")
-            updateUserInfo(jwt, newUser.name!!, newUser.phone!!)
         }
     }
 
     fun postHelpee(disableTypeList: MutableList<String>, intro: String) {
-        getUserInfo()
+        PrefsUtil.setHelpType(HelpType.GOMDORI)
         viewModelScope.launch {
             Log.d(SIGNIN_TAG, "postHelpee: ${PrefsUtil.getJwt()}")
             if (PrefsUtil.getJwt() != "") {
-                val header = "Bearer "+ PrefsUtil.getJwt()
+                val header = PrefsUtil.getJwt()
                 val body = SigninBody(disableTypeList[0], intro) //todo api에서 장애유형 여러 개 받을 수 있게되면 list로 보내 주기
                 remoteRepository.runCatching {
                     postHelpee(header, body)
@@ -65,11 +61,10 @@ class SignInViewModel @Inject constructor(
     }
 
     fun postHelper() {
-        getUserInfo()
+        PrefsUtil.setHelpType(HelpType.BF)
         viewModelScope.launch {
-            Log.d(SIGNIN_TAG, "postHelper: ${currentUserInfo.value?.jwt}")
-            if (currentUserInfo.value != null) {
-                val header = "Bearer "+ currentUserInfo.value!!.jwt
+            if (PrefsUtil.getJwt() != "") {
+                val header = PrefsUtil.getJwt()
                 remoteRepository.runCatching {
                     postHelper(header)
                 }.onFailure {
@@ -98,22 +93,11 @@ class SignInViewModel @Inject constructor(
         _newUser.name = name
     }
 
-
-    fun updateUserInfo(
-        jwt: String,
-        name: String,
-        phone: String,
-    ) {
-        CoroutineScope(Dispatchers.IO).launch {
-            userRepository.updateUserInfo(jwt = jwt, name = name, phone = phone)
+    fun isExistUser(): Boolean {
+        if (PrefsUtil.getJwt() != "" && PrefsUtil.getHelpType() != HelpType.NONE) {
+            return true
         }
+        return false
     }
 
-    fun getUserInfo() {
-        viewModelScope.launch {
-            userRepository.getUserInfo().collect {
-                _currentUserInfo.value = it
-            }
-        }
-    }
 }

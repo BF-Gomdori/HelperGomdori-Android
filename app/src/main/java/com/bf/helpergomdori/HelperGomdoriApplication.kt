@@ -1,8 +1,10 @@
 package com.bf.helpergomdori
 
 import android.app.Application
+import android.app.NotificationManager
 import android.content.Context
 import com.bf.helpergomdori.utils.NATIVE_APP_KEY
+import com.bf.helpergomdori.utils.NotificationUtil
 import com.bf.helpergomdori.utils.SharedPreferencesUtil
 import com.kakao.sdk.common.KakaoSdk
 import com.naver.maps.map.NaverMapSdk
@@ -24,5 +26,11 @@ class HelperGomdoriApplication: Application() {
 
         // sharedPreference 초기화
         PrefsUtil = SharedPreferencesUtil(this)
+
+        // NotificationUtil 초기화
+        NotificationUtil.setDefault(
+            applicationContext,
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        )
     }
 }

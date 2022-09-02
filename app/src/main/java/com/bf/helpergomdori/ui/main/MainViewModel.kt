@@ -2,32 +2,33 @@ package com.bf.helpergomdori.ui.main
 
 import android.Manifest
 import android.util.Log
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.lifecycle.ViewModel
-import com.bf.helpergomdori.data.repository.RemoteRepository
-import com.bf.helpergomdori.model.Gender
-import com.bf.helpergomdori.model.ProfileBf
-import com.bf.helpergomdori.model.ProfileGomdori
+import androidx.lifecycle.viewModelScope
+import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
+import com.bf.helpergomdori.data.repository.MainMapRepository
+import com.bf.helpergomdori.model.local.Gender
+import com.bf.helpergomdori.model.local.HelpType
+import com.bf.helpergomdori.model.local.ProfileBf
+import com.bf.helpergomdori.model.local.ProfileGomdori
+import com.bf.helpergomdori.model.remote.response.Ping
+import com.bf.helpergomdori.model.websocket.Location
 import com.bf.helpergomdori.utils.MAIN_TAG
+import com.bf.helpergomdori.utils.NotificationUtil.getFirebaseToken
+import com.bf.helpergomdori.utils.PUSH_TAG
 import com.bf.helpergomdori.utils.WEBSOCKET_TAG
 import com.bf.helpergomdori.utils.WebSocketUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import org.json.JSONObject
-import ua.naiksoftware.stomp.Stomp
-import ua.naiksoftware.stomp.dto.LifecycleEvent
-import ua.naiksoftware.stomp.dto.StompHeader
+import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.system.exitProcess
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val remoteRepository: RemoteRepository
+    private val mainMapRepository: MainMapRepository
 ) : ViewModel() {
 
-    private var _currentLocation = mutableMapOf("x" to 0.0, "y" to 0.0)
+    private var _currentLocation = Location( 0.0,  0.0)
     val currentLocation get() = _currentLocation
 
     private var _selectedGomdori: MutableStateFlow<ProfileGomdori?> = MutableStateFlow(null)
@@ -36,39 +37,17 @@ class MainViewModel @Inject constructor(
     private var _selectedBf: MutableStateFlow<ProfileBf?> = MutableStateFlow(null)
     val selectedBf get() = _selectedBf
 
-    private var _gomdoriList: StateFlow<MutableList<ProfileGomdori>> =
+    private var _gomdoriList: StateFlow<MutableList<Ping>> =
         MutableStateFlow(mutableListOf())
     val gomdoriList get() = _gomdoriList
 
-    private var _bfList: StateFlow<MutableList<ProfileBf>> = MutableStateFlow(mutableListOf())
+    private var _bfList: StateFlow<MutableList<Ping>> = MutableStateFlow(mutableListOf())
     val bfList get() = _bfList
 
+    private val webSocket: WebSocketUtil = WebSocketUtil(this)
+
     init {
-        WebSocketUtil.runStomp()
-
-        val gomdori = ProfileGomdori(
-            jwt = "",
-            type = "지체장애",
-            name = "김철수",
-            age = 27,
-            gender = Gender.MALE,
-            requested_term = "택시 타는 것을 도와주세요",
-            location = "서울특별시 동작구 사당로 50",
-            latitude = 37.494437500000004,
-            longitude = 126.9599375
-        )
-        addGomdoriList(gomdori)
-
-        val bf = ProfileBf(
-            jwt = "",
-            name = "김민주",
-            age = 24,
-            gender = Gender.FEMALE,
-            location = "서울특별시 동작구 상도로 369",
-            latitude = 37.496187500000005,
-            longitude = 126.9585625
-        )
-        addBfList(bf)
+        //postPush()
     }
 
     fun getGomdoriProfile() {
@@ -76,11 +55,11 @@ class MainViewModel @Inject constructor(
         //_selectedGomdori.value =
     }
 
-    fun addGomdoriList(gomdori: ProfileGomdori) {
+    fun addGomdoriList(gomdori: Ping) {
         _gomdoriList.value.add(gomdori)
     }
 
-    fun addBfList(bf: ProfileBf) {
+    fun addBfList(bf: Ping) {
         _bfList.value.add(bf)
     }
 
@@ -93,35 +72,35 @@ class MainViewModel @Inject constructor(
     }
 
     fun setCurrentLocation(x: Double, y: Double) {
-        _currentLocation["x"] = x
-        _currentLocation["y"] = y
+        _currentLocation.x= x
+        _currentLocation.y = y
     }
 
-    fun getLocationPermission(
-        permissions: Map<String, Boolean>,
-        isNotPermitted: (Boolean) -> Unit
-    ) {
-        when {
-            permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
-                Log.d(MAIN_TAG, "createActivity: ACCESS_FINE_LOCATION")
-            }
-            permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
-                Log.d(MAIN_TAG, "createActivity: ACCESS_COARSE_LOCATION")
-            }
-            else -> {
-                Log.d(MAIN_TAG, "createActivity: NOT ACCEPTED LOCATION")
-                isNotPermitted(true)
+
+    fun postPush(){
+        getFirebaseToken()
+        val token = PrefsUtil.getFirebaseToken()
+        val jwt = PrefsUtil.getJwt()
+        Log.d(PUSH_TAG, "postPush: $token, $jwt")
+        viewModelScope.launch {
+            if (token != "" && jwt != "") {
+                //mainMapRepository.postPush(jwt, NotificationBody(MessageData(NotificationData(), token)))
             }
         }
     }
 
+    fun startWebSocket(){
+        webSocket.runStomp()
+        webSocket.setCurrentLocation(currentLocation)
+    }
 
-    /**
-     * Web Socket
-     */
-
-
-
-
+    fun receivePing(ping: Ping){
+        Log.d(MAIN_TAG, "receivePing: $ping")
+        if (ping.type == HelpType.GOMDORI) {
+            addGomdoriList(ping)
+        }else {
+            addBfList(ping)
+        }
+    }
 
 }

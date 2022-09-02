@@ -5,7 +5,7 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="com.bf.helpergomdori.model.Gender"/>
+        <import type="com.bf.helpergomdori.model.local.Gender"/>
         <variable
             name="type"
             type="String" />
@@ -17,7 +17,7 @@
             type="int" />
         <variable
             name="gender"
-            type="Gender" />
+            type="com.bf.helpergomdori.model.local.Gender" />
         <variable
             name="requested_term"
             type="String" />

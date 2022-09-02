@@ -26,7 +26,10 @@
             android:name=".ui.signIn.SignInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -34,10 +37,7 @@
             android:clearTaskOnLaunch="true"
             android:exported="true"
             android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
@@ -73,6 +73,20 @@
         <service
             android:name=".service.LocationService"
             android:foregroundServiceType="location">
+        </service>
+
+        <service android:name=".service.BfPushService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.google.firebase.messaging.default_notification_icon"
+                android:resource="@drawable/img_helper_gomdori" />
+            <meta-data
+                android:name="com.google.firebase.messaging.default_notification_color"
+                android:resource="@color/skyblue" />
 
         </service>
 
