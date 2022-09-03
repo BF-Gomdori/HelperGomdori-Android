@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.model.local.HelpType
-import com.bf.helpergomdori.model.remote.response.Ping
+import com.bf.helpergomdori.model.local.Ping
 import com.bf.helpergomdori.model.websocket.*
 import com.bf.helpergomdori.ui.main.MainViewModel
 import com.google.gson.Gson
@@ -89,7 +89,8 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
         val ping = Ping(
             data.type.convertEnterToHelpType(),
             data.location,
-            data.time
+            data.time,
+            data.jwt
         )
         viewModel.receivePing(ping)
     }

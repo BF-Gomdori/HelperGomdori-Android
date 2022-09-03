@@ -7,6 +7,9 @@
         <variable
             name="bfCnt"
             type="int" />
+        <variable
+            name="gomdoriCnt"
+            type="int" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,7 +62,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="13"
+                    android:text="@{Integer.toString(bfCnt)}"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins_regular"
                     android:textStyle="bold"
@@ -91,7 +94,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5"
+                    android:text="@{Integer.toString(gomdoriCnt)}"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins_regular"
                     android:textStyle="bold"

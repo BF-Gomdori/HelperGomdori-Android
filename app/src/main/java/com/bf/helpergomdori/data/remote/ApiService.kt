@@ -7,10 +7,7 @@ import com.bf.helpergomdori.model.remote.body.SigninBody
 import com.bf.helpergomdori.model.remote.response.*
 import com.bf.helpergomdori.utils.HEADER_KEY
 import com.bf.helpergomdori.utils.HEADER_TOKEN_KEY
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Body
-import retrofit2.http.Header
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -33,17 +30,18 @@ interface ApiService {
     /**
      * Main 지도
      */
-    @POST("/api/accept")
-    suspend fun getHelpAccepted(@Header(HEADER_KEY) authorization: String, @Header(HEADER_TOKEN_KEY) token: String) // 도움 요청이 수락되었을 때 웹소켓으로 수락되었음을 받았을 때
+    @GET("/api/accept")
+    suspend fun getHelpAccepted(@HeaderMap headers: Map<String, String>) // 도움 요청이 수락되었을 때 웹소켓으로 수락되었음을 받았을 때
 
-    @POST("/api/connect/users")
+    @GET("/api/connect/users")
     suspend fun getBfCntAndGomdoriCnt(): UserCnt // 베프 숫자 & 곰돌이 숫자
 
-    @POST("/api/helpee/ping")
-    suspend fun getHelpeePing(@Header(HEADER_KEY) header: String): HelpeePing
+    @GET("/api/helpee/ping")
+    suspend fun getHelpeePing(@Header(HEADER_KEY) header: String): HelpeeDetailPing
 
-    @POST("/api/helper/ping")
-    suspend fun getHelperPing(@Header(HEADER_KEY) header: String): HelperPing
+    @GET("/api/helper/ping")
+    suspend fun getHelperPing(@Header(HEADER_KEY) header: String): HelperDetailPing
+
 
     /**
      * FCM

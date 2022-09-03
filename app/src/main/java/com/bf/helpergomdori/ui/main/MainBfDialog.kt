@@ -13,13 +13,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.databinding.DialogMainProfileBinding
-import com.bf.helpergomdori.model.local.Profile
-import com.bf.helpergomdori.model.local.ProfileGomdori
+import com.bf.helpergomdori.model.local.BfDetailPing
+import com.bf.helpergomdori.model.local.Gender
+import com.bf.helpergomdori.model.local.GomdoriDetailPing
+import com.bf.helpergomdori.model.remote.response.DetailPingResponse
 import com.bf.helpergomdori.utils.*
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class MainProfileDialog(private val profile: Profile) : DialogFragment() {
+class MainBfDialog(private val ping: BfDetailPing) : DialogFragment() {
 
     private var _binding: DialogMainProfileBinding? = null
     private val binding get() = _binding!!
@@ -63,18 +65,22 @@ class MainProfileDialog(private val profile: Profile) : DialogFragment() {
     private fun initView() {
         binding.apply {
             var placeholder = R.drawable.img_bf_footprint
-            if (profile is ProfileGomdori) {
-                requestedTerm = profile.requested_term
-                placeholder = R.drawable.img_helper_gomdori
+            var mType = resources.getString(R.string.text_bf)
+            val detailPing = ping.helperDetailPing
+            val mGender = when (detailPing.gender) {
+                "남" -> Gender.MALE
+                "여" -> Gender.FEMALE
+                else -> Gender.NONE
             }
-            type = profile.type
-            name = profile.name
-            age = profile.age
-            gender = profile.gender
-            location = profile.location
-            Glide.with(this@MainProfileDialog)
-                .load(profile.img)
+            type = mType
+            name = detailPing.name
+            age = detailPing.age
+            gender = mGender
+            location = detailPing.location
+            Glide.with(this@MainBfDialog)
+                .load(detailPing.photoLink)
                 .placeholder(placeholder)
+                .circleCrop()
                 .into(imgProfile)
         }
     }
@@ -82,10 +88,10 @@ class MainProfileDialog(private val profile: Profile) : DialogFragment() {
     private fun connectNaverMapScheme() {
         val uri = Uri.parse(NAVER_MAP_SCHEME_BASE_URL)
             .buildUpon()
-            .appendQueryParameter(DLAT_PARAM, profile.latitude.toString())
-            .appendQueryParameter(DLNG_PARRAM, profile.longitude.toString())
-            .appendQueryParameter(DNAME_PARAM, profile.location)
-            .appendQueryParameter(APP_NAME_PARAM,resources.getString(R.string.package_name))
+            .appendQueryParameter(DLAT_PARAM, ping.latitude.toString())
+            .appendQueryParameter(DLNG_PARRAM, ping.longitude.toString())
+            .appendQueryParameter(DNAME_PARAM, ping.helperDetailPing.location)
+            .appendQueryParameter(APP_NAME_PARAM, resources.getString(R.string.package_name))
             .build()
 
         Log.d(MAIN_TAG, "connectNaverMapScheme: $uri")
