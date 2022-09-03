@@ -62,8 +62,8 @@ class RemoteDataSourceImpl @Inject constructor(
     /**
      * WebSocket
      */
-    override suspend fun getWebSocket(header: String): Void {
-        return apiService.getWebSocket(header)
+    override suspend fun getWebSocket(header: String) {
+        apiService.getWebSocket(header)
     }
 
     /**

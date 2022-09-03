@@ -1,6 +1,8 @@
 package com.bf.helpergomdori.utils
 
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.model.local.HelpType
@@ -62,7 +64,14 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
                 Log.i(WEBSOCKET_TAG, "receiveExistedMessage: ${it?.payload}")
                 convertReceivedDataToPing(it.payload)
             }
-            viewModel.sendStartWebSocket()
+
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    viewModel.sendStartWebSocket()
+                },
+                500
+            )
+
         } catch (e: Exception) {
             Log.e(WEBSOCKET_TAG, "receiveExistedMessage: ${e.printStackTrace()}")
             return

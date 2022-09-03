@@ -46,7 +46,7 @@ interface ApiService {
      * WebSocket
      */
     @GET("/send")
-    suspend fun getWebSocket(@Header(HEADER_KEY) header: String): Void
+    suspend fun getWebSocket(@Header(HEADER_KEY) header: String)
 
     /**
      * FCM

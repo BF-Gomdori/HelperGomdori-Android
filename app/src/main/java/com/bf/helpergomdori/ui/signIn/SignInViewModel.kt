@@ -29,6 +29,7 @@ class SignInViewModel @Inject constructor(
     val newUser get() = _newUser
 
     fun postUser() {
+        _newUser.fcm_token = PrefsUtil.getFirebaseToken()
         CoroutineScope(Dispatchers.IO).launch {
             val jwt = remoteRepository.postUserInfo(newUser).token
             PrefsUtil.setJwt(jwt)

@@ -107,7 +107,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun postPush() {
-        getFirebaseToken()
+        //getFirebaseToken()
         val token = PrefsUtil.getFirebaseToken()
         val jwt = PrefsUtil.getJwt()
         Log.d(PUSH_TAG, "postPush: $token, $jwt")

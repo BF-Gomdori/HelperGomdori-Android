@@ -15,11 +15,14 @@ class MainMapRepository @Inject constructor(
 
     suspend fun getBfCntAndGomdoriCnt(): Flow<UserCnt> = remoteDataSource.getBfCntAndGomdoriCnt()
 
-    suspend fun getHelpeePing(header: String): Flow<HelpeeDetailPing> = remoteDataSource.getHelpeePing(header)
+    suspend fun getHelpeePing(header: String): Flow<HelpeeDetailPing> =
+        remoteDataSource.getHelpeePing(header)
 
-    suspend fun getHelperPing(header: String): Flow<HelperDetailPing> = remoteDataSource.getHelperPing(header)
+    suspend fun getHelperPing(header: String): Flow<HelperDetailPing> =
+        remoteDataSource.getHelperPing(header)
 
-    suspend fun getSendWebSocket(header: String): Void = remoteDataSource.getWebSocket(header)
+    suspend fun getSendWebSocket(header: String) = remoteDataSource.getWebSocket(header)
 
-    suspend fun postPush(header: String, body: NotificationBody): NotificationResponse = remoteDataSource.postPush(header, body)
+    suspend fun postPush(header: String, body: NotificationBody): NotificationResponse =
+        remoteDataSource.postPush(header, body)
 }
