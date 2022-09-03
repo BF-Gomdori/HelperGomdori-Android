@@ -15,6 +15,7 @@ class RequestActivity: BaseActivity<ActivityRequestBinding>(R.layout.activity_re
 
     override fun createActivity() {
         val location = intent.getSerializableExtra(MAIN_TO_REQUEST) as Location
+        viewModel.setCurrentLocation(location)
         viewModel.postRequestInfo(location)
     }
 }

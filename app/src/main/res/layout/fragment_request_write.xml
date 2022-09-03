@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <import type="com.bf.helpergomdori.ui.request.RequestViewModel" />
-
         <variable
-            name="vm"
-            type="RequestViewModel" />
+            name="name"
+            type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +15,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_user"
+            android:id="@+id/img_user"
             android:layout_width="99dp"
             android:layout_height="99dp"
             android:layout_marginStart="36dp"
@@ -32,9 +30,9 @@
             style="@style/font_request"
             android:layout_marginStart="36dp"
             android:layout_marginTop="16dp"
-            android:text="@string/hello_name"
+            android:text="@{@string/hello_name(name)}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_user" />
+            app:layout_constraintTop_toBottomOf="@id/img_user" />
 
 
         <LinearLayout
@@ -74,8 +72,8 @@
                 android:id="@+id/tv_select_your_situation"
                 style="@style/font_request"
                 android:text="@string/select_your_situation"
-                android:textColor="#000000"
-                android:textStyle="bold"
+                android:textFontWeight="600"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -169,7 +167,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_sp_info_plz_1" />
 
         <EditText
-            android:id="@+id/specific_info"
+            android:id="@+id/et_specific_request"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="36dp"

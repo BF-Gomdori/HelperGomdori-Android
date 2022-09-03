@@ -7,38 +7,57 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.data.repository.MainMapRepository
+import com.bf.helpergomdori.model.remote.response.RequestInfoResponse
 import com.bf.helpergomdori.model.websocket.Location
 import com.bf.helpergomdori.utils.REQUEST_TAG
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import okhttp3.internal.notify
 
 @HiltViewModel
 class RequestViewModel @Inject constructor(
     private val mainMapRepository: MainMapRepository
-): ViewModel() {
-    private var _name: MutableStateFlow<String> = MutableStateFlow("")
-    val name = _name.asStateFlow()
+) : ViewModel() {
 
-    private var _image: MutableStateFlow<String> = MutableStateFlow("")
-    val image get() = _image
+    private var _currentLocation: Location? = null
+    val currentLocation get() = _currentLocation
 
-    private var _locationAddress: MutableStateFlow<String> = MutableStateFlow("")
-    val locationAddress get() = _locationAddress
+    private var _requestInfo: MutableStateFlow<RequestInfoResponse?> = MutableStateFlow(null)
+    val requestInfo get() = _requestInfo
 
-    init {
-    }
+    private var _specificRequest: String = ""
+    val specificRequest get() = _specificRequest
 
-    fun postRequestInfo(location: Location){
+    private var _needSituations: List<String> = mutableListOf()
+    val needSituations get() = _needSituations
+
+    /**
+     * Api Process
+     */
+    fun postRequestInfo(location: Location) {
         val jwt = PrefsUtil.getJwt()
         viewModelScope.launch {
             mainMapRepository.postRequestInfo(jwt, location).runCatching {
-                collect{
+                collect {
                     Log.d(REQUEST_TAG, "postRequestInfo: ${it}")
+                    _requestInfo.value = it
                 }
-
             }
         }
+    }
+
+    /**
+     * Get & Set
+     */
+    fun setCurrentLocation(location: Location) {
+        _currentLocation = location
+    }
+
+    fun setSpecificRequest(text: String) {
+        _specificRequest = text
+    }
+
+    fun setNeedSituations(list: List<String>) {
+        _needSituations = list
     }
 }

@@ -4,6 +4,7 @@ package com.bf.helpergomdori.ui.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
@@ -53,7 +54,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         mapFragment.getMapAsync(this)
 
         if (PrefsUtil.getHelpType() == HelpType.BF) {
-            //todo binding.btnRequest.visibility = View.GONE
+            binding.btnRequest.visibility = View.GONE
         }
     }
 
