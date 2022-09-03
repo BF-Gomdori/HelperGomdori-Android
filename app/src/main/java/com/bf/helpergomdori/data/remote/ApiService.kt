@@ -5,6 +5,7 @@ import com.bf.helpergomdori.model.remote.body.NotificationBody
 import com.bf.helpergomdori.model.remote.body.PostUser
 import com.bf.helpergomdori.model.remote.body.SigninBody
 import com.bf.helpergomdori.model.remote.response.*
+import com.bf.helpergomdori.model.websocket.Location
 import com.bf.helpergomdori.utils.HEADER_KEY
 import com.bf.helpergomdori.utils.HEADER_TOKEN_KEY
 import retrofit2.http.*
@@ -47,6 +48,12 @@ interface ApiService {
      */
     @GET("/send")
     suspend fun getWebSocket(@Header(HEADER_KEY) header: String)
+
+    /**
+     * Request
+     */
+    @POST("/api/user/semi/info")
+    suspend fun postRequestInfo(@Header(HEADER_KEY) header: String, @Body location: Location): RequestInfoResponse
 
     /**
      * FCM

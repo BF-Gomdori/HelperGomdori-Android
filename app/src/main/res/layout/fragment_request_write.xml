@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <import type="com.bf.helpergomdori.ui.request.RequestViewModel" />
+
+        <variable
+            name="vm"
+            type="RequestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,11 +17,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/ic_chulsu"
+            android:id="@+id/iv_user"
             android:layout_width="99dp"
             android:layout_height="99dp"
-            android:src="@drawable/img_chulsu"
             android:layout_marginStart="36dp"
+            android:src="@drawable/img_chulsu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -24,194 +29,170 @@
 
         <TextView
             android:id="@+id/hello_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/font_request"
             android:layout_marginStart="36dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textSize="20dp"
-            android:textColor="#000000"
+            android:layout_marginTop="16dp"
             android:text="@string/hello_name"
-            app:layout_constraintBottom_toTopOf="@id/request"
-            />
-
-
-
-        <TextView
-            android:id="@+id/request"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="#63CCF9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/request"
-            android:layout_marginStart="36dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/select_your_situation"
-            android:layout_marginBottom="19dp"
-            />
+            app:layout_constraintTop_toBottomOf="@id/iv_user" />
 
-        <TextView
-            android:id="@+id/request2"
-            android:textSize="20dp"
-            android:textColor="#000000"
+
+        <LinearLayout
+            android:id="@+id/ll_edit_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/specific_info_plz_2"
-            app:layout_constraintStart_toEndOf="@id/request"
-            app:layout_constraintBottom_toTopOf="@+id/select_your_situation"
-            android:layout_marginBottom="19dp"
-            tools:ignore="DuplicateIds" />
-
-
-
-        <TextView
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:id="@+id/select_your_situation"
-            android:textColor="#000000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/select_your_situation"
             android:layout_marginStart="36dp"
+            android:layout_marginBottom="19dp"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/checkbox_stairs_lift"
-            app:layout_constraintVertical_bias="0.57" />
+            app:layout_constraintTop_toBottomOf="@id/hello_name">
+
+            <TextView
+                style="@style/font_request"
+                android:text="@string/request"
+                android:textColor="@color/skyblue"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/font_request"
+                android:text="@string/specific_info_plz_2" />
+        </LinearLayout>
 
 
-
-        <ImageView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_select_situation"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
             android:background="@drawable/background_request"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.349"
-            tools:ignore="MissingConstraints"  />
+            android:paddingHorizontal="36dp"
+            android:paddingTop="21dp"
+            android:paddingBottom="6dp"
+            app:layout_constraintTop_toBottomOf="@id/ll_edit_title">
 
-        <CheckBox
-            android:id="@+id/checkbox_stairs_lift"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stairs_lift"
-            android:textSize="20sp"
-            android:theme="@style/signin_checkbox"
-            android:layout_marginStart="36dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.349"
-            tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/tv_select_your_situation"
+                style="@style/font_request"
+                android:text="@string/select_your_situation"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:id="@+id/checkbox_public_transport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/public_transport"
-            android:textSize="20sp"
-            android:layout_marginStart="36dp"
-            android:theme="@style/signin_checkbox"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.405"
-            tools:ignore="MissingConstraints" />
+            <LinearLayout
+                android:id="@+id/ll_left_checkboxes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ll_right_checkboxes"
+                app:layout_constraintTop_toBottomOf="@id/tv_select_your_situation">
 
-        <CheckBox
-            android:id="@+id/checkbox_etc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/etc"
-            android:textSize="20sp"
-            android:layout_marginStart="36dp"
-            android:theme="@style/signin_checkbox"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.465"
-            tools:ignore="MissingConstraints" />
+                <CheckBox
+                    android:id="@+id/checkbox_stairs_lift"
+                    style="@style/font_request"
+                    android:text="@string/stairs_lift"
+                    android:textSize="15sp"
+                    android:theme="@style/signin_checkbox"
+                    tools:ignore="MissingConstraints" />
 
-        <CheckBox
-            android:id="@+id/checkbox_walks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="188dp"
-            android:text="@string/sidewalks_crosswalks"
-            android:textSize="20sp"
-            android:theme="@style/signin_checkbox"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.348"
-            tools:ignore="MissingConstraints" />
+                <CheckBox
+                    android:id="@+id/checkbox_public_transport"
+                    style="@style/font_request"
+                    android:text="@string/public_transport"
+                    android:textSize="15sp"
+                    android:theme="@style/signin_checkbox"
+                    tools:ignore="MissingConstraints" />
 
-        <CheckBox
-            android:id="@+id/checkbox_communication_problem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="188dp"
-            android:text="@string/communication_problem"
-            android:textSize="20sp"
-            android:theme="@style/signin_checkbox"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.395"
-            tools:ignore="MissingConstraints" />
+                <CheckBox
+                    android:id="@+id/checkbox_etc"
+                    style="@style/font_request"
+                    android:textSize="15sp"
+                    android:text="@string/etc"
+                    android:theme="@style/signin_checkbox"
+                    tools:ignore="MissingConstraints" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_right_checkboxes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@id/ll_left_checkboxes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_select_your_situation">
+
+                <CheckBox
+                    android:id="@+id/checkbox_walks"
+                    style="@style/font_request"
+                    android:textSize="15sp"
+                    android:text="@string/sidewalks_crosswalks"
+                    android:theme="@style/signin_checkbox"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.348"
+                    tools:ignore="MissingConstraints" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_communication_problem"
+                    style="@style/font_request"
+                    android:textSize="15sp"
+                    android:text="@string/communication_problem"
+                    android:theme="@style/signin_checkbox"
+                    tools:ignore="MissingConstraints" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:textColor="#63CCF9"
-            android:id="@+id/sp_info_plz_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/tv_sp_info_plz_1"
+            android:layout_marginStart="36dp"
             android:text="@string/specific_info_plz_1"
-            android:layout_marginStart="36dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.57" />
+            android:textColor="@color/skyblue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            style="@style/font_request"
+            android:layout_marginTop="22dp"
+            app:layout_constraintTop_toBottomOf="@id/cl_select_situation"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/sp_info_plz_2"
-            android:textSize="20dp"
-            android:textColor="#000000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/tv_sp_info_plz_2"
             android:text="@string/specific_info_plz_2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/sp_info_plz_1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.57" />
+            android:textSize="20sp"
+            style="@style/font_request"
+            app:layout_constraintBottom_toBottomOf="@id/tv_sp_info_plz_1"
+            app:layout_constraintStart_toEndOf="@+id/tv_sp_info_plz_1"
+            app:layout_constraintTop_toTopOf="@id/tv_sp_info_plz_1" />
 
         <EditText
             android:id="@+id/specific_info"
             android:layout_width="match_parent"
-            android:layout_height="181dp"
-            android:background="@drawable/all_edge"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@id/btn_ok"
-            android:layout_marginBottom="19dp"
+            android:layout_height="0dp"
             android:layout_marginStart="36dp"
             android:layout_marginEnd="36dp"
+            android:layout_marginBottom="19dp"
+            android:layout_marginTop="11dp"
+            android:background="@drawable/ic_bg_et_detail"
             android:gravity="top"
             android:padding="16dp"
-            tools:ignore="NotSibling" />
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_sp_info_plz_1"
+            app:layout_constraintBottom_toTopOf="@id/btn_ok"
+            tools:ignore="NotSibling"
+            android:inputType="text"
+            android:hint="@string/request_ex_et"
+            />
 
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_ok"
-            style="@style/btn"
-            android:layout_marginHorizontal="0dp"
+            style="@style/btn_material"
+            android:text="@string/ok"
             tools:ignore="MissingConstraints"
-            android:layout_marginStart="36dp"
-            android:layout_marginEnd="36dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/font_btn"
-                android:text="@string/ok"
-                />
-        </LinearLayout>
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

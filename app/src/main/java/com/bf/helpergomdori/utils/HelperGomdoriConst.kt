@@ -12,6 +12,7 @@ const val SIGNIN_TAG = "SIGNIN_TAG"
 const val MAIN_TAG = "MAIN_TAG"
 const val WEBSOCKET_TAG = "STOMP"
 const val PUSH_TAG = "PUSH_TAG"
+const val REQUEST_TAG = "REQUEST_TAG"
 
 /**
  * DataStore
@@ -23,6 +24,11 @@ const val DATA_STORE_FILE_NAME = "user_info.pb"
  * Request Code
  */
 const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+
+/**
+ * Intent Key
+ */
+const val MAIN_TO_REQUEST = "MAIN_TO_REQUEST"
 
 /**
  * MainActivity

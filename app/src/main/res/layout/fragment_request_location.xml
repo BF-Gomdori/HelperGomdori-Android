@@ -25,27 +25,28 @@
 
         <TextView
             android:id="@+id/current_location"
-            android:textSize="20dp"
+            android:textSize="20sp"
+            style="@style/font_request"
             android:textStyle="bold"
-            android:textColor="#63CCF9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textColor="@color/skyblue"
             android:paddingHorizontal="36dp"
             android:text="@string/current_location"
             app:layout_constraintBottom_toTopOf="@+id/current_location_plz"
             android:layout_marginBottom="20dp"
-            tools:ignore="MissingConstraints,UnknownId" />
+            app:layout_constraintTop_toBottomOf="@id/map_fragment"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="56dp"
+             />
 
         <TextView
             android:id="@+id/current_location_plz"
-            android:textSize="20dp"
-            android:textColor="#000000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            style="@style/font_request"
             android:paddingHorizontal="36dp"
             android:text="@string/current_location_plz"
             app:layout_constraintBottom_toTopOf="@+id/et_location"
             android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints,UnknownId" />
 
         <EditText
@@ -57,6 +58,7 @@
             android:layout_marginHorizontal="36dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/btn_request"
+            android:imeOptions="actionDone"
             />
 
         <com.google.android.material.button.MaterialButton

@@ -17,6 +17,7 @@ import com.bf.helpergomdori.ui.request.RequestActivity
 import com.bf.helpergomdori.utils.CAMERA_ZOOM_DENSITY
 import com.bf.helpergomdori.utils.DensityUtil
 import com.bf.helpergomdori.utils.MAIN_TAG
+import com.bf.helpergomdori.utils.MAIN_TO_REQUEST
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.naver.maps.geometry.LatLng
@@ -74,6 +75,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
 
             btnRequest.setOnClickListener {
                 val intent =Intent(this@MainActivity, RequestActivity::class.java)
+                intent.putExtra(MAIN_TO_REQUEST, viewModel.currentLocation)
                 startActivity(intent)
             }
         }

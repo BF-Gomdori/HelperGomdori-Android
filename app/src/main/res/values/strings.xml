@@ -46,11 +46,12 @@
     <string name="public_transport">대중교통</string>
     <string name="communication_problem">의사소통 문제</string>
     <string name="etc">기타</string>
-    <string name="hello_name">안녕하세요         님,</string>
+    <string name="hello_name">안녕하세요 %s님,</string>
     <string name="request">요청사항</string>
     <string name="additional_info">특이사항</string>
     <string name="select_your_situation">도움이 필요한 상황을 선택해주세요.</string>
     <string name="bf_start">베어프렌즈 출발</string>
+    <string name="request_ex_et">ex) 택시 타는 것을 도와주세요</string>
 
     <!-- request location -->
     <string name="current_location">강남구 테헤란로 329 삼흥빌딩</string>

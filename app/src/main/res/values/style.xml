@@ -2,7 +2,7 @@
 <resources>
     <style name="font_title">
         <item name="android:textSize">30sp</item>
-        <item name="fontFamily">@font/notosans_kr_regular</item>
+        <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:textStyle">bold</item>
@@ -149,5 +149,13 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <style name="font_request">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 
 </resources>

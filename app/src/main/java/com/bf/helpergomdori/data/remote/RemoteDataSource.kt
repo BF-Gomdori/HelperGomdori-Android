@@ -6,6 +6,7 @@ import com.bf.helpergomdori.model.remote.body.NotificationBody
 import com.bf.helpergomdori.model.remote.body.PostUser
 import com.bf.helpergomdori.model.remote.body.SigninBody
 import com.bf.helpergomdori.model.remote.response.*
+import com.bf.helpergomdori.model.websocket.Location
 import com.bf.helpergomdori.utils.HEADER_KEY
 import com.bf.helpergomdori.utils.HEADER_TOKEN_KEY
 import kotlinx.coroutines.flow.Flow
@@ -40,6 +41,13 @@ interface RemoteDataSource {
      * WebSocket
      */
     suspend fun getWebSocket(@Header(HEADER_KEY) header: String)
+
+
+    /**
+     * Request
+     */
+    suspend fun postRequestInfo(@Header(HEADER_KEY) header: String, @Body location: Location): Flow<RequestInfoResponse>
+
 
     /**
      * FCM

@@ -6,6 +6,7 @@ import com.bf.helpergomdori.model.remote.body.NotificationBody
 import com.bf.helpergomdori.model.remote.body.PostUser
 import com.bf.helpergomdori.model.remote.body.SigninBody
 import com.bf.helpergomdori.model.remote.response.*
+import com.bf.helpergomdori.model.websocket.Location
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -65,6 +66,16 @@ class RemoteDataSourceImpl @Inject constructor(
     override suspend fun getWebSocket(header: String) {
         apiService.getWebSocket(header)
     }
+
+    /**
+     * Request
+     */
+    override suspend fun postRequestInfo(
+        header: String,
+        location: Location
+    ): Flow<RequestInfoResponse> = flow {
+        emit(apiService.postRequestInfo(header, location))
+    }.flowOn(ioDispatcher)
 
     /**
      * FCM

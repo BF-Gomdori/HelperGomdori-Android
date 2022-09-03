@@ -82,6 +82,8 @@ class MainBfDialog(private val ping: BfDetailPing) : DialogFragment() {
                 .placeholder(placeholder)
                 .circleCrop()
                 .into(imgProfile)
+
+            btnResponse.visibility = View.GONE
         }
     }
 

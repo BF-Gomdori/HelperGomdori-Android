@@ -33,5 +33,5 @@ enum class EnterType{
 data class Location(
     var x: Double,
     var y: Double
-)
+): Serializable
 
