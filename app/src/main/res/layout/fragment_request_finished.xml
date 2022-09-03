@@ -61,13 +61,13 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_go_thanks"
-            style="@style/btn_material"
+            style="@style/btn_material4"
             android:text="@string/say_thank_you"
+            android:textFontWeight="700"
             app:layout_constraintBottom_toTopOf="@id/btn_go_to_home"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/color_help_btn"
+            android:layout_marginHorizontal="24dp"
             tools:ignore="MissingConstraints"
-            android:background="@null"
             />
 
         <com.google.android.material.button.MaterialButton

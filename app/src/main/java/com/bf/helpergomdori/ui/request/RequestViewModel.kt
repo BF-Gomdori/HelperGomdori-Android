@@ -6,10 +6,13 @@ import javax.inject.Inject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
+import com.bf.helpergomdori.base.BaseViewModel
 import com.bf.helpergomdori.data.repository.MainMapRepository
 import com.bf.helpergomdori.model.remote.response.RequestInfoResponse
+import com.bf.helpergomdori.model.websocket.HelpRequest
 import com.bf.helpergomdori.model.websocket.Location
 import com.bf.helpergomdori.utils.REQUEST_TAG
+import com.bf.helpergomdori.utils.WebSocketUtil
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import okhttp3.internal.notify
@@ -17,7 +20,7 @@ import okhttp3.internal.notify
 @HiltViewModel
 class RequestViewModel @Inject constructor(
     private val mainMapRepository: MainMapRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     private var _currentLocation: Location? = null
     val currentLocation get() = _currentLocation
@@ -33,6 +36,8 @@ class RequestViewModel @Inject constructor(
 
     private var _detailAddress: String = ""
     val detailAddress get() = _detailAddress
+
+    private val websocket: WebSocketUtil = WebSocketUtil(this)
 
     /**
      * Api Process
@@ -50,6 +55,20 @@ class RequestViewModel @Inject constructor(
     }
 
     /**
+     * WebSocket
+     */
+    fun sendHelpMessage(){
+        websocket.setCurrentLocation(currentLocation!!)
+        val helpRequest = HelpRequest(
+            helpeeJwt = PrefsUtil.getJwt(),
+            requestType = needSituations[0],
+            requestDetail = specificRequest,
+            detailLocation = detailAddress
+        )
+        websocket.sendHelpMessage(helpRequest)
+    }
+
+    /**
      * Get & Set
      */
     fun setCurrentLocation(location: Location) {
@@ -62,6 +81,7 @@ class RequestViewModel @Inject constructor(
 
     fun setNeedSituations(list: List<String>) {
         _needSituations = list
+        Log.d(REQUEST_TAG, "setNeedSituations: ${needSituations}")
     }
 
     fun setDetailAddress(address: String) {

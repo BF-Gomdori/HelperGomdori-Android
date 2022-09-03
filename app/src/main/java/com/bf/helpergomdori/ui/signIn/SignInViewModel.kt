@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.UserInfo
+import com.bf.helpergomdori.base.BaseViewModel
 import com.bf.helpergomdori.data.repository.LoginRepository
 import com.bf.helpergomdori.data.repository.UserInfoRepository
 import com.bf.helpergomdori.model.local.HelpType
@@ -23,7 +24,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val remoteRepository: LoginRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     private var _newUser = PostUser()
     val newUser get() = _newUser

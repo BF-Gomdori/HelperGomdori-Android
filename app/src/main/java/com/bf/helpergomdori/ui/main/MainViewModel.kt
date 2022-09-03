@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
+import com.bf.helpergomdori.base.BaseViewModel
 import com.bf.helpergomdori.data.repository.MainMapRepository
 import com.bf.helpergomdori.model.local.*
 import com.bf.helpergomdori.model.websocket.Location
@@ -20,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val mainMapRepository: MainMapRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     private var _currentLocation = Location(0.0, 0.0)
     val currentLocation get() = _currentLocation
@@ -53,7 +54,7 @@ class MainViewModel @Inject constructor(
     /**
      * Api Process
      */
-    fun sendStartWebSocket(){
+    fun sendWebSocketStarted(){
         val jwt = PrefsUtil.getJwt()
         viewModelScope.launch {
             mainMapRepository.getSendWebSocket(jwt)

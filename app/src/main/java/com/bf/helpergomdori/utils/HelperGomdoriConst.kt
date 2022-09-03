@@ -46,7 +46,7 @@ const val APP_NAME_PARAM = "appname"
 /**
  * Request
  */
-const val CAMERA_ZOOM_DENSITY_MORE = 16.8
+const val CAMERA_ZOOM_DENSITY_MORE = 17.5
 
 /**
  * Notification

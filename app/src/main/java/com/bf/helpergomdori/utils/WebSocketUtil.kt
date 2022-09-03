@@ -5,17 +5,19 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
+import com.bf.helpergomdori.base.BaseViewModel
 import com.bf.helpergomdori.model.local.HelpType
 import com.bf.helpergomdori.model.local.Ping
 import com.bf.helpergomdori.model.websocket.*
 import com.bf.helpergomdori.ui.main.MainViewModel
+import com.bf.helpergomdori.ui.request.RequestViewModel
 import com.google.gson.Gson
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
 import ua.naiksoftware.stomp.dto.LifecycleEvent
 import ua.naiksoftware.stomp.dto.StompHeader
 
-class WebSocketUtil(private val viewModel: MainViewModel) {
+class WebSocketUtil(private val viewModel: BaseViewModel) {
     private val WEBSOCKET_URL =
         "ws://ec2-3-38-49-6.ap-northeast-2.compute.amazonaws.com:8080/dori"
     private val TOPIC_DEST_PATH = "/map/main"
@@ -25,6 +27,18 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
     private lateinit var stompClient: StompClient
     private var _currentLocation: Location? = null
     val currentLocation get() = _currentLocation
+
+    private lateinit var mainViewModel:MainViewModel
+    private lateinit var requestViewModel: RequestViewModel
+
+    init {
+        if (viewModel is MainViewModel){
+            mainViewModel = viewModel
+        }
+        if (viewModel is RequestViewModel) {
+            requestViewModel = viewModel
+        }
+    }
 
 
     fun runStomp() {
@@ -67,7 +81,9 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
 
             Handler(Looper.getMainLooper()).postDelayed(
                 {
-                    viewModel.sendStartWebSocket()
+                    if (this::mainViewModel.isInitialized) {
+                        mainViewModel.sendWebSocketStarted()
+                    }
                 },
                 500
             )
@@ -102,7 +118,9 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
             data.time,
             data.jwt
         )
-        viewModel.receivePing(ping)
+        if (this::mainViewModel.isInitialized) {
+            mainViewModel.receivePing(ping)
+        }
     }
 
     private fun sendEnterMessage() {
@@ -165,6 +183,9 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
     }
 
     fun sendHelpMessage(helpRequest: HelpRequest) {
+        if (!this::stompClient.isInitialized){
+            runStomp()
+        }
         if (currentLocation != null && this::stompClient.isInitialized) {
             val data = WebSocketSendData(
                 type = EnterType.HELP.name,

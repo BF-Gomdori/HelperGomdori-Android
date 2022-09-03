@@ -32,6 +32,7 @@ class RequestLocationFragment :
         binding.apply {
             btnRequest.setOnClickListener {
                 viewModel.setDetailAddress(etAddress.text.toString())
+                viewModel.sendHelpMessage()
                 navController?.navigate(R.id.action_requestLocationFragment_to_requestIngFragment)
             }
         }
