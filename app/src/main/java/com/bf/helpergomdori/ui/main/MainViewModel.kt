@@ -4,8 +4,11 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
+import com.bf.helpergomdori.base.BaseViewModel
 import com.bf.helpergomdori.data.repository.MainMapRepository
 import com.bf.helpergomdori.model.local.*
+import com.bf.helpergomdori.model.remote.response.HelpeeDetailPing
+import com.bf.helpergomdori.model.websocket.HelpRequest
 import com.bf.helpergomdori.model.websocket.Location
 import com.bf.helpergomdori.utils.*
 import com.bf.helpergomdori.utils.NotificationUtil.getFirebaseToken
@@ -20,7 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val mainMapRepository: MainMapRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     private var _currentLocation = Location(0.0, 0.0)
     val currentLocation get() = _currentLocation
@@ -48,12 +51,18 @@ class MainViewModel @Inject constructor(
 
     init {
         //postPush()
-        getUserCnt()
     }
 
     /**
      * Api Process
      */
+    fun sendWebSocketStarted(){
+        val jwt = PrefsUtil.getJwt()
+        viewModelScope.launch {
+            mainMapRepository.getSendWebSocket(jwt)
+        }
+    }
+
     fun getUserCnt(){
         viewModelScope.launch {
             mainMapRepository.getBfCntAndGomdoriCnt().runCatching {
@@ -101,7 +110,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun postPush() {
-        getFirebaseToken()
+        //getFirebaseToken()
         val token = PrefsUtil.getFirebaseToken()
         val jwt = PrefsUtil.getJwt()
         Log.d(PUSH_TAG, "postPush: $token, $jwt")
@@ -122,12 +131,17 @@ class MainViewModel @Inject constructor(
     }
 
     fun receivePing(ping: Ping) {
+        getUserCnt()
         Log.d(MAIN_TAG, "receivePing: $ping")
         if (ping.type == HelpType.GOMDORI) {
             addGomdoriList(ping)
         } else {
             addBfList(ping)
         }
+    }
+
+    fun sendAcceptedMessage(helpRequest: HelpRequest) {
+        webSocket.sendAcceptMessage(helpRequest)
     }
 
     /**

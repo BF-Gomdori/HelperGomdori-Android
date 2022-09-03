@@ -4,6 +4,7 @@ package com.bf.helpergomdori.ui.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
@@ -17,6 +18,7 @@ import com.bf.helpergomdori.ui.request.RequestActivity
 import com.bf.helpergomdori.utils.CAMERA_ZOOM_DENSITY
 import com.bf.helpergomdori.utils.DensityUtil
 import com.bf.helpergomdori.utils.MAIN_TAG
+import com.bf.helpergomdori.utils.MAIN_TO_REQUEST
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.naver.maps.geometry.LatLng
@@ -52,7 +54,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         mapFragment.getMapAsync(this)
 
         if (PrefsUtil.getHelpType() == HelpType.BF) {
-            //todo binding.btnRequest.visibility = View.GONE
+            binding.btnRequest.visibility = View.GONE
         }
     }
 
@@ -74,6 +76,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
 
             btnRequest.setOnClickListener {
                 val intent =Intent(this@MainActivity, RequestActivity::class.java)
+                intent.putExtra(MAIN_TO_REQUEST, viewModel.currentLocation)
                 startActivity(intent)
             }
         }
@@ -99,7 +102,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 selectedGomdori.collect {
                     if (it != null) {
                         Log.d(MAIN_TAG, "selectedGomdori: ${it}")
-                        val profileDialog = MainGomdoriDialog(it).apply {
+                        val profileDialog = MainGomdoriDialog(it, viewModel).apply {
                             isCancelable = true
                         }
                         profileDialog.show(supportFragmentManager, "ProfileDialog")

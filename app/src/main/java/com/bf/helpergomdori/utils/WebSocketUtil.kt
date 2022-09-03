@@ -1,19 +1,23 @@
 package com.bf.helpergomdori.utils
 
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
+import com.bf.helpergomdori.base.BaseViewModel
 import com.bf.helpergomdori.model.local.HelpType
 import com.bf.helpergomdori.model.local.Ping
 import com.bf.helpergomdori.model.websocket.*
 import com.bf.helpergomdori.ui.main.MainViewModel
+import com.bf.helpergomdori.ui.request.RequestViewModel
 import com.google.gson.Gson
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
 import ua.naiksoftware.stomp.dto.LifecycleEvent
 import ua.naiksoftware.stomp.dto.StompHeader
 
-class WebSocketUtil(private val viewModel: MainViewModel) {
+class WebSocketUtil(private val viewModel: BaseViewModel) {
     private val WEBSOCKET_URL =
         "ws://ec2-3-38-49-6.ap-northeast-2.compute.amazonaws.com:8080/dori"
     private val TOPIC_DEST_PATH = "/map/main"
@@ -23,6 +27,18 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
     private lateinit var stompClient: StompClient
     private var _currentLocation: Location? = null
     val currentLocation get() = _currentLocation
+
+    private lateinit var mainViewModel: MainViewModel
+    private lateinit var requestViewModel: RequestViewModel
+
+    init {
+        if (viewModel is MainViewModel) {
+            mainViewModel = viewModel
+        }
+        if (viewModel is RequestViewModel) {
+            requestViewModel = viewModel
+        }
+    }
 
 
     fun runStomp() {
@@ -62,6 +78,16 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
                 Log.i(WEBSOCKET_TAG, "receiveExistedMessage: ${it?.payload}")
                 convertReceivedDataToPing(it.payload)
             }
+
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    if (this::mainViewModel.isInitialized) {
+                        mainViewModel.sendWebSocketStarted()
+                    }
+                },
+                500
+            )
+
         } catch (e: Exception) {
             Log.e(WEBSOCKET_TAG, "receiveExistedMessage: ${e.printStackTrace()}")
             return
@@ -92,7 +118,13 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
             data.time,
             data.jwt
         )
-        viewModel.receivePing(ping)
+        if (this::mainViewModel.isInitialized && data.type.convertEnterToHelpType() != HelpType.NONE) {
+            mainViewModel.receivePing(ping)
+        }
+
+        if (this::requestViewModel.isInitialized && data.type.convertEnterToHelpType() == HelpType.NONE) {
+            requestViewModel.getAcceptedMessage(data.jwt, data.location)
+        }
     }
 
     private fun sendEnterMessage() {
@@ -155,6 +187,9 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
     }
 
     fun sendHelpMessage(helpRequest: HelpRequest) {
+        if (!this::stompClient.isInitialized) {
+            runStomp()
+        }
         if (currentLocation != null && this::stompClient.isInitialized) {
             val data = WebSocketSendData(
                 type = EnterType.HELP.name,
@@ -163,6 +198,22 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
                 helpRequest = helpRequest
             )
             Log.d(WEBSOCKET_TAG, "sendHelpMessage = ${Gson().toJson(data)}")
+            stompClient.send(SEND_DEST_PATH, Gson().toJson(data)).subscribe()
+        }
+    }
+
+    fun sendAcceptMessage(helpRequest: HelpRequest) {
+        if (!this::stompClient.isInitialized) {
+            runStomp()
+        }
+        if (currentLocation != null && this::stompClient.isInitialized) {
+            val data = WebSocketSendData(
+                type = EnterType.ACCEPT.name,
+                jwt = PrefsUtil.getWebSocketJwt(),
+                location = currentLocation!!,
+                helpRequest = helpRequest
+            )
+            Log.d(WEBSOCKET_TAG, "sendAcceptMessage = ${Gson().toJson(data)}")
             stompClient.send(SEND_DEST_PATH, Gson().toJson(data)).subscribe()
         }
     }

@@ -12,6 +12,7 @@ const val SIGNIN_TAG = "SIGNIN_TAG"
 const val MAIN_TAG = "MAIN_TAG"
 const val WEBSOCKET_TAG = "STOMP"
 const val PUSH_TAG = "PUSH_TAG"
+const val REQUEST_TAG = "REQUEST_TAG"
 
 /**
  * DataStore
@@ -25,7 +26,12 @@ const val DATA_STORE_FILE_NAME = "user_info.pb"
 const val LOCATION_PERMISSION_REQUEST_CODE = 1000
 
 /**
- * MainActivity
+ * Intent Key
+ */
+const val MAIN_TO_REQUEST = "MAIN_TO_REQUEST"
+
+/**
+ * Main
  */
 const val CAMERA_ZOOM_DENSITY = 15.5
 const val NAVER_MAP_SCHEME_BASE_URL = "nmap://route/walk?" // 도보 길찾기
@@ -36,6 +42,11 @@ const val DLAT_PARAM = "dlat"
 const val DLNG_PARRAM = "dlng"
 const val DNAME_PARAM = "dname"
 const val APP_NAME_PARAM = "appname"
+
+/**
+ * Request
+ */
+const val CAMERA_ZOOM_DENSITY_MORE = 17.5
 
 /**
  * Notification

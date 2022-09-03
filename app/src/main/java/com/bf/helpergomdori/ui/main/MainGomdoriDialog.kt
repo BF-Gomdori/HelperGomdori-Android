@@ -21,7 +21,9 @@ import com.bf.helpergomdori.utils.*
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class MainGomdoriDialog(private val ping: GomdoriDetailPing) : DialogFragment() {
+class MainGomdoriDialog(
+    private val ping: GomdoriDetailPing, private val viewModel: MainViewModel
+) : DialogFragment() {
 
     private var _binding: DialogMainProfileBinding? = null
     private val binding get() = _binding!!
@@ -45,6 +47,7 @@ class MainGomdoriDialog(private val ping: GomdoriDetailPing) : DialogFragment() 
 
         binding.btnResponse.setOnClickListener {
             connectNaverMapScheme()
+            viewModel.sendAcceptedMessage(ping.helpeeDetailPing.helpRequest)
         }
 
         binding.btnX.setOnClickListener {

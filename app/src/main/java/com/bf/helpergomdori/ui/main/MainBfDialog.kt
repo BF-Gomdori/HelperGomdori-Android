@@ -34,7 +34,7 @@ class MainBfDialog(private val ping: BfDetailPing) : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = DialogMainProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -82,6 +82,8 @@ class MainBfDialog(private val ping: BfDetailPing) : DialogFragment() {
                 .placeholder(placeholder)
                 .circleCrop()
                 .into(imgProfile)
+
+            btnResponse.visibility = View.GONE
         }
     }
 
