@@ -48,7 +48,6 @@ class MainViewModel @Inject constructor(
 
     init {
         //postPush()
-        getUserCnt()
     }
 
     /**
@@ -122,6 +121,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun receivePing(ping: Ping) {
+        getUserCnt()
         Log.d(MAIN_TAG, "receivePing: $ping")
         if (ping.type == HelpType.GOMDORI) {
             addGomdoriList(ping)
