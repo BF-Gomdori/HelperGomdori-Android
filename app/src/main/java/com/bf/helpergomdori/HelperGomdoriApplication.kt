@@ -32,5 +32,6 @@ class HelperGomdoriApplication: Application() {
             applicationContext,
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         )
+        NotificationUtil.getFirebaseToken()
     }
 }

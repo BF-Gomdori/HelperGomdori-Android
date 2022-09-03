@@ -19,5 +19,7 @@ class MainMapRepository @Inject constructor(
 
     suspend fun getHelperPing(header: String): Flow<HelperDetailPing> = remoteDataSource.getHelperPing(header)
 
+    suspend fun getSendWebSocket(header: String): Void = remoteDataSource.getWebSocket(header)
+
     suspend fun postPush(header: String, body: NotificationBody): NotificationResponse = remoteDataSource.postPush(header, body)
 }

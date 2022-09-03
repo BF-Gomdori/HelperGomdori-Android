@@ -42,6 +42,11 @@ interface ApiService {
     @GET("/api/helper/ping")
     suspend fun getHelperPing(@Header(HEADER_KEY) header: String): HelperDetailPing
 
+    /**
+     * WebSocket
+     */
+    @GET("/send")
+    suspend fun getWebSocket(@Header(HEADER_KEY) header: String): Void
 
     /**
      * FCM

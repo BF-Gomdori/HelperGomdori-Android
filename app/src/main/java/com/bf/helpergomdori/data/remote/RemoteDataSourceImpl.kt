@@ -58,6 +58,17 @@ class RemoteDataSourceImpl @Inject constructor(
         emit(apiService.getHelperPing(headers))
     }.flowOn(ioDispatcher)
 
+
+    /**
+     * WebSocket
+     */
+    override suspend fun getWebSocket(header: String): Void {
+        return apiService.getWebSocket(header)
+    }
+
+    /**
+     * FCM
+     */
     override suspend fun postPush(header: String, body: NotificationBody): NotificationResponse {
         return apiService.postPush(header, body)
     }

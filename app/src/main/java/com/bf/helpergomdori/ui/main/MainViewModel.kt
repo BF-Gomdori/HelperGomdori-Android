@@ -53,6 +53,13 @@ class MainViewModel @Inject constructor(
     /**
      * Api Process
      */
+    fun sendStartWebSocket(){
+        val jwt = PrefsUtil.getJwt()
+        viewModelScope.launch {
+            mainMapRepository.getSendWebSocket(jwt)
+        }
+    }
+
     fun getUserCnt(){
         viewModelScope.launch {
             mainMapRepository.getBfCntAndGomdoriCnt().runCatching {

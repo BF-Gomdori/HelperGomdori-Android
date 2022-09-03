@@ -62,6 +62,7 @@ class WebSocketUtil(private val viewModel: MainViewModel) {
                 Log.i(WEBSOCKET_TAG, "receiveExistedMessage: ${it?.payload}")
                 convertReceivedDataToPing(it.payload)
             }
+            viewModel.sendStartWebSocket()
         } catch (e: Exception) {
             Log.e(WEBSOCKET_TAG, "receiveExistedMessage: ${e.printStackTrace()}")
             return
