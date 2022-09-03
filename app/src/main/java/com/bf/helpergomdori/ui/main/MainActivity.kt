@@ -11,7 +11,7 @@ import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseActivity
 import com.bf.helpergomdori.databinding.ActivityMainBinding
 import com.bf.helpergomdori.model.local.HelpType
-import com.bf.helpergomdori.model.remote.response.Ping
+import com.bf.helpergomdori.model.local.Ping
 import com.bf.helpergomdori.ui.mypage.MypageActivity
 import com.bf.helpergomdori.ui.request.RequestActivity
 import com.bf.helpergomdori.utils.CAMERA_ZOOM_DENSITY
@@ -41,7 +41,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         }
         initView()
         setListener()
-        //observeViewModel()
     }
 
 
@@ -100,7 +99,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 selectedGomdori.collect {
                     if (it != null) {
                         Log.d(MAIN_TAG, "selectedGomdori: ${it}")
-                        val profileDialog = MainProfileDialog(it).apply {
+                        val profileDialog = MainGomdoriDialog(it).apply {
                             isCancelable = true
                         }
                         profileDialog.show(supportFragmentManager, "ProfileDialog")
@@ -113,7 +112,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 selectedBf.collect {
                     if (it != null) {
                         Log.d(MAIN_TAG, "selectedBf: ${it}")
-                        val profileDialog = MainProfileDialog(it).apply {
+                        val profileDialog = MainBfDialog(it).apply {
                             isCancelable = true
                         }
                         profileDialog.show(supportFragmentManager, "ProfileDialog")
@@ -121,10 +120,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                     }
                 }
             }
+            
+            lifecycleScope.launchWhenCreated { 
+                bfCnt.collect {
+                    Log.d(MAIN_TAG, "observeBfCnt: ${it}")
+                    binding.bfCnt = it
+                }
+            }
+
+            lifecycleScope.launchWhenCreated {
+                gomdoriCnt.collect{
+                    Log.d(MAIN_TAG, "observeGomdoriCnt: ${it}")
+                    binding.gomdoriCnt = it
+                }
+            }
         }
     }
 
-    private fun putGomdoriMarker(gomdoriList: MutableList<Ping>) {
+    private fun putGomdoriMarker(gomdoriList: List<Ping>) {
         gomdoriList.forEach { ping ->
             val gomdori = Marker().apply {
                 position = LatLng(ping.location.x, ping.location.y)
@@ -135,13 +148,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 map = naverMap
             }
             gomdori.setOnClickListener {
-                //todo getapi
+                viewModel.getGomdoriPing(ping.jwt, ping.location.x, ping.location.y)
                 true
             }
         }
     }
 
-    private fun putBfMarker(bfList: MutableList<Ping>) {
+    private fun putBfMarker(bfList: List<Ping>) {
         bfList.forEach { ping ->
             val bf = Marker().apply {
                 position = LatLng(ping.location.x, ping.location.y)
@@ -152,7 +165,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 map = naverMap
             }
             bf.setOnClickListener {
-                //viewModel.setSelectedBf(profileBf)
+                Log.d(MAIN_TAG, "click bf : ${ping.jwt}")
+                viewModel.getBfPing(ping.jwt, ping.location.x, ping.location.y)
                 true
             }
         }

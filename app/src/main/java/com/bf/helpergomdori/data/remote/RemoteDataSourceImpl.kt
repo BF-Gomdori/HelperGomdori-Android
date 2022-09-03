@@ -42,21 +42,21 @@ class RemoteDataSourceImpl @Inject constructor(
     /**
      * Main 지도
      */
-    override suspend fun getHelpAccepted(authorization: String, token: String) {
-        return apiService.getHelpAccepted(authorization, token)
+    override suspend fun getHelpAccepted(headers: Map<String, String>) {
+        return apiService.getHelpAccepted(headers)
     }
 
     override suspend fun getBfCntAndGomdoriCnt(): Flow<UserCnt> = flow {
         emit(apiService.getBfCntAndGomdoriCnt())
-    }
+    }.flowOn(ioDispatcher)
 
-    override suspend fun getHelpeePing(header: String): HelpeePing {
-        return apiService.getHelpeePing(header)
-    }
+    override suspend fun getHelpeePing(headers: String): Flow<HelpeeDetailPing> = flow {
+        emit(apiService.getHelpeePing(headers))
+    }.flowOn(ioDispatcher)
 
-    override suspend fun getHelperPing(header: String): HelperPing {
-        return apiService.getHelperPing(header)
-    }
+    override suspend fun getHelperPing(headers: String): Flow<HelperDetailPing> = flow {
+        emit(apiService.getHelperPing(headers))
+    }.flowOn(ioDispatcher)
 
     override suspend fun postPush(header: String, body: NotificationBody): NotificationResponse {
         return apiService.postPush(header, body)

@@ -14,7 +14,7 @@
             type="String"/>
         <variable
             name="age"
-            type="int" />
+            type="String" />
         <variable
             name="gender"
             type="com.bf.helpergomdori.model.local.Gender" />
@@ -108,7 +108,7 @@
                 android:layout_marginStart="2dp"
                 app:layout_constraintStart_toEndOf="@id/tv_name"
                 app:layout_constraintTop_toTopOf="@id/tv_name"
-                app:layout_constraintBottom_toBottomOf="@id/tv_name"/>
+                app:layout_constraintBottom_toBottomOf="@id/tv_name" />
 
             <TextView
                 android:id="@+id/tv_request"

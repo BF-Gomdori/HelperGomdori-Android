@@ -11,6 +11,7 @@ import com.bf.helpergomdori.utils.HEADER_TOKEN_KEY
 import kotlinx.coroutines.flow.Flow
 import retrofit2.http.Body
 import retrofit2.http.Header
+import retrofit2.http.HeaderMap
 import retrofit2.http.POST
 
 interface RemoteDataSource {
@@ -29,13 +30,13 @@ interface RemoteDataSource {
     /**
      * Main 지도
      */
-    suspend fun getHelpAccepted(@Header(HEADER_KEY) authorization: String, @Header(HEADER_TOKEN_KEY) token: String) // 도움 요청이 수락되었을 때 웹소켓으로 수락되었음을 받았을 때
+    suspend fun getHelpAccepted(@HeaderMap headers: Map<String, String>) // 도움 요청이 수락되었을 때 웹소켓으로 수락되었음을 받았을 때
 
     suspend fun getBfCntAndGomdoriCnt(): Flow<UserCnt> // 베프 숫자 & 곰돌이 숫자
 
-    suspend fun getHelpeePing(@Header(HEADER_KEY) header: String): HelpeePing
+    suspend fun getHelpeePing(@Header(HEADER_KEY) header: String): Flow<HelpeeDetailPing>
 
-    suspend fun getHelperPing(@Header(HEADER_KEY) header: String): HelperPing
+    suspend fun getHelperPing(@Header(HEADER_KEY) header: String): Flow<HelperDetailPing>
 
     /**
      * FCM
