@@ -31,6 +31,9 @@ class RequestViewModel @Inject constructor(
     private var _needSituations: List<String> = mutableListOf()
     val needSituations get() = _needSituations
 
+    private var _detailAddress: String = ""
+    val detailAddress get() = _detailAddress
+
     /**
      * Api Process
      */
@@ -59,5 +62,9 @@ class RequestViewModel @Inject constructor(
 
     fun setNeedSituations(list: List<String>) {
         _needSituations = list
+    }
+
+    fun setDetailAddress(address: String) {
+        _detailAddress = address
     }
 }

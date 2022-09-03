@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="name"
             type="String" />
@@ -190,6 +191,7 @@
             style="@style/btn_material"
             android:text="@string/ok"
             tools:ignore="MissingConstraints"
+            android:layout_marginHorizontal="36dp"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
