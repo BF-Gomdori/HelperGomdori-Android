@@ -16,4 +16,4 @@ data class NotificationData(
     val body: String = "",
     val image: String = "",
     val title: String = ""
-)
+): Serializable

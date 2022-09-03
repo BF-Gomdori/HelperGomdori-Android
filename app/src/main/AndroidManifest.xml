@@ -42,7 +42,7 @@
 
         <activity
             android:name=".ui.request.RequestActivity"
-            android:exported="true" >
+            android:exported="true">
 
         </activity>
 
@@ -70,13 +70,20 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".service.BfService"
+            android:exported="false"
+            android:enabled="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name_kor"
+            />
 
         <service
             android:name=".service.LocationService"
-            android:foregroundServiceType="location">
-        </service>
+            android:foregroundServiceType="location"/>
 
-        <service android:name=".service.BfPushService"
+        <service
+            android:name=".service.BfFirebaseService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
