@@ -28,11 +28,11 @@ class WebSocketUtil(private val viewModel: BaseViewModel) {
     private var _currentLocation: Location? = null
     val currentLocation get() = _currentLocation
 
-    private lateinit var mainViewModel:MainViewModel
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var requestViewModel: RequestViewModel
 
     init {
-        if (viewModel is MainViewModel){
+        if (viewModel is MainViewModel) {
             mainViewModel = viewModel
         }
         if (viewModel is RequestViewModel) {
@@ -118,8 +118,12 @@ class WebSocketUtil(private val viewModel: BaseViewModel) {
             data.time,
             data.jwt
         )
-        if (this::mainViewModel.isInitialized) {
+        if (this::mainViewModel.isInitialized && data.type.convertEnterToHelpType() != HelpType.NONE) {
             mainViewModel.receivePing(ping)
+        }
+
+        if (this::requestViewModel.isInitialized && data.type.convertEnterToHelpType() == HelpType.NONE) {
+            requestViewModel.getAcceptedMessage(data.jwt, data.location)
         }
     }
 
@@ -183,7 +187,7 @@ class WebSocketUtil(private val viewModel: BaseViewModel) {
     }
 
     fun sendHelpMessage(helpRequest: HelpRequest) {
-        if (!this::stompClient.isInitialized){
+        if (!this::stompClient.isInitialized) {
             runStomp()
         }
         if (currentLocation != null && this::stompClient.isInitialized) {
@@ -194,6 +198,22 @@ class WebSocketUtil(private val viewModel: BaseViewModel) {
                 helpRequest = helpRequest
             )
             Log.d(WEBSOCKET_TAG, "sendHelpMessage = ${Gson().toJson(data)}")
+            stompClient.send(SEND_DEST_PATH, Gson().toJson(data)).subscribe()
+        }
+    }
+
+    fun sendAcceptMessage(helpRequest: HelpRequest) {
+        if (!this::stompClient.isInitialized) {
+            runStomp()
+        }
+        if (currentLocation != null && this::stompClient.isInitialized) {
+            val data = WebSocketSendData(
+                type = EnterType.ACCEPT.name,
+                jwt = PrefsUtil.getWebSocketJwt(),
+                location = currentLocation!!,
+                helpRequest = helpRequest
+            )
+            Log.d(WEBSOCKET_TAG, "sendAcceptMessage = ${Gson().toJson(data)}")
             stompClient.send(SEND_DEST_PATH, Gson().toJson(data)).subscribe()
         }
     }

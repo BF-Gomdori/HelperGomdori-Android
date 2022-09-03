@@ -25,6 +25,9 @@ class RequestViewModel @Inject constructor(
     private var _currentLocation: Location? = null
     val currentLocation get() = _currentLocation
 
+    private var _bfLocation: MutableStateFlow<Location?> = MutableStateFlow(null)
+    val bfLocation get() = _bfLocation
+
     private var _requestInfo: MutableStateFlow<RequestInfoResponse?> = MutableStateFlow(null)
     val requestInfo get() = _requestInfo
 
@@ -66,6 +69,11 @@ class RequestViewModel @Inject constructor(
             detailLocation = detailAddress
         )
         websocket.sendHelpMessage(helpRequest)
+    }
+
+    fun getAcceptedMessage(jwt: String, location: Location) {
+        //todo api 요청해서 베프 정보 받아온 후 수락 or 거절 dialog 띄워주기
+        _bfLocation.value = location
     }
 
     /**

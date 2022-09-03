@@ -7,6 +7,8 @@ import com.bf.helpergomdori.HelperGomdoriApplication.Companion.PrefsUtil
 import com.bf.helpergomdori.base.BaseViewModel
 import com.bf.helpergomdori.data.repository.MainMapRepository
 import com.bf.helpergomdori.model.local.*
+import com.bf.helpergomdori.model.remote.response.HelpeeDetailPing
+import com.bf.helpergomdori.model.websocket.HelpRequest
 import com.bf.helpergomdori.model.websocket.Location
 import com.bf.helpergomdori.utils.*
 import com.bf.helpergomdori.utils.NotificationUtil.getFirebaseToken
@@ -136,6 +138,10 @@ class MainViewModel @Inject constructor(
         } else {
             addBfList(ping)
         }
+    }
+
+    fun sendAcceptedMessage(helpRequest: HelpRequest) {
+        webSocket.sendAcceptMessage(helpRequest)
     }
 
     /**

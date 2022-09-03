@@ -102,7 +102,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 selectedGomdori.collect {
                     if (it != null) {
                         Log.d(MAIN_TAG, "selectedGomdori: ${it}")
-                        val profileDialog = MainGomdoriDialog(it).apply {
+                        val profileDialog = MainGomdoriDialog(it, viewModel).apply {
                             isCancelable = true
                         }
                         profileDialog.show(supportFragmentManager, "ProfileDialog")
