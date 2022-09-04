@@ -3,6 +3,7 @@ package com.bf.helpergomdori.utils
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.NotificationManager.IMPORTANCE_HIGH
+import android.app.PendingIntent
 import android.content.Context
 import android.os.Build
 import android.util.Log
@@ -39,12 +40,14 @@ object NotificationUtil {
         }
     }
 
-    fun sendNotification(title: String, body: String) {
+    fun sendNotification(title: String, body: String, pendingIntent: PendingIntent) {
+
         val builder = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
 

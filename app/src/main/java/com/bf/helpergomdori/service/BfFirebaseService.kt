@@ -21,15 +21,16 @@ class BfFirebaseService : FirebaseMessagingService() {
         Log.d(PUSH_TAG, "onMessageReceived: ${message.from} ")
 
         if (message.notification != null) {
-            Log.d(PUSH_TAG, "Message data payload : ${message.notification} ")
+            Log.d(PUSH_TAG, "Message data payload : ${message.notification!!.title} ")
 
             val notification = message.notification!!
             try {
                 val title = notification.title ?: ""
                 val body = notification.body ?: ""
-                val notification = NotificationData(title,"", body)
-                val intent = Intent(BROADCAST_ACTION).apply {
-                    putExtra(BROADCAST, notification)
+                val data = NotificationData(title, body)
+                val intent = Intent().apply {
+                    action = BROADCAST_ACTION
+                    putExtra(BROADCAST, data)
                 }
                 sendBroadcast(intent)
             } catch (e: Exception) {
