@@ -20,6 +20,7 @@ import com.bf.helpergomdori.model.remote.response.DetailPingResponse
 import com.bf.helpergomdori.utils.*
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlin.system.exitProcess
 
 class MainBfDialog(private val ping: BfDetailPing) : DialogFragment() {
 
@@ -44,6 +45,7 @@ class MainBfDialog(private val ping: BfDetailPing) : DialogFragment() {
         initView()
 
         binding.btnResponse.setOnClickListener {
+            dismiss()
             connectNaverMapScheme()
         }
 

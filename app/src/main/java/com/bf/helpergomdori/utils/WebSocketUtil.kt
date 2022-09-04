@@ -112,19 +112,31 @@ class WebSocketUtil(private val viewModel: BaseViewModel) {
         val data = Gson().fromJson(payload, WebSocketReceiveData::class.java)
         //Log.i(WEBSOCKET_TAG, "data = $data")
 
-        val ping = Ping(
-            data.type.convertEnterToHelpType(),
-            data.location,
-            data.time,
-            data.jwt
-        )
+        if (this::mainViewModel.isInitialized && data.type == EnterType.QUIT.name) {
+            val ping = Ping(
+                HelpType.NONE,
+                data.location,
+                data.time,
+                data.jwt
+            )
+            mainViewModel.deletePing(ping)
+        }
+
+
         if (this::mainViewModel.isInitialized && data.type.convertEnterToHelpType() != HelpType.NONE) {
+            val ping = Ping(
+                data.type.convertEnterToHelpType(),
+                data.location,
+                data.time,
+                data.jwt
+            )
             mainViewModel.receivePing(ping)
         }
 
-        if (this::requestViewModel.isInitialized && data.type.convertEnterToHelpType() == HelpType.NONE) {
+        if (this::requestViewModel.isInitialized && data.type == EnterType.ACCEPT.name) {
             requestViewModel.getAcceptedMessage(data.jwt, data.location)
         }
+
     }
 
     private fun sendEnterMessage() {
@@ -216,6 +228,7 @@ class WebSocketUtil(private val viewModel: BaseViewModel) {
             Log.d(WEBSOCKET_TAG, "sendAcceptMessage = ${Gson().toJson(data)}")
             stompClient.send(SEND_DEST_PATH, Gson().toJson(data)).subscribe()
         }
+        stompClient.disconnect()
     }
 
 }
