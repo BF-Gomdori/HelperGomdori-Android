@@ -26,6 +26,7 @@ import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), OnMapReadyCallback {
@@ -35,6 +36,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
     private lateinit var naverMap: NaverMap
     lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    private var gomdoriMarkerList: MutableList<Marker> = mutableListOf()
+    private var bfMarkerList: MutableList<Marker> = mutableListOf()
+
 
     override fun createActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -43,6 +47,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         }
         initView()
         setListener()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(MAIN_TAG, "onRestart")
+        viewModel.startWebSocket()
+
     }
 
 
@@ -84,17 +95,34 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
 
     private fun observeViewModel() {
         viewModel.apply {
-            lifecycleScope.launchWhenCreated {
+            lifecycleScope.launchWhenStarted {
                 gomdoriList.collect{
                     Log.d(MAIN_TAG, "gomdoriList: ${it}")
                     if (this@MainActivity::naverMap.isInitialized) putGomdoriMarker(it)
                 }
             }
 
-            lifecycleScope.launchWhenCreated {
+            lifecycleScope.launchWhenStarted {
                 bfList.collect{
                     Log.d(MAIN_TAG, "bfList: ${it}")
                     if (this@MainActivity::naverMap.isInitialized) putBfMarker(it)
+                }
+            }
+
+            lifecycleScope.launchWhenStarted {
+                disconnectedGomdoriList.collect{
+                    if (this@MainActivity::naverMap.isInitialized) {
+                        deleteGomdoriMarker(it)
+                    } else {
+                        onMapReady(naverMap)
+                        deleteGomdoriMarker(it)
+                    }
+                }
+            }
+
+            lifecycleScope.launchWhenStarted {
+                disconnectedBfList.collect{
+                    if (this@MainActivity::naverMap.isInitialized) deleteBfMarker(it)
                 }
             }
 
@@ -150,6 +178,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 height = DensityUtil.dp2px(80f).toInt()
                 map = naverMap
             }
+            gomdoriMarkerList.add(gomdori)
             gomdori.setOnClickListener {
                 viewModel.getGomdoriPing(ping.jwt, ping.location.x, ping.location.y)
                 true
@@ -167,10 +196,34 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
                 height = DensityUtil.dp2px(65f).toInt()
                 map = naverMap
             }
+            bfMarkerList.add(bf)
             bf.setOnClickListener {
                 Log.d(MAIN_TAG, "click bf : ${ping.jwt}")
                 viewModel.getBfPing(ping.jwt, ping.location.x, ping.location.y)
                 true
+            }
+        }
+    }
+
+    private fun deleteGomdoriMarker(gomdoriList: List<Ping>){
+        gomdoriList.forEach { ping ->
+            Log.d(MAIN_TAG, "deleteGomdoriMarker: ${ping}")
+            val markersToRemove = gomdoriMarkerList.filter {
+                it.position.latitude == ping.location.x && it.position.longitude == ping.location.y
+            }
+            markersToRemove.forEach {
+                it.map = null
+            }
+        }
+    }
+
+    private fun deleteBfMarker(bfList: List<Ping>) {
+        bfList.forEach { ping ->
+            val markersToRemove = bfMarkerList.filter {
+                it.position.latitude == ping.location.x && it.position.longitude == ping.location.y
+            }
+            markersToRemove.forEach {
+                it.map = null
             }
         }
     }
@@ -183,7 +236,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
         if (getFusedLocationSource() != null) {
             naverMap.locationSource = getFusedLocationSource() // 내장 위치 추적 기능
             fusedLocationClient.lastLocation.addOnSuccessListener { currentLocation ->
-                Log.d(MAIN_TAG, "location : $currentLocation")
+                Log.d(MAIN_TAG, "last location : $currentLocation")
                 viewModel.setCurrentLocation(currentLocation.latitude, currentLocation.longitude)
                 viewModel.startWebSocket()
 

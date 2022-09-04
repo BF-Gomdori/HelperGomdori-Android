@@ -27,7 +27,7 @@ data class HelpRequest(
 )
 
 enum class EnterType{
-    ENTER, HELP, ACCEPT // ENTER: 비장애인, HELP : 장애인, ACCPET : 도움 수락했을 때
+    ENTER, HELP, ACCEPT, QUIT // ENTER: 비장애인, HELP : 장애인, ACCPET : 도움 수락했을 때, QUIT: 나갔을때
 }
 
 data class Location(

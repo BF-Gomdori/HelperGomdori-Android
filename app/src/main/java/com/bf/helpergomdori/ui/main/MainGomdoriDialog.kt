@@ -20,6 +20,7 @@ import com.bf.helpergomdori.model.remote.response.DetailPingResponse
 import com.bf.helpergomdori.utils.*
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlin.system.exitProcess
 
 class MainGomdoriDialog(
     private val ping: GomdoriDetailPing, private val viewModel: MainViewModel
@@ -46,8 +47,9 @@ class MainGomdoriDialog(
         initView()
 
         binding.btnResponse.setOnClickListener {
-            connectNaverMapScheme()
+            dismiss()
             viewModel.sendAcceptedMessage(ping.helpeeDetailPing.helpRequest)
+            connectNaverMapScheme()
         }
 
         binding.btnX.setOnClickListener {
@@ -101,5 +103,6 @@ class MainGomdoriDialog(
         val intent = Intent(Intent.ACTION_VIEW, uri)
         intent.addCategory(Intent.CATEGORY_BROWSABLE)
         requireActivity().startActivity(intent)
+        exitProcess(0)
     }
 }

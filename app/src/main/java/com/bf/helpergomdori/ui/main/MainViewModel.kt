@@ -38,8 +38,14 @@ class MainViewModel @Inject constructor(
         MutableStateFlow(listOf())
     val gomdoriList get() = _gomdoriList
 
+    private var _disconnetedGomdoriList: MutableStateFlow<List<Ping>> = MutableStateFlow(listOf())
+    val disconnectedGomdoriList get() = _disconnetedGomdoriList
+
     private var _bfList: MutableStateFlow<List<Ping>> = MutableStateFlow(listOf())
     val bfList get() = _bfList
+
+    private var _disconnectedBfList: MutableStateFlow<List<Ping>> = MutableStateFlow(listOf())
+    val disconnectedBfList get() = _disconnectedBfList
 
     private var _bfCnt: MutableStateFlow<Int> = MutableStateFlow(0)
     val bfCnt = _bfCnt.asStateFlow()
@@ -49,9 +55,6 @@ class MainViewModel @Inject constructor(
 
     private val webSocket: WebSocketUtil = WebSocketUtil(this)
 
-    init {
-        //postPush()
-    }
 
     /**
      * Api Process
@@ -102,24 +105,6 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun getHelpingAccepted(jwtToHelp: String){
-        val headers = HashMap<String, String>()
-        headers[HEADER_KEY] = PrefsUtil.getJwt()
-        headers[HEADER_TOKEN_KEY] = jwtToHelp
-        Log.d(MAIN_TAG, "getBfPing: ${headers}")
-    }
-
-    fun postPush() {
-        //getFirebaseToken()
-        val token = PrefsUtil.getFirebaseToken()
-        val jwt = PrefsUtil.getJwt()
-        Log.d(PUSH_TAG, "postPush: $token, $jwt")
-        viewModelScope.launch {
-            if (token != "" && jwt != "") {
-                //mainMapRepository.postPush(jwt, NotificationBody(MessageData(NotificationData(), token)))
-            }
-        }
-    }
 
     /**
      * WebSocket Process
@@ -140,6 +125,12 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun deletePing(ping: Ping) {
+        getUserCnt()
+        removeGomdoriList(ping)
+        removeBfList(ping)
+    }
+
     fun sendAcceptedMessage(helpRequest: HelpRequest) {
         webSocket.sendAcceptMessage(helpRequest)
     }
@@ -154,9 +145,34 @@ class MainViewModel @Inject constructor(
         _gomdoriList.value = list
     }
 
+    fun removeGomdoriList(gomdori: Ping) {
+        val list = gomdoriList.value.toMutableList()
+        val targetList = list.filter {
+            it.location == gomdori.location
+        }
+        targetList.forEach {
+            list.remove(it)
+        }
+        _disconnetedGomdoriList.value = targetList
+        _gomdoriList.value = list
+    }
+
     fun addBfList(bf: Ping) {
         val list = bfList.value.toMutableList()
         list.add(bf)
+        _disconnectedBfList.value = list
+        _bfList.value = list
+    }
+
+    fun removeBfList(bf: Ping) {
+        val list = bfList.value.toMutableList()
+        val targetList = list.filter {
+            it.location == bf.location
+        }
+        targetList.forEach {
+            list.remove(it)
+        }
+        _disconnectedBfList.value = targetList
         _bfList.value = list
     }
 
