@@ -48,8 +48,9 @@ class RequestWriteFragment :
     private fun setListener() {
         binding.apply {
             btnOk.setOnClickListener {
+                val needSituations = getCheckedSituation()
                 viewModel.setSpecificRequest(etSpecificRequest.text.toString())
-                viewModel.setNeedSituations(getCheckedSituation())
+                viewModel.setNeedSituations(needSituations)
                 navController?.navigate(R.id.action_requestWriteFragment_to_requestLocationFragment)
             }
         }
@@ -67,13 +68,14 @@ class RequestWriteFragment :
             if (checkboxEtc.isChecked) {
                 checkedSituation.add(checkboxEtc.text.toString())
             }
-            if (checkboxStairsLift.isChecked) {
-                checkedSituation.add(checkboxStairsLift.text.toString())
+            if (checkboxWalks.isChecked) {
+                checkedSituation.add(checkboxWalks.text.toString())
             }
             if (checkboxCommunicationProblem.isChecked) {
                 checkedSituation.add(checkboxCommunicationProblem.text.toString())
             }
         }
+        Log.d(REQUEST_TAG, "getCheckedSituation: ${checkedSituation.toList()}")
         return checkedSituation.toList()
     }
 

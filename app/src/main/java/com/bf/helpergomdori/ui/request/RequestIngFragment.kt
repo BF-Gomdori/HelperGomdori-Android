@@ -1,12 +1,14 @@
 package com.bf.helpergomdori.ui.request
 
 import android.content.Intent
+import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseFragment
 import com.bf.helpergomdori.databinding.FragmentRequestIngBinding
 import com.bf.helpergomdori.ui.main.MainActivity
+import com.bf.helpergomdori.utils.REQUEST_TAG
 import kotlinx.coroutines.flow.collect
 
 class RequestIngFragment: BaseFragment<FragmentRequestIngBinding>(R.layout.fragment_request_ing) {
@@ -25,8 +27,13 @@ class RequestIngFragment: BaseFragment<FragmentRequestIngBinding>(R.layout.fragm
     private fun observeViewModel(){
         lifecycleScope.launchWhenStarted {
             viewModel.bfLocation.collect{
+                Log.d(REQUEST_TAG, "observe bfLocation: ${it}")
                 if (it != null) {
-                    navController?.navigate(R.id.action_requestIngFragment_to_requestMatchingFragment)
+                    if (navController == null){
+                        this@RequestIngFragment.findNavControllerSafely()?.navigate(R.id.action_requestIngFragment_to_requestMatchingFragment)
+                    }else {
+                        navController?.navigate(R.id.action_requestIngFragment_to_requestMatchingFragment)
+                    }
                 }
             }
         }

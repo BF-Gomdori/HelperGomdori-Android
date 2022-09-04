@@ -63,7 +63,7 @@ class RequestViewModel @Inject constructor(
     fun sendHelpMessage(){
         websocket.setCurrentLocation(currentLocation!!)
         val helpRequest = HelpRequest(
-            helpeeJwt = PrefsUtil.getJwt(),
+            helpeeJwt = PrefsUtil.getWebSocketJwt(),
             requestType = needSituations[0],
             requestDetail = specificRequest,
             detailLocation = detailAddress
