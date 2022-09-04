@@ -52,8 +52,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main), 
     override fun onRestart() {
         super.onRestart()
         Log.d(MAIN_TAG, "onRestart")
-        viewModel.startWebSocket()
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.disconnectWebSocket()
     }
 
 

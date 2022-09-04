@@ -231,4 +231,8 @@ class WebSocketUtil(private val viewModel: BaseViewModel) {
         stompClient.disconnect()
     }
 
+    fun disconnectStomp(){
+        stompClient.disconnect()
+    }
+
 }

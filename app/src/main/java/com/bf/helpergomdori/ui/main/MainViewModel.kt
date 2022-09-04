@@ -135,6 +135,10 @@ class MainViewModel @Inject constructor(
         webSocket.sendAcceptMessage(helpRequest)
     }
 
+    fun disconnectWebSocket() {
+        webSocket.disconnectStomp()
+    }
+
     /**
      * Get & Set Process
      */
