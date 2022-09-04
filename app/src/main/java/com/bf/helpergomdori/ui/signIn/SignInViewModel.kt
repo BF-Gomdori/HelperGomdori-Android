@@ -12,6 +12,7 @@ import com.bf.helpergomdori.model.local.HelpType
 import com.bf.helpergomdori.model.remote.body.PostUser
 import com.bf.helpergomdori.model.remote.body.SigninBody
 import com.bf.helpergomdori.model.websocket.EnterType
+import com.bf.helpergomdori.utils.NotificationUtil
 import com.bf.helpergomdori.utils.SIGNIN_TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +31,7 @@ class SignInViewModel @Inject constructor(
     val newUser get() = _newUser
 
     fun postUser() {
+        NotificationUtil.getFirebaseToken()
         _newUser.fcm_token = PrefsUtil.getFirebaseToken()
         CoroutineScope(Dispatchers.IO).launch {
             val jwt = remoteRepository.postUserInfo(newUser).token

@@ -3,6 +3,8 @@ package com.bf.helpergomdori
 import android.app.Application
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
+import com.bf.helpergomdori.service.BfService
 import com.bf.helpergomdori.utils.NATIVE_APP_KEY
 import com.bf.helpergomdori.utils.NotificationUtil
 import com.bf.helpergomdori.utils.SharedPreferencesUtil

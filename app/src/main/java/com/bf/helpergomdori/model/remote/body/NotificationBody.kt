@@ -13,7 +13,6 @@ data class MessageData(
 )
 
 data class NotificationData(
-    val body: String = "",
-    val image: String = "",
-    val title: String = ""
-)
+    val title: String = "",
+    val body: String = ""
+): Serializable
