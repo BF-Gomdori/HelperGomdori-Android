@@ -37,7 +37,10 @@
  ┃ ┗ 📃BfFirebaseService
  ┣ 📂ui
  ┃ ┣ 📂askHelp
- ┃ ┣ 📂main  
+ ┃ ┣ 📂main 
+ ┃ ┃ ┣ 📃MainActivity
+ ┃ ┃ ┣ 📃MainViewModel
+ ┃ ┃ ┗ 📂dialog
  ┃ ┣ 📂mypage
  ┃ ┣ 📂request
  ┃ ┣ 📂response
