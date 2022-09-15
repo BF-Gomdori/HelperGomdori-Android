@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bf.helpergomdori.R
 import com.bf.helpergomdori.base.BaseActivity
-import com.bf.helpergomdori.data.remote.RemoteDataSourceImpl
-import com.bf.helpergomdori.data.remote.RetrofitBuilder
+import com.bf.helpergomdori.data.dataSource.RemoteDataSourceImpl
+import com.bf.helpergomdori.data.RetrofitBuilder
 import com.bf.helpergomdori.databinding.ActivityExBinding
 import com.bf.helpergomdori.model.ex.DataIntent
 import com.bf.helpergomdori.model.ex.DataState

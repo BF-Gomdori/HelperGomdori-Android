@@ -1,7 +1,7 @@
-package com.bf.helpergomdori.data.remote
+package com.bf.helpergomdori.data.dataSource
 
+import com.bf.helpergomdori.data.ApiService
 import com.bf.helpergomdori.model.Data
-import com.bf.helpergomdori.model.remote.DefaultHeader
 import com.bf.helpergomdori.model.remote.body.NotificationBody
 import com.bf.helpergomdori.model.remote.body.PostUser
 import com.bf.helpergomdori.model.remote.body.SigninBody

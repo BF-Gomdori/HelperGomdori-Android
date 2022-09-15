@@ -1,7 +1,7 @@
 package com.bf.helpergomdori.di
 
-import com.bf.helpergomdori.data.remote.ApiService
-import com.bf.helpergomdori.data.remote.RemoteDataSourceImpl
+import com.bf.helpergomdori.data.ApiService
+import com.bf.helpergomdori.data.dataSource.RemoteDataSourceImpl
 import com.bf.helpergomdori.data.repository.MainMapRepository
 import com.bf.helpergomdori.data.repository.LoginRepository
 import dagger.Module

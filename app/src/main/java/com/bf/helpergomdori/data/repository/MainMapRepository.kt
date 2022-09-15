@@ -1,6 +1,6 @@
 package com.bf.helpergomdori.data.repository
 
-import com.bf.helpergomdori.data.remote.RemoteDataSourceImpl
+import com.bf.helpergomdori.data.dataSource.RemoteDataSourceImpl
 import com.bf.helpergomdori.model.remote.body.NotificationBody
 import com.bf.helpergomdori.model.remote.response.*
 import com.bf.helpergomdori.model.websocket.Location
